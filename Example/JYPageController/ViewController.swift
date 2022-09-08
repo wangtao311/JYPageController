@@ -11,7 +11,7 @@ import JYPageController
 
 class ViewController: JYPageController {
     
-    let titles = ["推荐","最新","音乐","体育","附近动态"]
+    let titles = ["推荐","最新","音乐","体育","附近动态","Apple","海外","股票"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -48,7 +48,7 @@ extension ViewController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width, height: 50)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 50)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

@@ -15,6 +15,9 @@ import UIKit
     ///item title
     func menuView(_ menuView: JYPageMenuView, titleAt index: Int) -> String
     
+    ///自定义item,实现该方法并返回UIView后优先展示customView，title被忽略。customView需要设置frame
+//    @objc optional func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView?
+    
     ///item上的badgeView (eg. 标签/小红点/icon, 必须设置frame.size)
     @objc optional func menuView(_ menuView: JYPageMenuView, badgeViewAt index: Int) -> UIView?
     
