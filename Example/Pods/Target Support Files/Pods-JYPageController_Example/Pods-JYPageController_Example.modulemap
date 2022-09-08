@@ -1,0 +1,6 @@
+framework module Pods_JYPageController_Example {
+  umbrella header "Pods-JYPageController_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
