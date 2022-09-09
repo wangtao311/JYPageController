@@ -20,6 +20,15 @@ it, simply add the following line to your Podfile:
 pod 'JYPageController'
 ```
 
+1.继承JYPageController 在init方法中配置config属性
+2.支持设置字体大小颜色
+3.支持设置标题间间距
+4.支持设置每个标题的badgeView
+5.支持设置下划线颜色，宽高，圆角，是否显示下划线指示器
+6.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变
+7.感谢WMPageController作者，好多思路借鉴WMPageController
+8.持续完善中。。。。
+
 ![image](https://github.com/hello20150715/JYPageController/blob/master/screenshoot1.gif )   
 
 
