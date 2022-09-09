@@ -68,6 +68,13 @@ extension JYPageDemoController {
             let badge = UIImageView.init(image: UIImage(named: "badge"))
             badge.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
             return badge
+        }else if index == 4 {
+            let label = UILabel()
+            label.text = "99+"
+            label.textColor = .red
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.sizeToFit()
+            return label
         }else {
             return nil
         }

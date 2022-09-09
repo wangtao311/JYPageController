@@ -30,6 +30,8 @@ pod 'JYPageController'
 7.感谢WMPageController作者，好多思路借鉴WMPageController  
 8.持续完善中。。。。  
 
+
+## 演示GIF
 ![image](https://github.com/hello20150715/JYPageController/blob/master/demo_gif_1.gif )   
 
 
