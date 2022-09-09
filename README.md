@@ -32,7 +32,31 @@ pod 'JYPageController'
 9.持续完善中。。。。  
 
 
-## 演示GIF
+eg.
+
+    在继承JYPageController的子类的init方法中配置
+    //normal字体大小颜色
+    config.normalTitleColor = .systemGray
+    config.normalTitleFont = 16
+    
+    //selected字体大小颜色
+    config.selectedTitleColor = .red
+    config.selectedTitleFont = 21
+
+    //indicatorLine size  cornerRadius color
+    config.indicatorLineViewSize = CGSize(width: 14, height: 3)
+    config.indicatorLineViewCornerRadius = 2
+    
+    //item间距
+    config.menuItemMargin = 25
+    
+    //默认选中的index
+    selectedIndex = 2
+    
+    .....
+
+
+## Demo GIF
 ![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif )   
 
 

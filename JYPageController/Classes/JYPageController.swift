@@ -79,13 +79,13 @@ open class JYPageController: UIViewController {
         /**
          子类重写init方法，设置pageConfig,menuConfig的属性
          eg.
-         pageConfig.bounces = true
-         menuConfig.showIndicatorLineView = false
-         menuConfig.selectedTitleColor = .red
-         menuConfig.normalTitleColor = .red
-         menuConfig.selectedTitleFont = .systemFont(ofSize: 18, weight: .medium)
-         menuConfig.normalTitleFont = .systemFont(ofSize: 18, weight: .medium)
-         menuConfig.menuItemMargin = 10
+         config.bounces = true
+         config.showIndicatorLineView = false
+         config.selectedTitleColor = .red
+         config.normalTitleColor = .red
+         config.selectedTitleFont = .systemFont(ofSize: 18, weight: .medium)
+         config.normalTitleFont = .systemFont(ofSize: 18, weight: .medium)
+         config.menuItemMargin = 10
          */
     }
     
