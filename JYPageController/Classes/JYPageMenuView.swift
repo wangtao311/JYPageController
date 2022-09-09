@@ -94,6 +94,7 @@ public class JYPageMenuView: UIView {
         contentView.frame = self.bounds
         layoutItems()
         indicatorLineViewMoveTo(selectedIndex, animate: false)
+        resetHorContentOffset(animate: false)
     }
     
     //MARK: - Public
@@ -338,7 +339,7 @@ public class JYPageMenuView: UIView {
         items.removeAll()
         
         for i in 0 ..< itemsCount {
-            //item添加
+            //add item
             let title = source.menuView(self, titleAt: i)
             let item = JYPageMenuItem()
             item.backgroundColor = .clear

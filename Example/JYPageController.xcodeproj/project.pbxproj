@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		1EF1ECEB5E84185E23A49395 /* Pods_JYPageController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FAE6537A00354C222152658 /* Pods_JYPageController_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* JYPageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* JYPageDemoController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		634A7216E06812B47B76156E /* Pods_JYPageController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */; };
+		939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939164DA28CAEA550077DB86 /* JYTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,7 @@
 		607FACD01AFB9204008FA782 /* JYPageController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JYPageController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* JYPageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYPageDemoController.swift; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* JYPageController_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JYPageController_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +44,7 @@
 		6B5F3EC5D566F44DD900B2A1 /* Pods-JYPageController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JYPageController_Example.debug.xcconfig"; path = "Target Support Files/Pods-JYPageController_Example/Pods-JYPageController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8A5B010441E7F0D08A5F9338 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JYPageController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		939164DA28CAEA550077DB86 /* JYTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYTableViewController.swift; sourceTree = "<group>"; };
 		BFBBB04D8A04618BDECA07DF /* Pods-JYPageController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JYPageController_Tests.release.xcconfig"; path = "Target Support Files/Pods-JYPageController_Tests/Pods-JYPageController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E8F3FA45CE565ED753D1085F /* Pods-JYPageController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JYPageController_Example.release.xcconfig"; path = "Target Support Files/Pods-JYPageController_Example/Pods-JYPageController_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				607FACD71AFB9204008FA782 /* JYPageDemoController.swift */,
+				939164DA28CAEA550077DB86 /* JYTableViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -329,8 +332,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* JYPageDemoController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

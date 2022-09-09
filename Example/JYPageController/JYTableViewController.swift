@@ -9,38 +9,29 @@
 import UIKit
 
 class JYTableViewController: UITableViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.rowHeight = 120
+        tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 26
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JYTableViewCell", for: indexPath)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -87,4 +78,39 @@ class JYTableViewController: UITableViewController {
     }
     */
 
+}
+
+
+
+
+
+class JYTableViewCell: UITableViewCell {
+    
+    
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        
+        let imageView = UIImageView(image: UIImage(named: "demo_list_icon"))
+        imageView.frame = CGRect(x: 15, y: 10, width: 140, height: 100)
+        contentView.addSubview(imageView)
+        
+        
+        let titleLbael = UILabel()
+        titleLbael.text = "title"
+        titleLbael.frame = CGRect(x: 160, y: 10, width: 100, height: 25)
+        contentView.addSubview(titleLbael)
+        
+        let detailLbael = UILabel()
+        detailLbael.text = "Pass the selected object to the new view controller."
+        detailLbael.frame = CGRect(x: 160, y: 80, width: 200, height: 25)
+        detailLbael.textColor = .lightGray
+        contentView.addSubview(detailLbael)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

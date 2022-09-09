@@ -22,7 +22,7 @@ pod 'JYPageController'
 
 ## Author
 
-wangtao, henandaxuewangtao@126.com
+wangtao, henandaxuewangtao@126.com  vx 18739974428
 
 ## License
 

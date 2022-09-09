@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'JYPageController'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of JYPageController.'
+  s.summary          = '多页面嵌套左右滚动Tabs组件'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/wangtao/JYPageController'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'wangtao' => 'henandaxuewangtao@126.com' }
+  s.author           = { 'wangtao' => 'henandaxuewangtao@126.com    vx：wangtao603637393' }
   s.source           = { :git => 'https://github.com/hello20150715/JYPageController.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

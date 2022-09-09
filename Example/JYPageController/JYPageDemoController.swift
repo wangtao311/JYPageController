@@ -9,7 +9,7 @@
 import UIKit
 import JYPageController
 
-class ViewController: JYPageController {
+class JYPageDemoController: JYPageController {
     
     let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
     
@@ -46,7 +46,7 @@ class ViewController: JYPageController {
 }
 
 
-extension ViewController {
+extension JYPageDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {

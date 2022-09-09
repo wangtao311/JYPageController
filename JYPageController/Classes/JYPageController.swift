@@ -66,6 +66,10 @@ open class JYPageController: UIViewController {
     ///标记scorllView滚动是否由拖拽触发
     private var scrollByDragging = false
     
+    ///当前的偏移量，用来判断向左还是向右滑动
+    private var currentOffsetX: CGFloat = 0
+    
+    
 
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -94,21 +98,15 @@ open class JYPageController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-
         edgesForExtendedLayout = []
+        pageView_setup()
         
         view.addSubview(scrollView)
         view.addSubview(menuView)
-        pageView_setup()
-        pageView_setContentSize()
-        menuView_setDefaultIndex()
-        pageView_setDefaultIndex()
-    }
-    
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         menuView.frame = menuViewFrame
         scrollView.frame = containerViewFrame
+        
+        menuView_setDefaultIndex()
     }
     
     
@@ -120,6 +118,8 @@ open class JYPageController: UIViewController {
             let cacheKey = String(i) as NSString
             if let childController = memoryCache.object(forKey: cacheKey) {
                 childController.view.removeFromSuperview()
+                childController.willMove(toParentViewController: nil)
+                childController.removeFromParentViewController()
             }
         }
         
@@ -130,9 +130,8 @@ open class JYPageController: UIViewController {
         menuView.select(selectedIndex)
         
         pageView_setup()
-        pageView_setContentSize()
         scrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * containerViewFrame.width, y: 0), animated: false)
-        loadChildViewIfNeeded()
+        
     }
     
     ///获取menuview中scrollview的contentsize
@@ -158,25 +157,13 @@ open class JYPageController: UIViewController {
         }
         menuViewFrame = source.pageController(self, frameForMenuView: menuView)
         containerViewFrame = source.pageController(self, frameForContainerView: scrollView)
+        
+        let contentSize = CGSize(width: CGFloat(childControllersCount)*containerViewFrame.size.width, height: containerViewFrame.size.height)
+        scrollView.contentSize = contentSize
     }
     
     private func menuView_setDefaultIndex() {
         menuView.select(selectedIndex)
-    }
-    
-    private func pageView_setDefaultIndex() {
-        if selectedIndex < childControllersCount {
-            let initializedController = loadChildController(selectedIndex)
-            addChildView(selectedIndex, childView: initializedController.view)
-            let contentOffsetX = CGFloat(selectedIndex)*containerViewFrame.size.width
-            scrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: false)
-        }
-    }
-    
-    ///计算scrollView的contentsize
-    private func pageView_setContentSize() {
-        let contentSize = CGSize(width: CGFloat(childControllersCount)*containerViewFrame.size.width, height: containerViewFrame.size.height)
-        scrollView.contentSize = contentSize
     }
     
     ///加载指定index的controller
@@ -194,10 +181,12 @@ open class JYPageController: UIViewController {
         return UIViewController.init()
     }
     
-    ///添加指定index的view到scrollView上
-    private func addChildView(_ index: Int, childView: UIView) {
-        scrollView.addSubview(childView)
-        childView.frame = CGRect(x: CGFloat(index)*containerViewFrame.size.width, y: 0, width: containerViewFrame.size.width, height: containerViewFrame.size.height)
+    ///添加指定index的controller
+    private func addChildController(_ index: Int, childController: UIViewController) {
+        addChildViewController(childController)
+        childController.view.frame = CGRect(x: CGFloat(index)*containerViewFrame.size.width, y: 0, width: containerViewFrame.size.width, height: containerViewFrame.size.height)
+        childController.didMove(toParentViewController: self)
+        scrollView.addSubview(childController.view)
     }
     
     //MARK: - Lazy
@@ -232,6 +221,7 @@ open class JYPageController: UIViewController {
 extension JYPageController:UIScrollViewDelegate {
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        currentOffsetX = scrollView.contentOffset.x
         scrollByDragging = true
     }
     
@@ -245,17 +235,27 @@ extension JYPageController:UIScrollViewDelegate {
         if scrollByDragging {
             loadChildViewIfNeeded()
             menuView.menuViewScroll(by:scrollView)
+            currentOffsetX = scrollView.contentOffset.x
         }
     }
     
-    func loadChildViewIfNeeded() {
+    private func loadChildViewIfNeeded() {
+        
         let offsetX = scrollView.contentOffset.x
-        let targetIndex = Int(offsetX/containerViewFrame.size.width)>0 ? Int(offsetX/containerViewFrame.size.width)+1 : 0
-        let cacheKey = String(targetIndex) as NSString
-        let view = memoryCache.object(forKey: cacheKey)
-        if targetIndex < childControllersCount, view == nil {
-            let targetChildController = loadChildController(targetIndex)
-            addChildView(targetIndex, childView: targetChildController.view)
+        guard offsetX.truncatingRemainder(dividingBy: containerViewFrame.size.width) == 0 else {
+            var targetIndex = 0
+            if offsetX > currentOffsetX {
+                targetIndex = Int(offsetX/containerViewFrame.size.width) + 1
+            }else {
+                targetIndex = Int(offsetX/containerViewFrame.size.width)
+            }
+            let cacheKey = String(targetIndex) as NSString
+            let controller = memoryCache.object(forKey: cacheKey)
+            if targetIndex < childControllersCount, controller == nil {
+                let targetChildController = loadChildController(targetIndex)
+                addChildController(targetIndex, childController: targetChildController)
+            }
+            return
         }
     }
 }
@@ -324,7 +324,7 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
         if index < childControllersCount {
             if view == nil {
                 let targetChildController = loadChildController(index)
-                addChildView(index, childView: targetChildController.view)
+                addChildController(index, childController: targetChildController)
             }
             selectedIndex = index
             let contentOffsetX = CGFloat(index)*containerViewFrame.size.width
