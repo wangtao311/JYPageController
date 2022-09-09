@@ -11,7 +11,7 @@ import JYPageController
 
 class ViewController: JYPageController {
     
-    let titles = ["推荐","最新","音乐","体育","附近动态","Apple","海外","股票"]
+    let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -23,12 +23,14 @@ class ViewController: JYPageController {
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 20
+        config.selectedTitleFont = 21
 
         config.indicatorLineViewSize = CGSize(width: 14, height: 3)
         config.indicatorLineViewCornerRadius = 2
         
         config.menuItemMargin = 25
+        
+        selectedIndex = 2
     }
 
     required public init?(coder: NSCoder) {
@@ -52,7 +54,8 @@ extension ViewController {
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
-        return CGRect.init(x: 0, y: 50, width: view.frame.size.width, height: view.frame.size.height - 50)
+        
+        return CGRect.init(x: 0, y: 66, width: view.frame.size.width, height: UIScreen.main.bounds.size.height - 34 - 44 - 66)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
@@ -76,18 +79,10 @@ extension ViewController {
     }
     
     override func childController(atIndex index: Int) -> UIViewController {
-        let vc = UIViewController()
-        vc.view.backgroundColor = randomRGB()
+        let vc = JYTableViewController()
         return vc
     }
     
-    
-    
-    
-    func randomRGB() -> UIColor {
-            return UIColor.init(red: CGFloat(arc4random()%256)/255.0, green: CGFloat(arc4random()%256)/255.0, blue: CGFloat(arc4random()%256)/255.0, alpha: 1)
-
-    }
     
 }
 
