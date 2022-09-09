@@ -63,7 +63,7 @@ eg.
 
 ## Author
 
-wangtao, henandaxuewangtao@126.com  vx 18739974428
+wangtao, henandaxuewangtao@126.com
 
 ## License
 
