@@ -20,6 +20,9 @@ it, simply add the following line to your Podfile:
 pod 'JYPageController'
 ```
 
+![image](https://github.com/hello20150715/JYPageController/blob/master/screenshoot1.gif )   
+
+
 ## Author
 
 wangtao, henandaxuewangtao@126.com  vx 18739974428
