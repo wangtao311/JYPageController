@@ -18,6 +18,14 @@ class JYTableViewController: UITableViewController {
         tableView.rowHeight = 120
         tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
 
     // MARK: - Table view data source
 
