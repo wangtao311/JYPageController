@@ -66,26 +66,25 @@ override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 
 3.实现数据源协议方法
 
-override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-    return menuview frame
-}
+override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {  
+    return menuview frame  
+}  
 
-override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
-    
-    return childViewcontroller view frame 
-}
+override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {   
+    return childViewcontroller view frame   
+}  
 
-override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
-    return title
-}
+override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {  
+    return title  
+}  
 
-override func numberOfChildControllers() -> Int {
-    return title count
-}
+override func numberOfChildControllers() -> Int {  
+    return title count  
+}  
 
-override func childController(atIndex index: Int) -> UIViewController {
-    return child controller
-}
+override func childController(atIndex index: Int) -> UIViewController {  
+    return child controller  
+}  
 
 
 
