@@ -40,7 +40,7 @@ pod 'JYPageController'
 
 ## Use
 
-1.继承JYPageController
+1.继承JYPageController  
 2.在init方法中配置menuview颜色字体大小等
 
 ```
@@ -95,9 +95,8 @@ override func childController(atIndex index: Int) -> UIViewController {
 ```
 
 
-
 ## Preview GIF
-![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif )   
+![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif)   
 
 
 
