@@ -17,20 +17,20 @@ class JYPageDemoController: JYPageController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
         
-        config.normalTitleColor = .systemGray
+        config.normalTitleColor = .darkText
         config.normalTitleFontWeight = .regular
         config.normalTitleFont = 16
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 21
+        config.selectedTitleFont = 20
 
         config.indicatorLineViewSize = CGSize(width: 14, height: 3)
         config.indicatorLineViewCornerRadius = 2
         
         config.menuItemMargin = 25
         
-        selectedIndex = 2
+        selectedIndex = 3
     }
 
     required public init?(coder: NSCoder) {
@@ -50,12 +50,21 @@ extension JYPageDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 50)
+        
+        var menuViewY : CGFloat = 0
+        if let navBar = navigationController?.navigationBar {
+            menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
+        }
+        return CGRect.init(x: 0, y: menuViewY, width: view.frame.size.width, height: 50)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
         
-        return CGRect.init(x: 0, y: 66, width: view.frame.size.width, height: UIScreen.main.bounds.size.height - 34 - 44 - 66)
+        var menuViewY : CGFloat = 0
+        if let navBar = navigationController?.navigationBar {
+            menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
+        }
+        return CGRect.init(x: 0, y: menuViewY + 50, width: view.frame.size.width, height: view.frame.height - 50 - menuViewY)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
@@ -86,8 +95,13 @@ extension JYPageDemoController {
     }
     
     override func childController(atIndex index: Int) -> UIViewController {
-        let vc = JYTableViewController()
-        return vc
+        let tableViewController = JYTableViewController()
+        let viewController = JYViewController()
+        if index == 1 {
+            return viewController
+        }else{
+            return tableViewController
+        }
     }
     
     

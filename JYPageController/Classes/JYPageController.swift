@@ -98,7 +98,6 @@ open class JYPageController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        edgesForExtendedLayout = []
         pageView_setup()
         
         view.addSubview(scrollView)

@@ -8,17 +8,25 @@
 import UIKit
 
 ///item的状态
-@objc enum JYPageMenuItemState: Int {
+@objc enum JYMenuItemState: Int {
     case normal = 0
     case selected = 1
 }
 
 ///menuview的布局方式，居中/居左/居右
-@objc public enum JYPageMenuViewAlignment: Int {
+@objc public enum JYMenuViewAlignment: Int {
     case left
     case right
     case center
 }
+
+///IndicatorStyle  下划线/渐变色下划线/自定义view，默认显示下划线
+@objc public enum JYMenuViewIndicatorStyle: Int {
+    case defaultStyle
+    case gradientStyle
+    case customStyle
+}
+
 
 
 public class JYPageConfig: NSObject {
@@ -41,8 +49,8 @@ public class JYPageConfig: NSObject {
     ///选中状态文字fontWeight,默认regular
     public var selectedTitleFontWeight: UIFont.Weight = .regular
     
-    ///是否显示指示器(底部下划线),默认显示
-    public var showIndicatorLineView: Bool = true
+    ///是否显示指示器，默认显示下划线
+    public var showIndicator: Bool = true
     
     ///指示器(下划线)size，默认14,2
     public var indicatorLineViewSize: CGSize = CGSize(width: 14, height: 2)
@@ -69,7 +77,7 @@ public class JYPageConfig: NSObject {
     public var menuItemTop: CGFloat?
     
     ///alignment,默认居左， item数目多能滚动的场景，设置center无效
-    public var alignment: JYPageMenuViewAlignment = .left
+    public var alignment: JYMenuViewAlignment = .left
     
     ///bounces效果
     public var bounces: Bool = false

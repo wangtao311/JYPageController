@@ -24,16 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         
-        if #available(iOS 15.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor.red
-            let navigationBar = UINavigationBar.appearance()
-            navigationBar.standardAppearance = appearance;
-            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
-        } else {
-            // Fallback on earlier versions
-        }
+//        if #available(iOS 15.0, *) {
+//            let appearance = UINavigationBarAppearance()
+//            appearance.configureWithOpaqueBackground()
+//            appearance.backgroundColor = UIColor.red
+//            let navigationBar = UINavigationBar.appearance()
+//            navigationBar.standardAppearance = appearance;
+//            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+//        } else {
+//            // Fallback on earlier versions
+//        }
         
         return true
     }

@@ -68,7 +68,7 @@ public class JYPageMenuView: UIView {
         
         config = pageConfig
         contentView.bounces = config.bounces
-        if config.showIndicatorLineView {
+        if config.showIndicator {
             indicatorLineView.backgroundColor = config.indicatorLineViewColor
             indicatorLineView.layer.cornerRadius = config.indicatorLineViewCornerRadius
         }else{
@@ -267,7 +267,7 @@ public class JYPageMenuView: UIView {
             toItem.transform = CGAffineTransform(scaleX: toItemCurrentScaleX, y: toItemCurrentScaleY)
         }
         
-        if config.showIndicatorLineView {
+        if config.showIndicator {
             indicatorLineViewMove(fromItem: fromItem, toItem: toItem, offsetX: offsetX, rate: rate, pageView: scrollView)
         }
     }
@@ -360,7 +360,7 @@ public class JYPageMenuView: UIView {
     
     ///更改指示器位置
     private func indicatorLineViewMoveTo(_ index: Int, animate: Bool) {
-        guard let menuItem = itemWithIndex(selectedIndex), config.showIndicatorLineView, itemsCount > 0  else {
+        guard let menuItem = itemWithIndex(selectedIndex), config.showIndicator, itemsCount > 0  else {
            return
         }
         
@@ -546,7 +546,6 @@ extension JYPageMenuView: JYPageMenuItemDelegate {
         
         toItem.selected = true
         fromItem.selected = false
-//        需要颜色渐变打开
         var rate: CGFloat = 0
         let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
         timer.schedule(deadline: .now(), repeating: kMenuItemAnimateDuration/100)
@@ -565,8 +564,7 @@ extension JYPageMenuView: JYPageMenuItemDelegate {
             self.updateItemsFrame()
             
         }) { finished in
-//          需要颜色渐变打开
-          timer.cancel()
+            timer.cancel()
             toItem.textColor = self.config.selectedTitleColor
             toItem.font = UIFont.systemFont(ofSize: self.config.normalTitleFont, weight: self.config.selectedTitleFontWeight)
             fromItem.textColor = self.config.normalTitleColor
