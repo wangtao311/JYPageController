@@ -63,15 +63,15 @@ override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 
     selectedIndex = 2
     
+    ...
 } 
 
 ```
 
 
-
 3.实现数据源协议方法  
 
-
+```
 override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {  
     return menuview frame  
 }  
@@ -91,7 +91,7 @@ override func numberOfChildControllers() -> Int {
 override func childController(atIndex index: Int) -> UIViewController {  
     return child controller  
 } 
- 
+```
 
 
 
