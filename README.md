@@ -62,7 +62,7 @@ eg.
     .....
 
 
-## Demo GIF
+## Preview GIF
 ![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif )   
 
 
