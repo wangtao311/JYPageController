@@ -32,7 +32,7 @@ pod 'JYPageController'
 
 
 接下来完善  
-fix:保证子控制器生命周期方法
+fix:保证子控制器生命周期方法  
 1.menuview显示在导航栏  
 2.下划线支持渐变色  
 3. menuview的item支持自定义view   
