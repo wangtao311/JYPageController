@@ -29,7 +29,13 @@ pod 'JYPageController'
 6.支持设置下划线颜色，宽高，圆角，是否显示下划线指示器  
 7.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变  
 8.感谢WMPageController作者，有些思路借鉴WMPageController  
-9.持续完善中。。。。  
+
+
+接下来完善  
+1.menuview显示在导航栏  
+2.下划线支持渐变色  
+3. menuview的item支持自定义view   
+4.优化代码  
 
 
 eg.
