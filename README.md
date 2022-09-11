@@ -43,29 +43,34 @@ pod 'JYPageController'
 1.继承JYPageController
 2.在init方法中配置menuview颜色字体大小等
 
+...
 override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {  
+
     super.init(nibName: nil, bundle: nil)  
-    
+
     config.normalTitleColor = .systemGray
     config.normalTitleFontWeight = .regular
     config.normalTitleFont = 16
-    
+
     config.selectedTitleColor = .red
     config.selectedTitleFontWeight = .regular
     config.selectedTitleFont = 21
 
     config.indicatorLineViewSize = CGSize(width: 14, height: 3)
     config.indicatorLineViewCornerRadius = 2
-    
+
     config.menuItemMargin = 25
-    
+
     selectedIndex = 2
     
     ....
 }  
 
+...
+
 3.实现数据源协议方法  
 
+...
 override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {  
     return menuview frame  
 }  
@@ -84,7 +89,8 @@ override func numberOfChildControllers() -> Int {
 
 override func childController(atIndex index: Int) -> UIViewController {  
     return child controller  
-}  
+} 
+... 
 
 
 
