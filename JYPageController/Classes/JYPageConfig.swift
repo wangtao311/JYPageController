@@ -88,5 +88,8 @@ public class JYPageConfig: NSObject {
     ///menuItem手动选中时候，下面的scrollView切换页面是否滚动
     public var scrollViewAnimationWhenMenuItemSelected: Bool = false
     
+    ///menuView显示在导航栏，默认false
+    public var menuViewShowInNavigationBar: Bool = false
+    
 }
  

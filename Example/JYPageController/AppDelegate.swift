@@ -17,23 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let navController = UINavigationController.init(rootViewController: JYPageDemoController.init())
+        let navController = UINavigationController.init(rootViewController: JYDemoController.init())
         navController.view.backgroundColor = .white
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
         
         
-//        if #available(iOS 15.0, *) {
-//            let appearance = UINavigationBarAppearance()
-//            appearance.configureWithOpaqueBackground()
-//            appearance.backgroundColor = UIColor.red
-//            let navigationBar = UINavigationBar.appearance()
-//            navigationBar.standardAppearance = appearance;
-//            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            let navigationBar = UINavigationBar.appearance()
+            navigationBar.standardAppearance = appearance;
+            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+        } else {
+            // Fallback on earlier versions
+        }
         
         return true
     }

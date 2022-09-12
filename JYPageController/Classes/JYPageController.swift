@@ -55,7 +55,10 @@ open class JYPageController: UIViewController {
     weak public var dataSource: JYPageControllerDataSource?
     
     ///childView cache
-    var memoryCache: NSCache = NSCache<NSString, UIViewController>()
+    private var memoryCache: NSCache = NSCache<NSString, UIViewController>()
+    
+    ///缓存当前scrollView上展示的vc，用于处理子vc的生命周期逻辑
+    private var displayControllers = Dictionary<NSString, UIViewController>()
     
     ///menuview frame
     private var menuViewFrame: CGRect = .zero
@@ -100,10 +103,16 @@ open class JYPageController: UIViewController {
         
         pageView_setup()
         
-        view.addSubview(scrollView)
-        view.addSubview(menuView)
         menuView.frame = menuViewFrame
         scrollView.frame = containerViewFrame
+        
+        if config.menuViewShowInNavigationBar {
+            view.addSubview(scrollView)
+            navigationItem.titleView = menuView
+        }else {
+            view.addSubview(scrollView)
+            view.addSubview(menuView)
+        }
         
         menuView_setDefaultIndex()
     }
@@ -195,7 +204,6 @@ open class JYPageController: UIViewController {
     
     private lazy var menuView: JYPageMenuView = {
         let menuView = JYPageMenuView.init(pageConfig: config)
-        menuView.backgroundColor = .white
         menuView.dataSource = self
         menuView.delegate = self
         return menuView
@@ -319,9 +327,9 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
     public func menuView(_ menuView: JYPageMenuView, didSelectItemAt index: Int) {
         scrollByDragging = false
         let cacheKey = String(index) as NSString
-        let view = memoryCache.object(forKey: cacheKey)
+        let controller = memoryCache.object(forKey: cacheKey)
         if index < childControllersCount {
-            if view == nil {
+            if controller == nil {
                 let targetChildController = loadChildController(index)
                 addChildController(index, childController: targetChildController)
             }

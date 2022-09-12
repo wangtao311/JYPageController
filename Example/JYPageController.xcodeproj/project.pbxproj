@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		1EF1ECEB5E84185E23A49395 /* Pods_JYPageController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FAE6537A00354C222152658 /* Pods_JYPageController_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* JYPageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* JYPageDemoController.swift */; };
+		607FACD81AFB9204008FA782 /* JYNormalDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* JYNormalDemoController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		634A7216E06812B47B76156E /* Pods_JYPageController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */; };
 		939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939164DA28CAEA550077DB86 /* JYTableViewController.swift */; };
 		93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EDF9E628CE49EF004D6058 /* JYViewController.swift */; };
+		93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */; };
+		93FA66FE28CF292800CFA285 /* JYMenuViewAligentDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */; };
+		93FA670028CF297400CFA285 /* JYDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FF28CF297400CFA285 /* JYDemoController.swift */; };
+		93FA670328CF2B4B00CFA285 /* JYMenuViewBadgeOffsetDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA670228CF2B4B00CFA285 /* JYMenuViewBadgeOffsetDemoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 		607FACD01AFB9204008FA782 /* JYPageController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JYPageController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* JYPageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYPageDemoController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* JYNormalDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNormalDemoController.swift; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* JYPageController_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JYPageController_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +51,10 @@
 		9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JYPageController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		939164DA28CAEA550077DB86 /* JYTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYTableViewController.swift; sourceTree = "<group>"; };
 		93EDF9E628CE49EF004D6058 /* JYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYViewController.swift; sourceTree = "<group>"; };
+		93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYShowInNavDemoController.swift; sourceTree = "<group>"; };
+		93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYMenuViewAligentDemoController.swift; sourceTree = "<group>"; };
+		93FA66FF28CF297400CFA285 /* JYDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYDemoController.swift; sourceTree = "<group>"; };
+		93FA670228CF2B4B00CFA285 /* JYMenuViewBadgeOffsetDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYMenuViewBadgeOffsetDemoController.swift; sourceTree = "<group>"; };
 		BFBBB04D8A04618BDECA07DF /* Pods-JYPageController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JYPageController_Tests.release.xcconfig"; path = "Target Support Files/Pods-JYPageController_Tests/Pods-JYPageController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E8F3FA45CE565ED753D1085F /* Pods-JYPageController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JYPageController_Example.release.xcconfig"; path = "Target Support Files/Pods-JYPageController_Example/Pods-JYPageController_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,10 +123,12 @@
 		607FACD21AFB9204008FA782 /* Example for JYPageController */ = {
 			isa = PBXGroup;
 			children = (
+				93FA670128CF299600CFA285 /* MenuViewBadgeOffset */,
+				93FA66FC28CF290600CFA285 /* MenuViewAligent */,
+				93FA66F928CF24FF00CFA285 /* MenuViewShowInNavBar */,
+				93FA66F828CF24E900CFA285 /* Normal */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* JYPageDemoController.swift */,
-				939164DA28CAEA550077DB86 /* JYTableViewController.swift */,
-				93EDF9E628CE49EF004D6058 /* JYViewController.swift */,
+				93FA66FF28CF297400CFA285 /* JYDemoController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -160,6 +170,40 @@
 				2239EBFE6F5FB0315AECA589 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		93FA66F828CF24E900CFA285 /* Normal */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD71AFB9204008FA782 /* JYNormalDemoController.swift */,
+				939164DA28CAEA550077DB86 /* JYTableViewController.swift */,
+				93EDF9E628CE49EF004D6058 /* JYViewController.swift */,
+			);
+			name = Normal;
+			sourceTree = "<group>";
+		};
+		93FA66F928CF24FF00CFA285 /* MenuViewShowInNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */,
+			);
+			name = MenuViewShowInNavBar;
+			sourceTree = "<group>";
+		};
+		93FA66FC28CF290600CFA285 /* MenuViewAligent */ = {
+			isa = PBXGroup;
+			children = (
+				93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */,
+			);
+			name = MenuViewAligent;
+			sourceTree = "<group>";
+		};
+		93FA670128CF299600CFA285 /* MenuViewBadgeOffset */ = {
+			isa = PBXGroup;
+			children = (
+				93FA670228CF2B4B00CFA285 /* JYMenuViewBadgeOffsetDemoController.swift */,
+			);
+			name = MenuViewBadgeOffset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,10 +379,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* JYPageDemoController.swift in Sources */,
+				93FA66FE28CF292800CFA285 /* JYMenuViewAligentDemoController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* JYNormalDemoController.swift in Sources */,
+				93FA670328CF2B4B00CFA285 /* JYMenuViewBadgeOffsetDemoController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */,
+				93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */,
 				93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */,
+				93FA670028CF297400CFA285 /* JYDemoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

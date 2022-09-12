@@ -1,17 +1,17 @@
 //
-//  ViewController.swift
-//  JYPageController
+//  JYMenuViewAligentDemoController.swift
+//  JYPageController_Example
 //
-//  Created by wangtao on 09/08/2022.
-//  Copyright (c) 2022 wangtao. All rights reserved.
+//  Created by wang tao on 2022/9/12.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import JYPageController
 
-class JYPageDemoController: JYPageController {
+class JYMenuViewAligentDemoController: JYPageController {
     
-    let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
+    let titles = ["I like","Like me"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -28,9 +28,8 @@ class JYPageDemoController: JYPageController {
         config.indicatorLineViewSize = CGSize(width: 14, height: 3)
         config.indicatorLineViewCornerRadius = 2
         
-        config.menuItemMargin = 25
-        
-        selectedIndex = 3
+        config.menuItemMargin = 35
+        config.alignment = .center
     }
 
     required public init?(coder: NSCoder) {
@@ -40,13 +39,13 @@ class JYPageDemoController: JYPageController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.title = "JYPageController"
+        view.backgroundColor = .white
     }
     
 }
 
 
-extension JYPageDemoController {
+extension JYMenuViewAligentDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
@@ -74,10 +73,6 @@ extension JYPageDemoController {
     override func pageController(_ pageView: JYPageController, badgeViewAt index: Int) -> UIView? {
         
         if index == 1 {
-            let badge = UIImageView.init(image: UIImage(named: "badge"))
-            badge.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-            return badge
-        }else if index == 4 {
             let label = UILabel()
             label.text = "99+"
             label.textColor = .red
@@ -106,17 +101,4 @@ extension JYPageDemoController {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

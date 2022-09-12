@@ -40,7 +40,11 @@ public class JYPageMenuView: UIView {
     weak public var delegate: JYPageMenuViewDelegate?
     
     ///数据源
-    weak public var dataSource: JYPageMenuViewDataSource?
+    weak public var dataSource: JYPageMenuViewDataSource? {
+        didSet {
+            getItemsCount()
+        }
+    }
     
     ///当前选中的index
     private var selectedIndex: Int = 0
@@ -97,6 +101,13 @@ public class JYPageMenuView: UIView {
         resetHorContentOffset(animate: false)
     }
     
+    private func getItemsCount() {
+        guard let source = dataSource else {
+            return
+        }
+        itemsCount = source.numberOfMenuItems()
+    }
+    
     //MARK: - Public
     
     ///单独使用menuview，动态改变数据源的时候调用(数据源改变之后先reload，如需要设置默认index，再调select)。其他场景不需要主动调用
@@ -105,7 +116,7 @@ public class JYPageMenuView: UIView {
             return
         }
         
-        itemsCount = source.numberOfMenuItems()
+        getItemsCount()
         addMenuItems()
         layoutOnceToken = false
         layoutItems()
