@@ -27,16 +27,19 @@ pod 'JYPageController'
 4.支持设置默认的selectedIndex  
 5.支持设置/清空每个标题的badgeView,以及badgeview和标题item的间距  
 6.支持设置下划线颜色，宽高，圆角，是否显示下划线指示器  
-7.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变  
-8.感谢WMPageController作者，有些思路借鉴WMPageController  
+7.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变 
+8.支持标题tab显示在导航栏  
+9.保证childViewController生命周期  
+
+感谢WMPageController作者，childController生命周期逻辑和item缩放过程中颜色变化逻辑借鉴WMPageController。    
+但同时也解决了使用WMPageController过程中遇到两个的问题  
+1.选中和非选中字体差距较大时候，选中的item和非选中的item间距变的很小。UI不能接受
+2.item在放大的过程中，item的badgeView是不动的，放大后位置出现偏差
 
 
-接下来完善  
-fix:保证子控制器生命周期方法  
-1.menuview显示在导航栏  
-2.下划线支持渐变色  
-3. menuview的item支持自定义view   
-4.优化代码  
+接下来完善    
+1.下划线支持渐变色,支持自定义view  
+2. menuview的item支持自定义view     
 
 
 ## Use
