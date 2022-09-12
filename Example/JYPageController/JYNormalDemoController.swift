@@ -96,12 +96,10 @@ extension JYNormalDemoController {
     }
     
     override func childController(atIndex index: Int) -> UIViewController {
-        let tableViewController = JYTableViewController()
-        let viewController = JYViewController()
         if index == 1 {
-            return viewController
+            return JYViewController()
         }else{
-            return tableViewController
+            return JYTableViewController()
         }
     }
     

@@ -26,7 +26,7 @@ class JYDemoController: UITableViewController {
     }
     
 
-//    // MARK: - Table view data source
+    // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -40,15 +40,18 @@ class JYDemoController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        var controller = UIViewController()
         if indexPath.row == 0 {
-            navigationController?.pushViewController(JYNormalDemoController(), animated: true)
+            controller = JYNormalDemoController()
         }else if indexPath.row == 1 {
-            navigationController?.pushViewController(JYShowInNavDemoController(), animated: true)
+            controller = JYShowInNavDemoController()
         }else if indexPath.row == 2 {
-            navigationController?.pushViewController(JYMenuViewAligentDemoController(), animated: true)
+            controller = JYMenuViewAligentDemoController()
         }else if indexPath.row == 3 {
-            navigationController?.pushViewController(JYMenuViewBadgeOffsetDemoController(), animated: true)
+            controller = JYMenuViewBadgeOffsetDemoController()
         }
+        controller.navigationItem.title = cellTitles[indexPath.row]
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 

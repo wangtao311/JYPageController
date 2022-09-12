@@ -133,6 +133,7 @@ open class JYPageController: UIViewController {
         
         childControllersCount = dataSource?.numberOfChildControllers() ?? 0
         memoryCache.removeAllObjects()
+        displayControllers.removeAll()
         
         menuView.reload()
         menuView.select(selectedIndex)
@@ -174,27 +175,76 @@ open class JYPageController: UIViewController {
         menuView.select(selectedIndex)
     }
     
-    ///加载指定index的controller
-    private func loadChildController(_ index: Int) -> UIViewController {
+    ///添加指定index的controller
+    private func addChildController(index: Int) {
+        
+        var childController = UIViewController()
         let cacheKey = String(index) as NSString
         if let controlller = memoryCache.object(forKey: cacheKey) {
-            return controlller
+            childController = controlller
+        }else {
+            if let controlller = dataSource?.childController(atIndex: index) {
+                memoryCache.setObject(controlller, forKey: cacheKey)
+                delegate?.pageController?(self, didLoadChildController: controlller, index: index)
+                childController = controlller
+            }
         }
         
-        if let controlller = dataSource?.childController(atIndex: index) {
-            memoryCache.setObject(controlller, forKey: cacheKey)
-            delegate?.pageController?(self, didLoadChildController: controlller, index: index)
-            return controlller
+        if displayControllers[cacheKey] == nil {
+            addChildViewController(childController)
         }
-        return UIViewController.init()
-    }
-    
-    ///添加指定index的controller
-    private func addChildController(_ index: Int, childController: UIViewController) {
-        addChildViewController(childController)
+        
         childController.view.frame = CGRect(x: CGFloat(index)*containerViewFrame.size.width, y: 0, width: containerViewFrame.size.width, height: containerViewFrame.size.height)
         childController.didMove(toParentViewController: self)
         scrollView.addSubview(childController.view)
+        displayControllers[cacheKey] = childController
+    }
+    
+    private func loadChildControllerIfNeeded() {
+        
+        let offsetX = scrollView.contentOffset.x
+        if offsetX < 0 || offsetX > scrollView.contentSize.width {
+            return
+        }
+        guard offsetX.truncatingRemainder(dividingBy: containerViewFrame.size.width) == 0 else {
+            var targetIndex = 0
+            if offsetX > currentOffsetX {
+                targetIndex = Int(offsetX/containerViewFrame.size.width) + 1
+            }else {
+                targetIndex = Int(offsetX/containerViewFrame.size.width)
+            }
+            let cacheKey = String(targetIndex) as NSString
+            let controller = displayControllers[cacheKey]
+            if targetIndex < childControllersCount, controller == nil {
+                addChildController(index: targetIndex)
+            }
+            return
+        }
+    }
+    
+    private func removeChildControllerIfNeeded() {
+        for i in 0 ..< childControllersCount {
+            let cacheKey = String(i) as NSString
+            if let childController = displayControllers[cacheKey], childControllerIsInScreen(childController) == false {
+                childController.view.removeFromSuperview()
+                childController.willMove(toParentViewController: nil)
+                childController.removeFromParentViewController()
+                displayControllers.removeValue(forKey: cacheKey)
+            }
+        }
+    }
+    
+    private func childControllerIsInScreen(_ childController: UIViewController) -> Bool {
+        let offsetX = scrollView.contentOffset.x
+        let screenWidth = scrollView.frame.width
+        let childViewMaxX = childController.view.frame.maxX
+        let childViewMinX = childController.view.frame.minX
+
+        if childViewMaxX > offsetX, childViewMinX - offsetX < screenWidth {
+            return true
+        }else{
+            return false
+        }
     }
     
     //MARK: - Lazy
@@ -239,30 +289,11 @@ extension JYPageController:UIScrollViewDelegate {
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        removeChildControllerIfNeeded()
         if scrollByDragging {
-            loadChildViewIfNeeded()
+            loadChildControllerIfNeeded()
             menuView.menuViewScroll(by:scrollView)
             currentOffsetX = scrollView.contentOffset.x
-        }
-    }
-    
-    private func loadChildViewIfNeeded() {
-        
-        let offsetX = scrollView.contentOffset.x
-        guard offsetX.truncatingRemainder(dividingBy: containerViewFrame.size.width) == 0 else {
-            var targetIndex = 0
-            if offsetX > currentOffsetX {
-                targetIndex = Int(offsetX/containerViewFrame.size.width) + 1
-            }else {
-                targetIndex = Int(offsetX/containerViewFrame.size.width)
-            }
-            let cacheKey = String(targetIndex) as NSString
-            let controller = memoryCache.object(forKey: cacheKey)
-            if targetIndex < childControllersCount, controller == nil {
-                let targetChildController = loadChildController(targetIndex)
-                addChildController(targetIndex, childController: targetChildController)
-            }
-            return
         }
     }
 }
@@ -327,11 +358,10 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
     public func menuView(_ menuView: JYPageMenuView, didSelectItemAt index: Int) {
         scrollByDragging = false
         let cacheKey = String(index) as NSString
-        let controller = memoryCache.object(forKey: cacheKey)
+        let controller = displayControllers[cacheKey]
         if index < childControllersCount {
             if controller == nil {
-                let targetChildController = loadChildController(index)
-                addChildController(index, childController: targetChildController)
+                addChildController(index: index)
             }
             selectedIndex = index
             let contentOffsetX = CGFloat(index)*containerViewFrame.size.width

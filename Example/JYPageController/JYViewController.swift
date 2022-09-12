@@ -9,6 +9,10 @@
 import UIKit
 
 class JYViewController: UIViewController {
+    
+    deinit {
+        NSLog("JYViewController 销毁了")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,29 @@ class JYViewController: UIViewController {
         view.addSubview(label)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSLog("JYViewController -----   viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NSLog("JYViewController -----   viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSLog("JYViewController -----   viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NSLog("JYViewController -----   viewDidDisappear")
+    }
 
     /*
     // MARK: - Navigation
