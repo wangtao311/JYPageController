@@ -20,6 +20,7 @@ class JYTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.rowHeight = 120
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
     }
     
