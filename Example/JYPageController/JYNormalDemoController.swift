@@ -28,7 +28,7 @@ class JYNormalDemoController: JYPageController {
         config.indicatorLineViewSize = CGSize(width: 14, height: 3)
         config.indicatorLineViewCornerRadius = 2
         
-        config.menuItemMargin = 25
+        config.menuItemMargin = 30
         
         selectedIndex = 1
         

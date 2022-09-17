@@ -467,11 +467,11 @@ public class JYPageMenuView: UIView {
             if index == 0 {
                 item.frame = CGRect(x: startX , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
                 item.badgeView?.frame = CGRect(x: item.frame.width + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
-                totalWidth = startX + item.frame.width + item.badgeViewWidth + config.badgeViewOffset.x
+                totalWidth = startX + item.frame.width
             }else{
                 item.frame = CGRect(x: totalWidth + config.menuItemMargin , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
                 item.badgeView?.frame = CGRect(x: item.frame.width + item.frame.origin.x + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
-                totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.menuItemMargin + config.badgeViewOffset.x
+                totalWidth = totalWidth + item.frame.width + config.menuItemMargin
             }
         }
         contentView.contentSize = CGSize(width: totalWidth, height: frame.size.height)
