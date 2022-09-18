@@ -50,17 +50,14 @@ pod 'JYPageController'
 
 
 ## Preview 
-|    Style                    |                           Preview                                     |       Config    |
-| :-------------------------- | ----------------------------------------------------------------------|---------------- |
-|ShowInNavagationBar |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif) |  config         | 
-|CustomSizeLine      |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif2.gif) |  config         | 
-|FollowItemSizeLine  |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif3.gif) |  config         | 
-|CustomIndicator     |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif4.gif) |  config         | 
+|    Style                    |                           Preview                                     |                          Config                |
+| :-------------------------- | ----------------------------------------------------------------------|------------------------------------------------|
+|ShowInNavagationBar |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif) |  config.menuViewShowInNavigationBar = true     | 
+|CustomSizeLine      |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif4.gif) |  config.indicatorStyle = .customSizeLine       | 
+|FollowItemSizeLine  |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif2.gif) |  config.indicatorStyle = .followItemSizeLine   | 
+|CustomIndicator     |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif3.gif) |  config.indicatorStyle = .customView           | 
 
-
-
-
-![image](https://github.com/wangtao311/JYPageController/blob/master/gif2.gif)   
+ 
 
 
 ## Use
