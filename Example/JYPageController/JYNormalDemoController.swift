@@ -25,8 +25,10 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 20
 
-        config.indicatorLineViewSize = CGSize(width: 14, height: 3)
-        config.indicatorLineViewCornerRadius = 2
+        config.indicatorStyle = .customView
+        let indicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 15))
+        indicator.image = UIImage(named: "Indicator")
+        config.customIndicator = indicator
         
         config.menuItemMargin = 30
         

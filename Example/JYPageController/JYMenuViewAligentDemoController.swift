@@ -25,8 +25,8 @@ class JYMenuViewAligentDemoController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 20
 
-        config.indicatorLineViewSize = CGSize(width: 14, height: 3)
-        config.indicatorLineViewCornerRadius = 2
+        config.indicatorSize = CGSize(width: 14, height: 3)
+        config.indicatorCornerRadius = 2
         
         config.menuItemMargin = 35
         config.alignment = .center

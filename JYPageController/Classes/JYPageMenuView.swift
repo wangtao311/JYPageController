@@ -64,7 +64,7 @@ public class JYPageMenuView: UIView {
         super.init(frame: frame)
         
         addSubview(contentView)
-        contentView.addSubview(indicatorLineView)
+        contentView.addSubview(indicator)
     }
     
     public convenience init(pageConfig: JYPageConfig) {
@@ -72,11 +72,20 @@ public class JYPageMenuView: UIView {
         
         config = pageConfig
         contentView.bounces = config.bounces
-        if config.showIndicator {
-            indicatorLineView.backgroundColor = config.indicatorLineViewColor
-            indicatorLineView.layer.cornerRadius = config.indicatorLineViewCornerRadius
-        }else{
-            indicatorLineView.removeFromSuperview()
+        
+        if config.indicatorStyle == .followItemSizeLine || config.indicatorStyle == .customSizeLine {
+            indicator.backgroundColor = config.indicatorColor
+            indicator.layer.cornerRadius = config.indicatorCornerRadius
+        }
+        
+        if config.indicatorStyle == .none {
+            indicator.removeFromSuperview()
+        }
+        
+        if config.indicatorStyle == .customView {
+            indicator.removeFromSuperview()
+            indicator = config.customIndicator ?? UIView()
+            contentView.addSubview(indicator)
         }
     }
     
@@ -97,7 +106,7 @@ public class JYPageMenuView: UIView {
         
         contentView.frame = self.bounds
         layoutItems()
-        indicatorLineViewMoveTo(selectedIndex, animate: false)
+        indicatorMoveTo(index: selectedIndex, animate: false)
         resetHorContentOffset(animate: false)
     }
     
@@ -121,9 +130,9 @@ public class JYPageMenuView: UIView {
         layoutOnceToken = false
         layoutItems()
         
-        contentView.bringSubview(toFront: indicatorLineView)
+        contentView.bringSubview(toFront: indicator)
         resetHorContentOffset(animate: false)
-        indicatorLineViewMoveTo(selectedIndex, animate: false)
+        indicatorMoveTo(index: selectedIndex, animate: false)
     }
     
     ///获取当前选中的index
@@ -163,7 +172,7 @@ public class JYPageMenuView: UIView {
                 updateItemsFrame()
             }
         }
-        indicatorLineViewMoveTo(selectedIndex, animate: false)
+        indicatorMoveTo(index: selectedIndex, animate: false)
     }
     
     ///页面滚动过程中，持续调用
@@ -188,7 +197,7 @@ public class JYPageMenuView: UIView {
         }
         
         resetHorContentOffset(animate: true)
-        indicatorLineViewMoveTo(selectedIndex, animate: true)
+        indicatorMoveTo(index: selectedIndex, animate: true)
     }
     
     ///设置选中index
@@ -278,8 +287,8 @@ public class JYPageMenuView: UIView {
             toItem.transform = CGAffineTransform(scaleX: toItemCurrentScaleX, y: toItemCurrentScaleY)
         }
         
-        if config.showIndicator {
-            indicatorLineViewMove(fromItem: fromItem, toItem: toItem, offsetX: offsetX, rate: rate, pageView: scrollView)
+        if config.indicatorStyle != .none {
+            indicatorMove(fromItem: fromItem, toItem: toItem, offsetX: offsetX, rate: rate, pageView: scrollView)
         }
     }
     
@@ -293,48 +302,57 @@ public class JYPageMenuView: UIView {
         }
     }
      
-    private func indicatorLineViewMove(fromItem: JYPageMenuItem, toItem: JYPageMenuItem, offsetX: CGFloat, rate: CGFloat, pageView: UIScrollView) {
+    private func indicatorMove(fromItem: JYPageMenuItem, toItem: JYPageMenuItem, offsetX: CGFloat, rate: CGFloat, pageView: UIScrollView) {
         
-        if fromItem.tag < toItem.tag {
-            
-            let scrollViewWidth = pageView.frame.width
-            var currentIndicatorViewWidth: CGFloat = 0
-            let indicatorLineViewMaxWidth = toItem.center.x -  fromItem.center.x
-            let tempOffetX = offsetX.truncatingRemainder(dividingBy: scrollViewWidth)
-            
+        let scrollViewWidth = pageView.frame.width
+        var currentIndicatorWidth: CGFloat = 0
+        let indicatorMaxWidth = abs(toItem.center.x -  fromItem.center.x)
+        let tempOffetX = offsetX.truncatingRemainder(dividingBy: scrollViewWidth)
+        
+        switch config.indicatorStyle {
+        case .customSizeLine:
             if tempOffetX <= scrollViewWidth/2 {
                 let percent_min_max = tempOffetX/scrollViewWidth*2
-                currentIndicatorViewWidth = config.indicatorLineViewSize.width + percent_min_max * (indicatorLineViewMaxWidth - config.indicatorLineViewSize.width)
+                currentIndicatorWidth = config.indicatorSize.width + percent_min_max * (indicatorMaxWidth - config.indicatorSize.width)
             }else{
                 let percent_max_min = (tempOffetX - scrollViewWidth/2)/scrollViewWidth*2
-                currentIndicatorViewWidth = config.indicatorLineViewSize.width + (1 - percent_max_min)*(indicatorLineViewMaxWidth - config.indicatorLineViewSize.width)
+                currentIndicatorWidth = config.indicatorSize.width + (1 - percent_max_min)*(indicatorMaxWidth - config.indicatorSize.width)
             }
             
-            indicatorLineView.center = CGPoint(x: fromItem.center.x + rate * indicatorLineViewMaxWidth, y: indicatorLineView.center.y)
-            var frame = indicatorLineView.frame
-            frame.size.width = currentIndicatorViewWidth
-            frame.size.height = indicatorLineView.frame.size.height
-            indicatorLineView.frame = frame
-        }else{
-            
-            let scrollViewWidth = pageView.frame.width
-            var currentIndicatorViewWidth: CGFloat = 0
-            let indicatorLineViewMaxWidth = fromItem.center.x - toItem.center.x
-            let tempOffetX = offsetX.truncatingRemainder(dividingBy: scrollViewWidth)
-            
-            if tempOffetX <= scrollViewWidth/2 {
-                let percent_min_max = tempOffetX/scrollViewWidth*2
-                currentIndicatorViewWidth = config.indicatorLineViewSize.width + percent_min_max * (indicatorLineViewMaxWidth - config.indicatorLineViewSize.width)
+            if fromItem.tag < toItem.tag {
+                indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
             }else{
-                let percent_max_min = (tempOffetX - scrollViewWidth/2)/scrollViewWidth*2
-                currentIndicatorViewWidth = config.indicatorLineViewSize.width + (1 - percent_max_min)*(indicatorLineViewMaxWidth - config.indicatorLineViewSize.width)
+                indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
             }
             
-            indicatorLineView.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorLineViewMaxWidth, y: indicatorLineView.center.y)
-            var frame = indicatorLineView.frame
-            frame.size.width = currentIndicatorViewWidth
-            frame.size.height = indicatorLineView.frame.size.height
-            indicatorLineView.frame = frame
+            var frame = indicator.frame
+            frame.size.width = currentIndicatorWidth
+            frame.size.height = indicator.frame.size.height
+            indicator.frame = frame
+            
+        case .followItemSizeLine:
+            if fromItem.tag < toItem.tag {
+                indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
+                currentIndicatorWidth = (toItem.frame.width - fromItem.frame.width) * rate + fromItem.frame.width
+            }else{
+                indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
+                currentIndicatorWidth = (fromItem.frame.width - toItem.frame.width) * rate + toItem.frame.width
+            }
+            
+            var frame = indicator.frame
+            frame.size.width = currentIndicatorWidth
+            frame.size.height = indicator.frame.size.height
+            indicator.frame = frame
+        
+        case .customView:
+            if fromItem.tag < toItem.tag {
+                indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
+            }else{
+                indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
+            }
+            
+        default: break
+            
         }
     }
     
@@ -370,20 +388,31 @@ public class JYPageMenuView: UIView {
     }
     
     ///更改指示器位置
-    private func indicatorLineViewMoveTo(_ index: Int, animate: Bool) {
-        guard let menuItem = itemWithIndex(selectedIndex), config.showIndicator, itemsCount > 0  else {
+    private func indicatorMoveTo(index: Int, animate: Bool) {
+        guard let menuItem = itemWithIndex(selectedIndex), config.indicatorStyle != .none, itemsCount > 0  else {
            return
         }
         
-        let rect = CGRect(x: (menuItem.frame.width - config.indicatorLineViewSize.width)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorLineViewBottom - config.indicatorLineViewSize.height, width: config.indicatorLineViewSize.width, height: config.indicatorLineViewSize.height)
-        contentView.bringSubview(toFront: indicatorLineView)
+        var indicatorRect: CGRect = .zero
+        if config.indicatorStyle == .customSizeLine {
+            indicatorRect = CGRect(x: (menuItem.frame.width - config.indicatorSize.width)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - config.indicatorSize.height, width: config.indicatorSize.width, height: config.indicatorSize.height)
+            
+        }else if config.indicatorStyle == .followItemSizeLine {
+            indicatorRect = CGRect(x: menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - 2, width: menuItem.frame.width, height: 2)
+        }else if config.indicatorStyle == .customView {
+            if let indicator = config.customIndicator {
+                indicatorRect = CGRect(x: (menuItem.frame.width - indicator.frame.width)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - indicator.frame.height, width: indicator.frame.width, height: indicator.frame.height)
+            }
+        }
+        
         var duration: Double = 0
         if animate {
             duration = kMenuItemAnimateDuration
         }
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
-            self.indicatorLineView.frame = rect
+            self.indicator.frame = indicatorRect
         }, completion: nil)
+        contentView.bringSubview(toFront: indicator)
     }
     
     ///选中item之后判断是是否需要调整contentOffsetX
@@ -510,10 +539,10 @@ public class JYPageMenuView: UIView {
         return scrollView
     }()
     
-    private lazy var indicatorLineView: UIView = {
+    private lazy var indicator: UIView = {
         let view = UIView()
-        view.backgroundColor = config.indicatorLineViewColor
-        view.layer.cornerRadius = config.indicatorLineViewCornerRadius
+        view.backgroundColor = config.indicatorColor
+        view.layer.cornerRadius = config.indicatorCornerRadius
         return view
     }()
     
@@ -545,7 +574,7 @@ extension JYPageMenuView: JYPageMenuItemDelegate {
         let targetIndex = item.tag - kMenuItemTagExtenValue
         menuViewSelectedItemChange(fromIndex: selectedIndex, toIndex: targetIndex)
         selectedIndex = targetIndex
-        indicatorLineViewMoveTo(targetIndex, animate: true)
+        indicatorMoveTo(index: targetIndex, animate: true)
         delegate?.menuView?(self, didSelectItemAt: targetIndex)
     }
     

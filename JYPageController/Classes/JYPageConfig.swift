@@ -20,11 +20,12 @@ import UIKit
     case center
 }
 
-///IndicatorStyle  下划线/渐变色下划线/自定义view，默认显示下划线
+///IndicatorStyle  下划线/渐变色下划线/自定义view，默认none
 @objc public enum JYMenuViewIndicatorStyle: Int {
-    case defaultStyle
-    case gradientStyle
-    case customStyle
+    case none                 //无指示器效果
+    case followItemSizeLine   //跟随标题大小
+    case customSizeLine       //指定size下划线，设置indicatorSize属性
+    case customView           //自定义view，外部传
 }
 
 
@@ -49,20 +50,23 @@ public class JYPageConfig: NSObject {
     ///选中状态文字fontWeight,默认regular
     public var selectedTitleFontWeight: UIFont.Weight = .regular
     
-    ///是否显示指示器，默认显示下划线
-    public var showIndicator: Bool = true
+    ///是否显示指示器，默认不显示
+    public var indicatorStyle: JYMenuViewIndicatorStyle = .none
+    
+    ///自定义indicatorView, indicatorStyle = customView 设置
+    public var customIndicator: UIView?
     
     ///指示器(下划线)size，默认14,2
-    public var indicatorLineViewSize: CGSize = CGSize(width: 14, height: 2)
+    public var indicatorSize: CGSize = CGSize(width: 14, height: 2)
     
     ///指示器(下划线)距离底部的间距，默认0
-    public var indicatorLineViewBottom: CGFloat = 0
+    public var indicatorBottom: CGFloat = 0
     
     ///指示器(下划线)颜色
-    public var indicatorLineViewColor: UIColor = .red
+    public var indicatorColor: UIColor = .red
     
     ///指示器(下划线)圆角,默认0
-    public var indicatorLineViewCornerRadius: CGFloat = 0
+    public var indicatorCornerRadius: CGFloat = 0
     
     ///菜单标题间距
     public var menuItemMargin: CGFloat = 15
