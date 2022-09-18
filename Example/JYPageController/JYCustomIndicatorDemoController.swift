@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
-//  JYPageController
+//  config.indicatorStyle = .customView         let indicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 15))         indicator.image = UIImage(named: "Indicator") JYCustomIndicatorDemoController.swift
+//  JYPageController_Example
 //
-//  Created by wangtao on 09/08/2022.
-//  Copyright (c) 2022 wangtao. All rights reserved.
+//  Created by wang tao on 2022/9/18.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import JYPageController
 
-class JYNormalDemoController: JYPageController {
+class JYCustomIndicatorDemoController: JYPageController {
     
     let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
     
@@ -26,10 +26,11 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleFont = 20
         
         config.menuItemMargin = 30
-        config.indicatorStyle = .followItemSizeLine
         
-        selectedIndex = 1
-        
+        let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 15))
+        customIndicator.image = UIImage(named: "Indicator")
+        config.customIndicator = customIndicator
+        config.indicatorStyle = .customView
     }
 
     required public init?(coder: NSCoder) {
@@ -45,7 +46,7 @@ class JYNormalDemoController: JYPageController {
 }
 
 
-extension JYNormalDemoController {
+extension JYCustomIndicatorDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
@@ -103,17 +104,3 @@ extension JYNormalDemoController {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

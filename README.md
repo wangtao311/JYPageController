@@ -30,6 +30,7 @@ pod 'JYPageController'
 7.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变    
 8.支持标题tab显示在导航栏  
 9.保证childViewController生命周期  
+10.标题下指示器支持多样式,支持自定义View  
 
 感谢WMPageController作者，childController生命周期逻辑和item缩放过程中颜色变化逻辑借鉴WMPageController    
 但同时也解决了使用WMPageController过程中遇到两个的问题  
@@ -37,9 +38,8 @@ pod 'JYPageController'
 2.item在放大的过程中，item的badgeView是不动的，放大后位置出现偏差
 
 
-接下来完善    
-1.下划线支持渐变色,支持自定义view  
-2. menuview的item支持自定义view     
+接下来完善     
+1. menuview的item支持自定义view     
 
 
 ## Use

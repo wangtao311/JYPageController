@@ -10,7 +10,7 @@ import UIKit
 
 class JYDemoController: UITableViewController {
     
-    let cellTitles = ["Normal","MenuViewShowInNavigaitonBar","MenuViewAligent","MenuViewBadgeOffset"]
+    let cellTitles = ["Normal","MenuViewShowInNavigaitonBar","MenuViewAligent","MenuViewBadgeOffset","CustomIndicator"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class JYDemoController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
 
@@ -49,7 +49,10 @@ class JYDemoController: UITableViewController {
             controller = JYMenuViewAligentDemoController()
         }else if indexPath.row == 3 {
             controller = JYMenuViewBadgeOffsetDemoController()
+        }else if indexPath.row == 4 {
+            controller = JYCustomIndicatorDemoController()
         }
+        
         controller.navigationItem.title = cellTitles[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }

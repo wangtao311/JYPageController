@@ -15,6 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		634A7216E06812B47B76156E /* Pods_JYPageController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */; };
 		939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939164DA28CAEA550077DB86 /* JYTableViewController.swift */; };
+		93DB56A928D771C5004F59D8 /* JYCustomIndicatorDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */; };
 		93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EDF9E628CE49EF004D6058 /* JYViewController.swift */; };
 		93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */; };
 		93FA66FE28CF292800CFA285 /* JYMenuViewAligentDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */; };
@@ -50,6 +51,7 @@
 		8A5B010441E7F0D08A5F9338 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9267D8F128E8115780E43731 /* Pods_JYPageController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JYPageController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		939164DA28CAEA550077DB86 /* JYTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYTableViewController.swift; sourceTree = "<group>"; };
+		93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCustomIndicatorDemoController.swift; sourceTree = "<group>"; };
 		93EDF9E628CE49EF004D6058 /* JYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYViewController.swift; sourceTree = "<group>"; };
 		93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYShowInNavDemoController.swift; sourceTree = "<group>"; };
 		93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYMenuViewAligentDemoController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		607FACD21AFB9204008FA782 /* Example for JYPageController */ = {
 			isa = PBXGroup;
 			children = (
+				93DB56A728D7717E004F59D8 /* MenuViewCustomIndicator */,
 				93FA670128CF299600CFA285 /* MenuViewBadgeOffset */,
 				93FA66FC28CF290600CFA285 /* MenuViewAligent */,
 				93FA66F928CF24FF00CFA285 /* MenuViewShowInNavBar */,
@@ -170,6 +173,14 @@
 				2239EBFE6F5FB0315AECA589 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		93DB56A728D7717E004F59D8 /* MenuViewCustomIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */,
+			);
+			name = MenuViewCustomIndicator;
 			sourceTree = "<group>";
 		};
 		93FA66F828CF24E900CFA285 /* Normal */ = {
@@ -385,6 +396,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */,
 				93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */,
+				93DB56A928D771C5004F59D8 /* JYCustomIndicatorDemoController.swift in Sources */,
 				93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */,
 				93FA670028CF297400CFA285 /* JYDemoController.swift in Sources */,
 			);
