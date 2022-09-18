@@ -29,7 +29,7 @@ class JYMenuViewAligentDemoController: JYPageController {
         config.indicatorCornerRadius = 2
         
         config.menuItemMargin = 35
-        config.alignment = .center
+        config.alignment = .right
     }
 
     required public init?(coder: NSCoder) {
