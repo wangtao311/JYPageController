@@ -51,7 +51,7 @@ pod 'JYPageController'
 ## Preview 
 |    Style                    |                           Preview                                     |                          Config                |
 | :-------------------------- | ----------------------------------------------------------------------|------------------------------------------------|
-|ShowInNavagationBar |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif1.gif) |  config.menuViewShowInNavigationBar = true     | 
+|ShowInNavagationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b0d92018bfd3cf42.gif?imageMogr2/auto-orient/strip) |  config.menuViewShowInNavigationBar = true     | 
 |CustomSizeLine      |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif4.gif) |  config.indicatorStyle = .customSizeLine       | 
 |FollowItemSizeLine  |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif2.gif) |  config.indicatorStyle = .followItemSizeLine   | 
 |CustomIndicator     |  ![image](https://github.com/wangtao311/JYPageController/blob/master/gif3.gif) |  config.indicatorStyle = .customView           | 
