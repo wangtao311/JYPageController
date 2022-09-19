@@ -7,92 +7,91 @@
 
 import UIKit
 
-///item的状态
+
 @objc enum JYMenuItemState: Int {
     case normal = 0
     case selected = 1
 }
 
-///menuview的布局方式，居中/居左/居右
 @objc public enum JYMenuViewAlignment: Int {
     case left
     case right
     case center
 }
 
-///IndicatorStyle  下划线/渐变色下划线/自定义view，默认none
+///IndicatorStyle
 @objc public enum JYMenuViewIndicatorStyle: Int {
-    case none                 //无指示器效果
-    case followItemSizeLine   //跟随标题大小
-    case customSizeLine       //指定size下划线，设置indicatorSize属性
-    case customView           //自定义view，外部传
+    case none                 //none
+    case followItemSizeLine   //equal to title width
+    case customSizeLine       //need set indicatorSize property
+    case customView           //custom view，need set customIndicator property
 }
 
 
 
 public class JYPageConfig: NSObject {
     
-    ///非选中状态文字颜色,默认黑色
+    ///normal status title color, default black
     public var normalTitleColor: UIColor = .black
     
-    ///非选中状态文字font,默认size:16
+    ///normal status title font, default size:16
     public var normalTitleFont: CGFloat = 16
     
-    ///非选中状态文字fontWeight,默认regular
+    ///normal status fontWeight, default regular
     public var normalTitleFontWeight: UIFont.Weight = .regular
     
-    ///选中状态文字颜色,默认黑色
+    ///selected status title color, default black
     public var selectedTitleColor: UIColor = .black
     
-    ///选中状态文字fontsize,默认size:16
+    ///selected status title fontsize, default size:16
     public var selectedTitleFont: CGFloat = 16
     
-    ///选中状态文字fontWeight,默认regular
+    ///selected status title fontWeight, default regular
     public var selectedTitleFontWeight: UIFont.Weight = .regular
     
-    ///是否显示指示器，默认不显示
+    ///indicator style, default none
     public var indicatorStyle: JYMenuViewIndicatorStyle = .none
     
-    ///自定义indicatorView, indicatorStyle = customView 设置
+    ///custom indicatorView, if indicatorStyle = .customView, set this property
     public var customIndicator: UIView?
     
-    ///指示器(下划线)size，默认14,2
+    ///indicator size, if indicatorStyle = .customSizeLine, set this property
     public var indicatorSize: CGSize = CGSize(width: 14, height: 2)
     
-    ///指示器(下划线)距离底部的间距，默认0
+    ///indicator bottom distance from menuview bottom，default 0
     public var indicatorBottom: CGFloat = 0
     
-    ///指示器(下划线)颜色
+    ///indicator color, if indicatorStyle =.customSizeLine ||  indicatorStyle =.followItemSizeLine, you can set this property
     public var indicatorColor: UIColor = .red
     
-    ///指示器(下划线)圆角,默认0
+    ///indicator cornerRadius, default 0
     public var indicatorCornerRadius: CGFloat = 0
     
-    ///菜单标题间距
+    ///item margin
     public var menuItemMargin: CGFloat = 15
     
-    ///菜单最小宽度
+    ///item min width, if text width < minwidth, item width = menuItemMinWidth
     public var menuItemMinWidth: CGFloat = 0
     
-    ///菜单最大宽度
+    ///item max width, if text width > maxwidth, item width = menuItemMaxWidth
     public var menuItemMaxWidth: CGFloat = 0
     
-    ///菜单文案距离顶部的距离,不设置的话默认居中
+    ///item top distance from meuuview top, default ver center
     public var menuItemTop: CGFloat?
     
-    ///alignment,默认居左， item数目多能滚动的场景，设置center无效
+    ///alignment, default center
     public var alignment: JYMenuViewAlignment = .left
     
-    ///bounces效果
+    ///bounces
     public var bounces: Bool = false
     
-    ///badgeViewOffSet，默认badgeView.left = item.right， badgeView.centerY = item.top 设置后效果badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY
+    ///badgeViewOffSet，default badgeView.left = item.right， badgeView.centerY = item.top  After you set badgeViewOffset,  badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY
     public var badgeViewOffset: CGPoint = .zero
     
-    ///menuItem手动选中时候，下面的scrollView切换页面是否滚动
+    ///when the menuItem is clicked，scrollView change to target page  need animation?
     public var scrollViewAnimationWhenMenuItemSelected: Bool = false
     
-    ///menuView显示在导航栏，默认false
+    ///menuView show in navigation bar, default false
     public var menuViewShowInNavigationBar: Bool = false
     
 }

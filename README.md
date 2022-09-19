@@ -43,10 +43,9 @@ pod 'JYPageController'
 
 
 
-接下来计划       
-1.menuview的item支持自定义view
-2.readme中整理下menuview样式，弄成gif重新上传  
-3.支持头部headerView，menuview可以悬停   
+## NEXT      
+1.menuview的item支持自定义view 
+2.支持头部headerView，menuview可以悬停   
 
 
 ## Preview 
