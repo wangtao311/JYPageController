@@ -44,7 +44,7 @@ pod 'JYPageController'
 
 
 ## NEXT      
-1.menuview的item支持自定义view 
+1.menuview的item支持自定义view   
 2.支持头部headerView，menuview可以悬停   
 
 
