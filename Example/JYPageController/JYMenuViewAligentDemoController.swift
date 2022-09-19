@@ -55,7 +55,7 @@ extension JYMenuViewAligentDemoController {
         if let navBar = navigationController?.navigationBar {
             menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: menuViewY, width: view.frame.size.width, height: 50)
+        return CGRect.init(x: 0, y: menuViewY, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
@@ -64,7 +64,7 @@ extension JYMenuViewAligentDemoController {
         if let navBar = navigationController?.navigationBar {
             menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: menuViewY + 50, width: view.frame.size.width, height: view.frame.height - 50 - menuViewY)
+        return CGRect.init(x: 0, y: menuViewY + 44, width: view.frame.size.width, height: view.frame.height - 44 - menuViewY)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {

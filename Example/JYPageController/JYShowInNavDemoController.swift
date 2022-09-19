@@ -29,6 +29,9 @@ class JYShowInNavDemoController: JYPageController {
         config.menuViewShowInNavigationBar = true
         config.alignment = .center
         
+        config.indicatorStyle = .followItemSizeLine
+        config.indicatorColor = .red
+        
     }
 
     required public init?(coder: NSCoder) {
