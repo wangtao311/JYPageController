@@ -53,7 +53,7 @@ pod 'JYPageController'
 | :-------------------------- | ----------------------------------------------------------------------|------------------------------------------------|
 |ShowInNavagationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b0d92018bfd3cf42.gif?imageMogr2/auto-orient/strip) |  config.menuViewShowInNavigationBar = true     | 
 |CustomSizeLine      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-2487cc6ff2b8ef9c.gif?imageMogr2/auto-orient/strip) |  config.indicatorStyle = .customSizeLine       | 
-|FollowItemSizeLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-c755269afd918a57.gif?imageMogr2/auto-orient/strip) |  config.indicatorStyle = .followItemSizeLine   | 
+|FollowItemSizeLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-c755269afd918a57.gif?imageMogr2/auto-orient/strip) |  config.indicatorStyle = .equalItemWidthLine   | 
 |CustomIndicator     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-29e6c6b6a601ceb0.gif?imageMogr2/auto-orient/strip) |  config.indicatorStyle = .customView           | 
 
  
