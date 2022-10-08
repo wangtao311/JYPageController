@@ -1,5 +1,5 @@
 //
-//  JYMenuViewAligentDemoController.swift
+//  JYMenuViewBadgeOffsetDemoController.swift
 //  JYPageController_Example
 //
 //  Created by wang tao on 2022/9/12.
@@ -9,9 +9,9 @@
 import UIKit
 import JYPageController
 
-class JYMenuViewAligentDemoController: JYPageController {
+class JYMenuViewCustomSizeLineController: JYPageController {
     
-    let titles = ["I like","Like me"]
+    let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,8 +30,8 @@ class JYMenuViewAligentDemoController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 35
-        config.alignment = .right
+        config.menuItemMargin = 40
+        
     }
 
     required public init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class JYMenuViewAligentDemoController: JYPageController {
 }
 
 
-extension JYMenuViewAligentDemoController {
+extension JYMenuViewCustomSizeLineController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
@@ -75,6 +75,10 @@ extension JYMenuViewAligentDemoController {
     override func pageController(_ pageView: JYPageController, badgeViewAt index: Int) -> UIView? {
         
         if index == 1 {
+            let badge = UIImageView.init(image: UIImage(named: "badge"))
+            badge.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+            return badge
+        }else if index == 4 {
             let label = UILabel()
             label.text = "99+"
             label.textColor = .red
@@ -103,4 +107,3 @@ extension JYMenuViewAligentDemoController {
     
     
 }
-

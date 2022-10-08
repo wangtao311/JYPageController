@@ -22,7 +22,7 @@ import UIKit
 ///IndicatorStyle
 @objc public enum JYMenuViewIndicatorStyle: Int {
     case none                 //none
-    case followItemSizeLine   //equal to title width
+    case equalItemWidthLine   //equal to title width
     case customSizeLine       //need set indicatorSize property
     case customView           //custom view，need set customIndicator property
 }
@@ -55,8 +55,11 @@ public class JYPageConfig: NSObject {
     ///custom indicatorView, if indicatorStyle = .customView, set this property
     public var customIndicator: UIView?
     
-    ///indicator size, if indicatorStyle = .customSizeLine, set this property
-    public var indicatorSize: CGSize = CGSize(width: 14, height: 2)
+    ///indicator width, if indicatorStyle = .customSizeLine, set this property
+    public var indicatorWidth: CGFloat = 14
+    
+    ///indicator height, if indicatorStyle = .customSizeLine || = .equalItemWidth, set this property
+    public var indicatorHeight: CGFloat = 2
     
     ///indicator bottom distance from menuview bottom，default 0
     public var indicatorBottom: CGFloat = 0

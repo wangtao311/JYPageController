@@ -1,15 +1,16 @@
 //
-//  JYMenuViewBadgeOffsetDemoController.swift
+//  JYMenuViewEqualItemWidthLineController.swift
 //  JYPageController_Example
 //
-//  Created by wang tao on 2022/9/12.
+//  Created by wang tao on 2022/10/9.
 //  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
+
 import JYPageController
 
-class JYMenuViewBadgeOffsetDemoController: JYPageController {
+class JYMenuViewEqualItemWidthLineController: JYPageController {
     
     let titles = ["Recommend","New","Music","😁","Near","Apple","Moment","Shares"]
     
@@ -25,9 +26,8 @@ class JYMenuViewBadgeOffsetDemoController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 20
 
-        config.indicatorStyle = .customSizeLine
-        config.indicatorSize = CGSize(width: 14, height: 3)
-        config.indicatorCornerRadius = 2
+        config.indicatorStyle = .equalItemWidthLine
+        config.indicatorHeight = 2.5
         
         config.menuItemMargin = 40
         config.badgeViewOffset = CGPoint(x: 5, y: -5)
@@ -47,7 +47,7 @@ class JYMenuViewBadgeOffsetDemoController: JYPageController {
 }
 
 
-extension JYMenuViewBadgeOffsetDemoController {
+extension JYMenuViewEqualItemWidthLineController  {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {

@@ -26,7 +26,7 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleFont = 20
         
         config.menuItemMargin = 30
-        config.indicatorStyle = .followItemSizeLine
+        config.indicatorStyle = .none
         
         selectedIndex = 1
         

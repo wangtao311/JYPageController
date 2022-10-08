@@ -10,7 +10,8 @@ import UIKit
 
 class JYDemoController: UITableViewController {
     
-    let cellTitles = ["Normal","MenuViewShowInNavigaitonBar","MenuViewAligent","MenuViewBadgeOffset","CustomIndicator"]
+    let sectionTitles = ["JYPageController config","MenuView style","Have HeaderView"]
+    let cellTitles = [["set default selectedIndex","menuView show in navigationBar"],["none","equalItemWidthLine","customSizeLine","customView"],["to do"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,39 +22,61 @@ class JYDemoController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         navigationItem.title = "JYPageController"
+        tableView = UITableView(frame: self.view.frame, style: .grouped)
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "reuseIdentifier")
         
     }
     
 
     // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTitles.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return cellTitles[section].count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = cellTitles[indexPath.row]
+        cell.textLabel?.text = cellTitles[indexPath.section][indexPath.row]
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         var controller = UIViewController()
-        if indexPath.row == 0 {
-            controller = JYNormalDemoController()
-        }else if indexPath.row == 1 {
-            controller = JYShowInNavDemoController()
-        }else if indexPath.row == 2 {
-            controller = JYMenuViewAligentDemoController()
-        }else if indexPath.row == 3 {
-            controller = JYMenuViewBadgeOffsetDemoController()
-        }else if indexPath.row == 4 {
-            controller = JYCustomIndicatorDemoController()
+        if indexPath.section == 0 {
+            
+            if indexPath.row == 0 {
+                controller = JYNormalDemoController()
+            }else if indexPath.row == 1 {
+                controller = JYShowInNavDemoController()
+            }
+            
+        }else if indexPath.section == 1 {
+            
+            if indexPath.row == 0 {
+                controller = JYNormalDemoController()
+            }else if indexPath.row == 1 {
+                controller = JYMenuViewEqualItemWidthLineController()
+            }else if indexPath.row == 2 {
+                controller = JYMenuViewCustomSizeLineController()
+            }else if indexPath.row == 3 {
+                controller = JYCustomIndicatorDemoController()
+            }
+            
+        }else if indexPath.section == 2 {
+            
         }
         
-        controller.navigationItem.title = cellTitles[indexPath.row]
+        controller.navigationItem.title = cellTitles[indexPath.section][indexPath.row]
         navigationController?.pushViewController(controller, animated: true)
     }
     
