@@ -259,7 +259,7 @@ open class JYPageController: UIViewController {
         return menuView
     }()
     
-    private lazy var scrollView : UIScrollView = {
+    public lazy var scrollView : UIScrollView = {
         let scrollView = UIScrollView.init()
         scrollView.backgroundColor = .white
         scrollView.showsHorizontalScrollIndicator = false
