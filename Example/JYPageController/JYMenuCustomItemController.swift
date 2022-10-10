@@ -1,8 +1,8 @@
 //
-//  JYMenuViewEqualItemWidthLineController.swift
+//  JYMenuCustomItemController.swift
 //  JYPageController_Example
 //
-//  Created by wang tao on 2022/10/9.
+//  Created by wang tao on 2022/10/11.
 //  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
@@ -10,26 +10,25 @@ import UIKit
 
 import JYPageController
 
-class JYMenuViewEqualItemWidthLineController: JYPageController {
-    
-    let titles = ["Home","New","Music","😁","Near","Apple","Moment","Shares"]
-    
+class JYMenuCustomItemController: JYPageController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
         
         config.normalTitleColor = .darkText
-        config.normalTitleFontWeight = .regular
-        config.normalTitleFont = 16
+        config.normalTitleFontWeight = .medium
+        config.normalTitleFont = 18
         
         config.selectedTitleColor = .red
-        config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 16
+        config.selectedTitleFontWeight = .medium
+        config.selectedTitleFont = 18
 
-        config.indicatorStyle = .equalItemWidthLine
-        config.indicatorHeight = 2.5
+        config.indicatorStyle = .customSizeLine
+        config.indicatorWidth = 14
+        config.indicatorHeight = 3
+        config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 25
+        config.menuItemMargin = 40
         
     }
 
@@ -46,7 +45,7 @@ class JYMenuViewEqualItemWidthLineController: JYPageController {
 }
 
 
-extension JYMenuViewEqualItemWidthLineController  {
+extension JYMenuCustomItemController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
@@ -68,11 +67,39 @@ extension JYMenuViewEqualItemWidthLineController  {
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
-        return titles[index]
+        return ""
+    }
+    
+    override func pageController(_ pageController: JYPageController, customViewAt index: Int) -> UIView? {
+        
+        if index == 0 {
+            let button = UIButton(type: .custom)
+            button.setImage(UIImage(named: "customItem"), for: .normal)
+            button.setTitle("customize", for: .normal)
+            button.setTitleColor(.red, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            button.frame = CGRect(x: 0, y: 0, width: 110, height: 40)
+            return button
+        }else if index == 1 {
+            let img = UIImageView()
+            img.image = UIImage(named: "drink")
+            img.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            return img
+        }else if index == 2 {
+            let label = UILabel()
+            label.backgroundColor = .red
+            label.text = "your customize view"
+            label.textColor = UIColor.white
+            label.font = UIFont.systemFont(ofSize: 15)
+            label.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
+            return label
+        }else{
+            return nil
+        }
     }
 
     override func numberOfChildControllers() -> Int {
-        return titles.count
+        return 3
     }
     
     override func childController(atIndex index: Int) -> UIViewController {
@@ -87,3 +114,4 @@ extension JYMenuViewEqualItemWidthLineController  {
     
     
 }
+

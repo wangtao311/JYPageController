@@ -9,16 +9,16 @@ import UIKit
 
 @objc public protocol JYPageMenuViewDataSource {
     
-    ///item number
+    ///item count
     func numberOfMenuItems() -> Int
     
     ///item title
     func menuView(_ menuView: JYPageMenuView, titleAt index: Int) -> String
     
-    ///自定义item,实现该方法并返回UIView后优先展示customView，title被忽略。customView需要设置frame
-//    @objc optional func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView?
+    ///customView item, customView has higher priority than title，when return customView, ignore title。customView need set frame.size
+    @objc optional func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView?
     
-    ///item上的badgeView (eg. 标签/小红点/icon, 必须设置frame.size)
+    ///item  badgeView (eg. label/red dot/icon, need set frame.size)
     @objc optional func menuView(_ menuView: JYPageMenuView, badgeViewAt index: Int) -> UIView?
     
 }
@@ -63,6 +63,7 @@ public class JYPageMenuView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        clipsToBounds = true
         addSubview(contentView)
         contentView.addSubview(indicator)
     }
@@ -368,18 +369,21 @@ public class JYPageMenuView: UIView {
         items.removeAll()
         
         for i in 0 ..< itemsCount {
-            //add item
-            let title = source.menuView(self, titleAt: i)
-            let item = JYPageMenuItem()
-            item.backgroundColor = .clear
-            item.text = title
+            let customView = source.menuView?(self, customViewAt: i)
+            var item = JYPageMenuItem()
+            
+            if let customItem = customView {
+                item = JYPageMenuItem(customItemView: customItem)
+            }else{
+                let title = source.menuView(self, titleAt: i)
+                item = JYPageMenuItem(text: title)
+            }
             item.tag = i + kMenuItemTagExtenValue
             item.config = config
             item.delegate = self
             contentView.addSubview(item)
             items.append(item)
             
-            //item badgeView添加
             if let badgeView = source.menuView?(self, badgeViewAt: i) {
                 item.badgeView = badgeView
                 contentView.addSubview(badgeView)
@@ -448,9 +452,14 @@ public class JYPageMenuView: UIView {
                 //备注：itemWidth取max，解决无论字体从regular->medium 还是medium->regular，文字都能正确显示
                 let selectedItemWidth = sizeForItem(item, font: UIFont.systemFont(ofSize: config.normalTitleFont, weight: config.selectedTitleFontWeight)).width
                 let normalItemWidth = sizeForItem(item, font: UIFont.systemFont(ofSize: config.normalTitleFont, weight: config.normalTitleFontWeight)).width
-                let itemWidth = max(normalItemWidth,selectedItemWidth)
                 
-                let itemHeight = sizeForItem(item, font: UIFont.systemFont(ofSize: config.normalTitleFont, weight: config.selectedTitleFontWeight)).height
+                var itemWidth = max(normalItemWidth,selectedItemWidth)
+                var itemHeight = sizeForItem(item, font: UIFont.systemFont(ofSize: config.normalTitleFont, weight: config.selectedTitleFontWeight)).height
+                
+                if item.type == .custom {
+                    itemWidth = item.customView?.frame.size.width ?? 0
+                    itemHeight = item.customView?.frame.size.height ?? 0
+                }
                 
                 if index == 0 {
                     item.frame = CGRect(x: 0, y: config.menuItemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)

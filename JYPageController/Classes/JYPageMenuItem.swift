@@ -7,15 +7,28 @@
 
 import UIKit
 
+@objc enum JYMenuItemType: Int {
+    case text = 0
+    case custom = 1
+}
+
 @objc protocol JYPageMenuItemDelegate {
     func menuItemDidSelected(_ item: JYPageMenuItem)
 }
 
-class JYPageMenuItem: UILabel {
+class JYPageMenuItem: UIView {
     
     weak open var delegate: JYPageMenuItemDelegate?
     
     var badgeView: UIView?
+    
+    var customView: UIView?
+    
+    var type: JYMenuItemType = .text
+    
+    private var normalColorRed: CGFloat = 0, normalColorGreen: CGFloat = 0, normalColorBlue: CGFloat = 0, normalColorAlpha: CGFloat = 0
+    
+    private var selectedColorRed: CGFloat = 0, selectedColorGreen: CGFloat = 0, selectedColorBlue: CGFloat = 0, selectedColorAlpha: CGFloat = 0
     
     var badgeViewWidth: CGFloat {
         get {
@@ -42,16 +55,31 @@ class JYPageMenuItem: UILabel {
     var selected: Bool = false {
         didSet {
             if selected {
-                textColor = config.selectedTitleColor
+                textLabel.textColor = config.selectedTitleColor
             }else{
-                textColor = config.normalTitleColor
+                textLabel.textColor = config.normalTitleColor
             }
         }
     }
     
-    private var normalColorRed: CGFloat = 0, normalColorGreen: CGFloat = 0, normalColorBlue: CGFloat = 0, normalColorAlpha: CGFloat = 0
+    var font: UIFont? {
+        didSet {
+            textLabel.font = font
+        }
+    }
     
-    private var selectedColorRed: CGFloat = 0, selectedColorGreen: CGFloat = 0, selectedColorBlue: CGFloat = 0, selectedColorAlpha: CGFloat = 0
+    var textColor: UIColor? {
+        didSet {
+            textLabel.textColor = textColor
+        }
+    }
+    
+    var text: String? {
+        get {
+            return textLabel.text
+        }
+    }
+    
     
     var config: JYPageConfig = JYPageConfig() {
         didSet {
@@ -66,16 +94,35 @@ class JYPageMenuItem: UILabel {
             let green: CGFloat = normalColorGreen + (selectedColorGreen - normalColorGreen) * rate
             let blue: CGFloat = normalColorBlue + (selectedColorBlue - normalColorBlue) * rate
             let alpha: CGFloat = normalColorAlpha + (selectedColorAlpha - normalColorAlpha) * rate
-            textColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+            textLabel.textColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        textAlignment = .center
-        isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAtion(_:)))
         addGestureRecognizer(tap)
+    }
+    
+    public convenience init(text: String) {
+        self.init(frame: .zero)
+        
+        addSubview(textLabel)
+        textLabel.text = text
+        type = .text
+    }
+    
+    public convenience init(customItemView: UIView) {
+        self.init(frame: .zero)
+        
+        addSubview(customItemView)
+        customView = customItemView
+        type = .custom
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        textLabel.frame = bounds
     }
     
     required init?(coder: NSCoder) {
@@ -88,6 +135,12 @@ class JYPageMenuItem: UILabel {
             delegate?.menuItemDidSelected(self)
         }
     }
+    
+    private lazy var textLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
     
 }
 

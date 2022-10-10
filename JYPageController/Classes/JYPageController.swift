@@ -19,6 +19,9 @@ import UIKit
     ///第index位置上item的title
     func pageController(_ pageController: JYPageController, titleAt index: Int) -> String
     
+    ///第index位置上自定义item
+    @objc optional func pageController(_ pageController: JYPageController, customViewAt index: Int) -> UIView?
+    
     ///第index位置上item右上角的badgeView(eg. 标签/小红点，必须设置frame.size)
     @objc optional func pageController(_ pageController: JYPageController, badgeViewAt index: Int) -> UIView?
     
@@ -315,6 +318,10 @@ extension JYPageController: JYPageControllerDelegate, JYPageControllerDataSource
         return ""
     }
     
+    open func pageController(_ pageController: JYPageController, customViewAt index: Int) -> UIView? {
+        return nil
+    }
+    
     open func pageController(_ pageView: JYPageController, badgeViewAt index: Int) -> UIView? {
         return nil
     }
@@ -346,6 +353,13 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
             return ""
         }
         return source.pageController(self, titleAt: index)
+    }
+    
+    public func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView? {
+        guard let source = dataSource else {
+            return nil
+        }
+        return source.pageController?(self, customViewAt: index)
     }
     
     public func menuView(_ menuView: JYPageMenuView, badgeViewAt index: Int) -> UIView? {

@@ -18,12 +18,12 @@ class JYNormalDemoController: JYPageController {
         super.init(nibName: nil, bundle: nil)
         
         config.normalTitleColor = .darkText
-        config.normalTitleFontWeight = .regular
+        config.normalTitleFontWeight = .medium
         config.normalTitleFont = 16
         
         config.selectedTitleColor = .red
-        config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 20
+        config.selectedTitleFontWeight = .medium
+        config.selectedTitleFont = 16
         
         config.menuItemMargin = 30
         config.indicatorStyle = .none
