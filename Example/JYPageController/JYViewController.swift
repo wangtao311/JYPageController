@@ -11,7 +11,7 @@ import UIKit
 class JYViewController: UIViewController {
     
     deinit {
-        NSLog("JYViewController 销毁了")
+        NSLog("JYViewController dealloc")
     }
 
     override func viewDidLoad() {
