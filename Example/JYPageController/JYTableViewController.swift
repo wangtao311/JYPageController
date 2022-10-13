@@ -14,7 +14,6 @@ class JYTableViewController: UITableViewController {
         NSLog("JYTableViewController 销毁了")
     }
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,28 +98,27 @@ class JYTableViewController: UITableViewController {
 
 class JYTableViewCell: UITableViewCell {
     
-    
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        
         let imageView = UIImageView(image: UIImage(named: "demo_list_icon"))
-        imageView.frame = CGRect(x: 15, y: 10, width: 140, height: 100)
+        imageView.frame = CGRect(x: 15, y: 20, width: 80, height: 80)
+        imageView.contentMode = .scaleAspectFill
         contentView.addSubview(imageView)
         
         
         let titleLbael = UILabel()
         titleLbael.text = "title"
-        titleLbael.frame = CGRect(x: 160, y: 10, width: 100, height: 25)
+        titleLbael.font = UIFont.systemFont(ofSize: 16)
+        titleLbael.frame = CGRect(x: 120, y: 20, width: 100, height: 25)
         contentView.addSubview(titleLbael)
         
         let detailLbael = UILabel()
+        detailLbael.font = UIFont.systemFont(ofSize: 13)
         detailLbael.text = "Pass the selected object to the new view controller."
-        detailLbael.frame = CGRect(x: 160, y: 80, width: 200, height: 25)
+        detailLbael.frame = CGRect(x: 120, y: 70, width: 200, height: 25)
         detailLbael.textColor = .lightGray
         contentView.addSubview(detailLbael)
-        
     }
     
     required init?(coder: NSCoder) {

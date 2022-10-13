@@ -28,7 +28,7 @@ class JYMenuCustomItemController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 40
+        config.menuItemMargin = 30
         
     }
 
@@ -67,7 +67,11 @@ extension JYMenuCustomItemController {
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
-        return ""
+        if index == 3 {
+            return "New"
+        }else {
+            return ""
+        }
     }
     
     override func pageController(_ pageController: JYPageController, customViewAt index: Int) -> UIView? {
@@ -99,7 +103,7 @@ extension JYMenuCustomItemController {
     }
 
     override func numberOfChildControllers() -> Int {
-        return 3
+        return 4
     }
     
     override func childController(atIndex index: Int) -> UIViewController {
