@@ -30,7 +30,7 @@ pod 'JYPageController'
 7.在滚动过程中，每个标题item放大缩小过程中，item间距保持不变    
 8.支持标题tab显示在导航栏  
 9.保证childViewController生命周期  
-10.标题下指示器支持多样式,支持自定义View 
+10.标题下指示器支持多样式,支持自定义View     
 11.menuView的item支持自定义View    
 12.menuview样式目前主流APP以下划线或者或者自定义image为主。暂时不打算支持其他非主流的样式 
 
