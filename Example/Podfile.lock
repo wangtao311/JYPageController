@@ -1,5 +1,5 @@
 PODS:
-  - JYPageController (0.1.0)
+  - JYPageController (0.1.2)
 
 DEPENDENCIES:
   - JYPageController (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JYPageController: 2520799a0c4905504265ad0dad3913fce334aeca
+  JYPageController: b69364b30115e6fb2b2deddc5c1b7119b80c97f5
 
 PODFILE CHECKSUM: 0cf4758145011c2b6f230261883e215ef87e1b5d
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.10.2

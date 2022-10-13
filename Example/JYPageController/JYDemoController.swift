@@ -11,7 +11,7 @@ import UIKit
 class JYDemoController: UITableViewController {
     
     let sectionTitles = ["JYPageController config","MenuView style","Customize Item","Have HeaderView"]
-    let cellTitles = [["set default selectedIndex","menuView show in navigationBar"],["none","equalItemWidthLine","customSizeLine","customView"],["customize item"],["to do"]]
+    let cellTitles = [["set default selectedIndex","menuView show in navigationBar"],["none","equalItemWidthLine","customSizeLine","customView"],["customize item"],["Have headerView"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +74,8 @@ class JYDemoController: UITableViewController {
             
         }else if indexPath.section == 2 {
             controller = JYMenuCustomItemController()
+        }else if indexPath.section == 3 {
+            controller = JYHaveHeaderViewController()
         }
         
         controller.navigationItem.title = cellTitles[indexPath.section][indexPath.row]

@@ -72,7 +72,7 @@ public class JYPageMenuView: UIView {
         self.init()
         
         config = pageConfig
-        contentView.bounces = config.bounces
+        contentView.bounces = false
         
         if config.indicatorStyle == .equalItemWidthLine || config.indicatorStyle == .customSizeLine {
             indicator.backgroundColor = config.indicatorColor
@@ -540,7 +540,6 @@ public class JYPageMenuView: UIView {
         let scrollView = UIScrollView.init()
         scrollView.backgroundColor = .clear
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.bounces = config.bounces
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         }

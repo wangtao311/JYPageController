@@ -48,6 +48,24 @@ open class JYPageController: UIViewController {
     ///config
     public var config: JYPageConfig = JYPageConfig.init()
     
+    ///headerView
+    public var headerView: UIView? {
+        didSet {
+            if let header = headerView {
+                headerHeight = header.frame.size.height
+                view.addSubview(header)
+                menuView.frame = CGRect(x: menuView.frame.origin.x, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
+                scrollView.frame = CGRect(x: containerViewFrame.origin.x, y: menuView.frame.origin.y + menuView.frame.height, width: containerViewFrame.size.width, height: containerViewFrame.size.height)
+                
+                let contentSize = CGSize(width: CGFloat(childControllersCount)*containerViewFrame.size.width, height: scrollView.frame.size.height)
+                scrollView.contentSize = contentSize
+            }
+        }
+    }
+    
+    ///header view height
+    private var headerHeight: CGFloat = 0
+    
     ///当前选中的index
     public var selectedIndex: Int = 0
     
@@ -85,7 +103,6 @@ open class JYPageController: UIViewController {
         /**
          子类重写init方法，设置pageConfig,menuConfig的属性
          eg.
-         config.bounces = true
          config.showIndicatorLineView = false
          config.selectedTitleColor = .red
          config.normalTitleColor = .red
@@ -117,12 +134,10 @@ open class JYPageController: UIViewController {
             view.addSubview(menuView)
         }
         
-        menuView_setDefaultIndex()
+        menuView.select(selectedIndex)
     }
     
-    
     //MARK: - Public
-    
     ///刷新方法，动态改变数据源的时候调用，其他场景不需要主动调用
     public func reload() {
         for i in 0 ..< childControllersCount {
@@ -172,10 +187,6 @@ open class JYPageController: UIViewController {
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*containerViewFrame.size.width, height: containerViewFrame.size.height)
         scrollView.contentSize = contentSize
-    }
-    
-    private func menuView_setDefaultIndex() {
-        menuView.select(selectedIndex)
     }
     
     ///添加指定index的controller
@@ -262,8 +273,8 @@ open class JYPageController: UIViewController {
         return menuView
     }()
     
-    public lazy var scrollView : UIScrollView = {
-        let scrollView = UIScrollView.init()
+    public lazy var scrollView : JYScrollView = {
+        let scrollView = JYScrollView.init()
         scrollView.backgroundColor = .white
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false

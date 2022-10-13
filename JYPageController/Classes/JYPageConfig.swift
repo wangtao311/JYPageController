@@ -85,9 +85,6 @@ public class JYPageConfig: NSObject {
     ///alignment, default center
     public var alignment: JYMenuViewAlignment = .left
     
-    ///bounces
-    public var bounces: Bool = false
-    
     ///badgeViewOffSet，default badgeView.left = item.right， badgeView.centerY = item.top  After you set badgeViewOffset,  badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY
     public var badgeViewOffset: CGPoint = .zero
     
