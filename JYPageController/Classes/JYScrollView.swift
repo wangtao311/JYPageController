@@ -11,7 +11,6 @@ public class JYScrollView: UIScrollView {
 
     public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let view = gestureRecognizer.view;
-        NSLog(view?.description ?? "")
         return true
     }
     
