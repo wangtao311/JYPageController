@@ -101,6 +101,11 @@ extension JYNormalDemoController {
         }
     }
     
+    override func pageController(_ pageController: JYPageController, didSelectControllerAt index: Int) {
+        if index == 4 {
+            removeMenuItemBadgeView(atIndex: 4)
+        }
+    }
     
 }
 

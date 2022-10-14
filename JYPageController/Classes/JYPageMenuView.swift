@@ -153,27 +153,31 @@ public class JYPageMenuView: UIView {
         resetHorContentOffset(animate: false)
     }
     
-    ///更新指定index的menuItem的badgeView，传nil把badgeView置空
-    public func updateMenuitemBadgeView(_ badgeView: UIView?, atIndex index: Int) {
+    ///添加指定index的menuItem的badgeView
+    public func insertMenuItemBadgeView(_ badgeView: UIView, atIndex index: Int) {
         guard let menuItem = itemWithIndex(index) else {
            return
         }
 
-        if let badge = badgeView {
-            if menuItem.hasBadgeView {
-                menuItem.badgeView?.removeFromSuperview()
-            }
-            menuItem.badgeView = badge
-            contentView.addSubview(badge)
-            updateItemsFrame()
-        }else{
-            if menuItem.hasBadgeView {
-                menuItem.badgeView?.removeFromSuperview()
-                menuItem.badgeView = nil
-                updateItemsFrame()
-            }
+        if menuItem.hasBadgeView {
+            menuItem.badgeView?.removeFromSuperview()
         }
-        indicatorMoveTo(index: selectedIndex, animate: false)
+        menuItem.badgeView = badgeView
+        contentView.addSubview(badgeView)
+        updateItemsFrame()
+    }
+    
+    ///移除指定index的menuItem的badgeView
+    public func removeMenuItemBadgeView(atIndex index: Int) {
+        guard let menuItem = itemWithIndex(index) else {
+           return
+        }
+        
+        if menuItem.hasBadgeView {
+            menuItem.badgeView?.removeFromSuperview()
+            menuItem.badgeView = nil
+            updateItemsFrame()
+        }
     }
     
     ///页面滚动过程中，持续调用

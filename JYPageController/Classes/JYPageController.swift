@@ -157,9 +157,14 @@ open class JYPageController: UIViewController {
         menuView.updateFrame(frame: frame)
     }
     
-    ///更新指定index的menuItem的badgeView，传nil会把badgeView置空
-    public func updateMenuBadgeView(_ badgeView: UIView?, atIndex index: Int) {
-        menuView.updateMenuitemBadgeView(badgeView, atIndex: index)
+    ///添加指定index的menuItem的badgeView
+    public func insertMenuItemBadgeView(_ badgeView: UIView, atIndex index: Int) {
+        menuView.insertMenuItemBadgeView(badgeView, atIndex: index)
+    }
+    
+    ///移除指定index的menuItem的badgeView
+    public func removeMenuItemBadgeView(atIndex index: Int) {
+        menuView.removeMenuItemBadgeView(atIndex: index)
     }
     
     //MARK: - Private
