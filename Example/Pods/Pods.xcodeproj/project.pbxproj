@@ -7,31 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		057CD8920B8228B9054BCBC554399159 /* JYPageController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1F3FE458027A4828DC97E0BE3D8646 /* JYPageController-dummy.m */; };
-		0F0AA6E0793E4BA26330726C9C06B07D /* JYPageController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8701A708DBF545F99B25D538B1DAC8F /* JYPageController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C1BBF9DAAB54F759A6E7ED88EE4F6C8 /* Pods-JYPageController_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 423F759C03E52B53A86325079FDC8E25 /* Pods-JYPageController_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E197A3CAA50B887260C636B4B459790 /* JYPageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5389605CD7260FA5D4EA0AEB15ACF7B1 /* JYPageConfig.swift */; };
+		316C1D4F2942E736DDDE38476E172204 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		3A01F477CAD4BC83B0E12B663762260B /* JYPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196165A4F6D137BEE72B9624961D2EF7 /* JYPageController.swift */; };
 		443AF07081AF1F6E627F7ABAE2BF7684 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		4D3F18F47D297B784D82C952632472F9 /* JYPageMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99405F73A82AEC83195114F85404955C /* JYPageMenuView.swift */; };
-		569551912E0662ACB007F46AFDE735F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		62686FF64BD5F25FB5BE124008528B4D /* JYPageMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC52365DA0FE38A7C7AB092D8015A3A /* JYPageMenuItem.swift */; };
+		54B41C84A3186D6AA60123C7487696CE /* JYPageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E91545AED72A6DFAE0B8AB8B75C14 /* JYPageConfig.swift */; };
+		6871A6CAF6213F028D595B22064C02D6 /* JYPageMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523697CE79B6BDAF45771BE2997361A /* JYPageMenuView.swift */; };
 		77134B0B12446A77C990C8A859FB6F51 /* Pods-JYPageController_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DD60C3A8A8A6F92D6C8EDB2EFB98D0 /* Pods-JYPageController_Tests-dummy.m */; };
-		7CBA43515DFEA1CA13212037C8E9CAA5 /* JYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D87A489F13E6C092B09CA71716E24B1 /* JYScrollView.swift */; };
+		7D436ADC5D80A05B7C796A23F66BBA12 /* JYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F9E7A1F2CCA45BC2F0EF538CFC37F /* JYScrollView.swift */; };
 		92321750397C109524CF78992E28188A /* Pods-JYPageController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51B5EE184F489E71173B0E866CE69F91 /* Pods-JYPageController_Example-dummy.m */; };
-		CEBA24841CD01891F25901C8EE80D4EA /* JYPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7316F613C2D3CC7FAEAD3A5D11D1631 /* JYPageController.swift */; };
+		B0C7E8726C4533C3FF2D990EF0C5227A /* JYPageController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D3FB8E44120EC78BB609864950D9B4D /* JYPageController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFE07CAD1D3BCBDE900FF76688424EDA /* JYPageMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C4095A280F8124FB9E6F3B2B8FDD2D /* JYPageMenuItem.swift */; };
 		DBA5C116528EAE329C40855657D2FCDE /* Pods-JYPageController_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 47D1D926E08FBFE1D861B1B1B3A550D6 /* Pods-JYPageController_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE5268A0D895FD637F5821466090A991 /* JYPageContollerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0988AA22C244A70969128BF6ADE39D18 /* JYPageContollerProtocol.swift */; };
 		E47DAA79669520270C99B389B07E71DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		EF6875AD29F0CFA4F5D9EA462687E475 /* JYPageController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2480665703DC57C2F5420E073DCBBC15 /* JYPageController-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		60409388482AF71D45EF4475A1DA64CE /* PBXContainerItemProxy */ = {
+		C7E41490079A5AFC034562213EE2F209 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5ADC8E1FD9EABF7FDFD34F387CFD6857;
 			remoteInfo = "Pods-JYPageController_Example";
 		};
-		A6D5C98DA008B965C482F86C197577A7 /* PBXContainerItemProxy */ = {
+		F1F137E55E74269D9D665437DF03D728 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -41,51 +42,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0988AA22C244A70969128BF6ADE39D18 /* JYPageContollerProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageContollerProtocol.swift; path = JYPageController/Classes/JYPageContollerProtocol.swift; sourceTree = "<group>"; };
+		0B67EFC761CB81B8FCF9883F19880E7B /* JYPageController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JYPageController.modulemap; sourceTree = "<group>"; };
 		10FF36442BB10EEF6A0CFE9A9FBF2022 /* Pods-JYPageController_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JYPageController_Example-Info.plist"; sourceTree = "<group>"; };
 		16DD60C3A8A8A6F92D6C8EDB2EFB98D0 /* Pods-JYPageController_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JYPageController_Tests-dummy.m"; sourceTree = "<group>"; };
 		1931043D7DEF285A6FA422A81716ECEE /* Pods-JYPageController_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JYPageController_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		1A1F3FE458027A4828DC97E0BE3D8646 /* JYPageController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JYPageController-dummy.m"; sourceTree = "<group>"; };
-		1B506BBF67E83810A4AE4CFCB7B4D996 /* JYPageController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JYPageController-Info.plist"; sourceTree = "<group>"; };
-		30CC7D6E809FE4A36D4D2D2AAF8F185C /* JYPageController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JYPageController.release.xcconfig; sourceTree = "<group>"; };
+		196165A4F6D137BEE72B9624961D2EF7 /* JYPageController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageController.swift; path = JYPageController/Classes/JYPageController.swift; sourceTree = "<group>"; };
+		2480665703DC57C2F5420E073DCBBC15 /* JYPageController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JYPageController-dummy.m"; sourceTree = "<group>"; };
+		2C33CB3DA69DA1454121E233903FA884 /* JYPageController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JYPageController-Info.plist"; sourceTree = "<group>"; };
+		394D525CA46BDDACF2746F8E1E56BCE7 /* JYPageController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JYPageController.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		423F759C03E52B53A86325079FDC8E25 /* Pods-JYPageController_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JYPageController_Tests-umbrella.h"; sourceTree = "<group>"; };
-		456CE48F008F967F3FC50A7AB28AB345 /* JYPageController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JYPageController.modulemap; sourceTree = "<group>"; };
-		46AFB466B34515A37C84AA8A44BEDE15 /* JYPageController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JYPageController.debug.xcconfig; sourceTree = "<group>"; };
 		47D1D926E08FBFE1D861B1B1B3A550D6 /* Pods-JYPageController_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JYPageController_Example-umbrella.h"; sourceTree = "<group>"; };
-		4D87A489F13E6C092B09CA71716E24B1 /* JYScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYScrollView.swift; path = JYPageController/Classes/JYScrollView.swift; sourceTree = "<group>"; };
-		4FC52365DA0FE38A7C7AB092D8015A3A /* JYPageMenuItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageMenuItem.swift; path = JYPageController/Classes/JYPageMenuItem.swift; sourceTree = "<group>"; };
 		51B5EE184F489E71173B0E866CE69F91 /* Pods-JYPageController_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JYPageController_Example-dummy.m"; sourceTree = "<group>"; };
-		5389605CD7260FA5D4EA0AEB15ACF7B1 /* JYPageConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageConfig.swift; path = JYPageController/Classes/JYPageConfig.swift; sourceTree = "<group>"; };
+		529A80CF10131FA1593856662ADE2755 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		54C4095A280F8124FB9E6F3B2B8FDD2D /* JYPageMenuItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageMenuItem.swift; path = JYPageController/Classes/JYPageMenuItem.swift; sourceTree = "<group>"; };
 		55A551BAF0AC61C17A7AECE3C6531432 /* Pods-JYPageController_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JYPageController_Example-frameworks.sh"; sourceTree = "<group>"; };
 		5745B8803708316519CE063CA729653A /* Pods-JYPageController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JYPageController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		63D1EBE6DED1C97BC478A1D92B53DD41 /* JYPageController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JYPageController-prefix.pch"; sourceTree = "<group>"; };
+		5D3FB8E44120EC78BB609864950D9B4D /* JYPageController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JYPageController-umbrella.h"; sourceTree = "<group>"; };
 		655260A58F5DFFCA5BBDDBBC8CDAF063 /* Pods-JYPageController_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JYPageController_Tests.modulemap"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		74664A114A421108C2AF104BEED15F2E /* Pods_JYPageController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JYPageController_Example.framework; path = "Pods-JYPageController_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		751CDB851348D076D1CD73C1E5A7C495 /* Pods-JYPageController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JYPageController_Example.release.xcconfig"; sourceTree = "<group>"; };
-		81636144D014675894BFB728A937ECC0 /* JYPageController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JYPageController.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		832F9E7A1F2CCA45BC2F0EF538CFC37F /* JYScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYScrollView.swift; path = JYPageController/Classes/JYScrollView.swift; sourceTree = "<group>"; };
 		87DBCDA5955B9E314F38D689AC95737A /* JYPageController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JYPageController.framework; path = JYPageController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FA6A2A7D8853C819E36B98F4FBE5EB /* Pods-JYPageController_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JYPageController_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		99405F73A82AEC83195114F85404955C /* JYPageMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageMenuView.swift; path = JYPageController/Classes/JYPageMenuView.swift; sourceTree = "<group>"; };
-		99DD14866157416C88B4AE84CA56A86B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		8C5E91545AED72A6DFAE0B8AB8B75C14 /* JYPageConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageConfig.swift; path = JYPageController/Classes/JYPageConfig.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2F59A59FA9BC5295BE071F8B1BDFB4B /* Pods-JYPageController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JYPageController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		A7316F613C2D3CC7FAEAD3A5D11D1631 /* JYPageController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageController.swift; path = JYPageController/Classes/JYPageController.swift; sourceTree = "<group>"; };
 		AEB473EE03EB658B7ABCA7219F8C9ECC /* Pods_JYPageController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JYPageController_Tests.framework; path = "Pods-JYPageController_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85C411B306BCB385AE53C1819AD2A83 /* Pods-JYPageController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JYPageController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BB95836DC81ED9BF10B0D65895905636 /* Pods-JYPageController_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JYPageController_Tests-Info.plist"; sourceTree = "<group>"; };
-		C8701A708DBF545F99B25D538B1DAC8F /* JYPageController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JYPageController-umbrella.h"; sourceTree = "<group>"; };
 		D414D29527F222CEECBB88E35BEE99DF /* Pods-JYPageController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JYPageController_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		DA3E1B6D5EA8E25ABA46142FAB35D228 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D523697CE79B6BDAF45771BE2997361A /* JYPageMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JYPageMenuView.swift; path = JYPageController/Classes/JYPageMenuView.swift; sourceTree = "<group>"; };
+		E6F14F9C4B1F2E255C238A042EEE4D67 /* JYPageController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JYPageController.debug.xcconfig; sourceTree = "<group>"; };
+		EC5A9031082779D817F7D865D4C2DD5F /* JYPageController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JYPageController.release.xcconfig; sourceTree = "<group>"; };
+		ED153DC1AD28EDE77960A4A54B2F0349 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		F45E5D1CED7FF28CBB3719D992887C88 /* Pods-JYPageController_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JYPageController_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FB7D8A00D18DDF005AA4E821731CD66B /* JYPageController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JYPageController-prefix.pch"; sourceTree = "<group>"; };
 		FD0E1333B23813910049B90D89ED0641 /* Pods-JYPageController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JYPageController_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5499DA0AC48DF8E0277F0ECD34341E23 /* Frameworks */ = {
+		7B8B5317FDE8D46E1C7D57646F456D6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569551912E0662ACB007F46AFDE735F8 /* Foundation.framework in Frameworks */,
+				316C1D4F2942E736DDDE38476E172204 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,14 +110,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		422ACD521FA3832C930E8A1FAF40DD87 /* Pod */ = {
+		117452CC0B19A5866D0209BE5661ADCC /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				81636144D014675894BFB728A937ECC0 /* JYPageController.podspec */,
-				99DD14866157416C88B4AE84CA56A86B /* LICENSE */,
-				DA3E1B6D5EA8E25ABA46142FAB35D228 /* README.md */,
+				394D525CA46BDDACF2746F8E1E56BCE7 /* JYPageController.podspec */,
+				ED153DC1AD28EDE77960A4A54B2F0349 /* LICENSE */,
+				529A80CF10131FA1593856662ADE2755 /* README.md */,
 			);
 			name = Pod;
+			sourceTree = "<group>";
+		};
+		25F844E21110AF2CFBAB0AADA8095777 /* JYPageController */ = {
+			isa = PBXGroup;
+			children = (
+				8C5E91545AED72A6DFAE0B8AB8B75C14 /* JYPageConfig.swift */,
+				0988AA22C244A70969128BF6ADE39D18 /* JYPageContollerProtocol.swift */,
+				196165A4F6D137BEE72B9624961D2EF7 /* JYPageController.swift */,
+				54C4095A280F8124FB9E6F3B2B8FDD2D /* JYPageMenuItem.swift */,
+				D523697CE79B6BDAF45771BE2997361A /* JYPageMenuView.swift */,
+				832F9E7A1F2CCA45BC2F0EF538CFC37F /* JYScrollView.swift */,
+				117452CC0B19A5866D0209BE5661ADCC /* Pod */,
+				B1250C26499B6E0B2C3844D4E3645028 /* Support Files */,
+			);
+			name = JYPageController;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		45DED5F959038E7058FBFFBF8265B234 /* Pods-JYPageController_Tests */ = {
@@ -161,39 +179,24 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9C525842D9BC629645CA192BF6DF5F08 /* JYPageController */ = {
+		957CE3ED7CF10F1FB6824E96121E242E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5389605CD7260FA5D4EA0AEB15ACF7B1 /* JYPageConfig.swift */,
-				A7316F613C2D3CC7FAEAD3A5D11D1631 /* JYPageController.swift */,
-				4FC52365DA0FE38A7C7AB092D8015A3A /* JYPageMenuItem.swift */,
-				99405F73A82AEC83195114F85404955C /* JYPageMenuView.swift */,
-				4D87A489F13E6C092B09CA71716E24B1 /* JYScrollView.swift */,
-				422ACD521FA3832C930E8A1FAF40DD87 /* Pod */,
-				C2AFC6CC6B86EF40574BDAAD7898EA95 /* Support Files */,
-			);
-			name = JYPageController;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		AAAEE722C5482C26F3EC3AA769CA3A1B /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9C525842D9BC629645CA192BF6DF5F08 /* JYPageController */,
+				25F844E21110AF2CFBAB0AADA8095777 /* JYPageController */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		C2AFC6CC6B86EF40574BDAAD7898EA95 /* Support Files */ = {
+		B1250C26499B6E0B2C3844D4E3645028 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				456CE48F008F967F3FC50A7AB28AB345 /* JYPageController.modulemap */,
-				1A1F3FE458027A4828DC97E0BE3D8646 /* JYPageController-dummy.m */,
-				1B506BBF67E83810A4AE4CFCB7B4D996 /* JYPageController-Info.plist */,
-				63D1EBE6DED1C97BC478A1D92B53DD41 /* JYPageController-prefix.pch */,
-				C8701A708DBF545F99B25D538B1DAC8F /* JYPageController-umbrella.h */,
-				46AFB466B34515A37C84AA8A44BEDE15 /* JYPageController.debug.xcconfig */,
-				30CC7D6E809FE4A36D4D2D2AAF8F185C /* JYPageController.release.xcconfig */,
+				0B67EFC761CB81B8FCF9883F19880E7B /* JYPageController.modulemap */,
+				2480665703DC57C2F5420E073DCBBC15 /* JYPageController-dummy.m */,
+				2C33CB3DA69DA1454121E233903FA884 /* JYPageController-Info.plist */,
+				FB7D8A00D18DDF005AA4E821731CD66B /* JYPageController-prefix.pch */,
+				5D3FB8E44120EC78BB609864950D9B4D /* JYPageController-umbrella.h */,
+				E6F14F9C4B1F2E255C238A042EEE4D67 /* JYPageController.debug.xcconfig */,
+				EC5A9031082779D817F7D865D4C2DD5F /* JYPageController.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/JYPageController";
@@ -220,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				AAAEE722C5482C26F3EC3AA769CA3A1B /* Development Pods */,
+				957CE3ED7CF10F1FB6824E96121E242E /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				565532A820D3E3F7B06AF753558C093E /* Products */,
 				794F8A6D5E37F778AAA6F71A5AF8DF17 /* Targets Support Files */,
@@ -238,11 +241,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6C200E144AEA15502A0A0A2C5A54775B /* Headers */ = {
+		39E365B7CA7264A0F261890F86052EFE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F0AA6E0793E4BA26330726C9C06B07D /* JYPageController-umbrella.h in Headers */,
+				B0C7E8726C4533C3FF2D990EF0C5227A /* JYPageController-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +280,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0C2ED7D54DFD037BE860E79723913E6 /* PBXTargetDependency */,
+				EDCB915395602096DFE89B41EC6725B8 /* PBXTargetDependency */,
 			);
 			name = "Pods-JYPageController_Example";
 			productName = "Pods-JYPageController_Example";
@@ -296,7 +299,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				AAA65AFF36F2DA3FB9B21BC6667B5328 /* PBXTargetDependency */,
+				599D00654C1E68EF158A35A92A4EF25A /* PBXTargetDependency */,
 			);
 			name = "Pods-JYPageController_Tests";
 			productName = "Pods-JYPageController_Tests";
@@ -305,12 +308,12 @@
 		};
 		DEC10D9DCA001FEB21BA6639D742366D /* JYPageController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A363F9A29BEFA151B8152984910F9113 /* Build configuration list for PBXNativeTarget "JYPageController" */;
+			buildConfigurationList = 18F88FA2ABEF13C513703CBDD4E7EA9F /* Build configuration list for PBXNativeTarget "JYPageController" */;
 			buildPhases = (
-				6C200E144AEA15502A0A0A2C5A54775B /* Headers */,
-				6FC5C01C34DD2D805921EAF644008227 /* Sources */,
-				5499DA0AC48DF8E0277F0ECD34341E23 /* Frameworks */,
-				EDB9D42D366D3C7353541EB3F50864AD /* Resources */,
+				39E365B7CA7264A0F261890F86052EFE /* Headers */,
+				614B4A98160371A05D548ECA06418D1E /* Sources */,
+				7B8B5317FDE8D46E1C7D57646F456D6C /* Frameworks */,
+				59B71AA0E55CD42A931AD6545E7E2395 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -358,14 +361,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1F681B1EE170366BB4C62B8BF948416 /* Resources */ = {
+		59B71AA0E55CD42A931AD6545E7E2395 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDB9D42D366D3C7353541EB3F50864AD /* Resources */ = {
+		A1F681B1EE170366BB4C62B8BF948416 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,24 +378,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		614B4A98160371A05D548ECA06418D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54B41C84A3186D6AA60123C7487696CE /* JYPageConfig.swift in Sources */,
+				DE5268A0D895FD637F5821466090A991 /* JYPageContollerProtocol.swift in Sources */,
+				3A01F477CAD4BC83B0E12B663762260B /* JYPageController.swift in Sources */,
+				EF6875AD29F0CFA4F5D9EA462687E475 /* JYPageController-dummy.m in Sources */,
+				CFE07CAD1D3BCBDE900FF76688424EDA /* JYPageMenuItem.swift in Sources */,
+				6871A6CAF6213F028D595B22064C02D6 /* JYPageMenuView.swift in Sources */,
+				7D436ADC5D80A05B7C796A23F66BBA12 /* JYScrollView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A4AD240271F3881B086FB8624D07052 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				92321750397C109524CF78992E28188A /* Pods-JYPageController_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC5C01C34DD2D805921EAF644008227 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E197A3CAA50B887260C636B4B459790 /* JYPageConfig.swift in Sources */,
-				CEBA24841CD01891F25901C8EE80D4EA /* JYPageController.swift in Sources */,
-				057CD8920B8228B9054BCBC554399159 /* JYPageController-dummy.m in Sources */,
-				62686FF64BD5F25FB5BE124008528B4D /* JYPageMenuItem.swift in Sources */,
-				4D3F18F47D297B784D82C952632472F9 /* JYPageMenuView.swift in Sources */,
-				7CBA43515DFEA1CA13212037C8E9CAA5 /* JYScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,17 +411,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AAA65AFF36F2DA3FB9B21BC6667B5328 /* PBXTargetDependency */ = {
+		599D00654C1E68EF158A35A92A4EF25A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-JYPageController_Example";
 			target = 5ADC8E1FD9EABF7FDFD34F387CFD6857 /* Pods-JYPageController_Example */;
-			targetProxy = 60409388482AF71D45EF4475A1DA64CE /* PBXContainerItemProxy */;
+			targetProxy = C7E41490079A5AFC034562213EE2F209 /* PBXContainerItemProxy */;
 		};
-		F0C2ED7D54DFD037BE860E79723913E6 /* PBXTargetDependency */ = {
+		EDCB915395602096DFE89B41EC6725B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JYPageController;
 			target = DEC10D9DCA001FEB21BA6639D742366D /* JYPageController */;
-			targetProxy = A6D5C98DA008B965C482F86C197577A7 /* PBXContainerItemProxy */;
+			targetProxy = F1F137E55E74269D9D665437DF03D728 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -455,9 +459,9 @@
 			};
 			name = Debug;
 		};
-		6232693B4FD843377272EDEDBA3B8C6E /* Debug */ = {
+		702D0BE9BF540B694B684ED7BE796D5C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46AFB466B34515A37C84AA8A44BEDE15 /* JYPageController.debug.xcconfig */;
+			baseConfigurationReference = EC5A9031082779D817F7D865D4C2DD5F /* JYPageController.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -481,10 +485,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		72DF3C2ED5C3234082137C12948CB08A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -578,38 +583,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		7F22295DF4B2C02EA8884DEFDBF54F2D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30CC7D6E809FE4A36D4D2D2AAF8F185C /* JYPageController.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/JYPageController/JYPageController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JYPageController/JYPageController-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JYPageController/JYPageController.modulemap";
-				PRODUCT_MODULE_NAME = JYPageController;
-				PRODUCT_NAME = JYPageController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -747,23 +720,54 @@
 			};
 			name = Debug;
 		};
+		E9D159287B8717725472DF24B7570B48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6F14F9C4B1F2E255C238A042EEE4D67 /* JYPageController.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JYPageController/JYPageController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JYPageController/JYPageController-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JYPageController/JYPageController.modulemap";
+				PRODUCT_MODULE_NAME = JYPageController;
+				PRODUCT_NAME = JYPageController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		18F88FA2ABEF13C513703CBDD4E7EA9F /* Build configuration list for PBXNativeTarget "JYPageController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9D159287B8717725472DF24B7570B48 /* Debug */,
+				702D0BE9BF540B694B684ED7BE796D5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
 				7EE7A78859F657F6BEFC651185B43192 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A363F9A29BEFA151B8152984910F9113 /* Build configuration list for PBXNativeTarget "JYPageController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6232693B4FD843377272EDEDBA3B8C6E /* Debug */,
-				7F22295DF4B2C02EA8884DEFDBF54F2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

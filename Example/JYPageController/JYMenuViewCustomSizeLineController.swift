@@ -95,7 +95,7 @@ extension JYMenuViewCustomSizeLineController {
         return titles.count
     }
     
-    override func childController(atIndex index: Int) -> UIViewController {
+    override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
         let tableViewController = JYTableViewController()
         let viewController = JYViewController()
         if index == 1 {

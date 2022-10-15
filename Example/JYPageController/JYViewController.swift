@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import JYPageController
 
-class JYViewController: UIViewController {
+class JYViewController: UIViewController,JYPageChildContollerProtocol {
     
     deinit {
         NSLog("JYViewController dealloc")

@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import JYPageController
 
-class JYTableViewController: UITableViewController {
+class JYTableViewController: UITableViewController,JYPageChildContollerProtocol {
     
     deinit {
         NSLog("JYTableViewController dealloc")
+    }
+    
+    func fetchChildControllScrollView() -> UIScrollView? {
+        return tableView
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        NotificationCenter.default.post(name: NSNotification.Name("JYccrollViewDidScroll"), object: self, userInfo: ["offsetY":scrollView.contentOffset.y])
+//        scrollView.contentOffset = .zero
     }
     
     

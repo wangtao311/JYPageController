@@ -12,8 +12,8 @@ import JYPageController
 
 class JYHaveHeaderViewController: JYPageController {
     
-    let titles = ["Home","New","Music","😁","Near","Apple","Moment","Shares"]
-    let headerViewHeight: CGFloat = 250
+    let titles = ["Home","New","Music","Near"]
+    let headerViewHeight: CGFloat = 300
     let menuViewHeight: CGFloat = 44
     
     
@@ -72,7 +72,7 @@ extension JYHaveHeaderViewController {
         if let navBar = navigationController?.navigationBar {
             menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: menuViewY + menuViewHeight + headerViewHeight, width: view.frame.size.width, height: view.frame.height - menuViewHeight - menuViewY - headerViewHeight)
+        return CGRect.init(x: 0, y: menuViewY + menuViewHeight + headerViewHeight, width: view.frame.size.width, height: view.frame.height - menuViewHeight - menuViewY)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
@@ -102,7 +102,7 @@ extension JYHaveHeaderViewController {
         return titles.count
     }
     
-    override func childController(atIndex index: Int) -> UIViewController {
+    override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
         if index == 1 {
             return JYViewController()
         }else{

@@ -94,7 +94,7 @@ extension JYCustomIndicatorDemoController {
         return titles.count
     }
     
-    override func childController(atIndex index: Int) -> UIViewController {
+    override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
         if index == 1 {
             return JYViewController()
         }else{
