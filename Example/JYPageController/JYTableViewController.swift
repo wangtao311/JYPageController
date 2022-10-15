@@ -11,7 +11,7 @@ import UIKit
 class JYTableViewController: UITableViewController {
     
     deinit {
-        NSLog("JYTableViewController 销毁了")
+        NSLog("JYTableViewController ----- dealloc")
     }
     
 
