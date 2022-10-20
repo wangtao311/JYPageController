@@ -52,7 +52,7 @@ pod 'JYPageController'
 ## Preview 
 |    Style                    |                           Preview                                     |                     
 | :-------------------------- | ----------------------------------------------------------------------|
-|showInNavagationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b0d92018bfd3cf42.gif?imageMogr2/auto-orient/strip) | 
+|showInNavigationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b0d92018bfd3cf42.gif?imageMogr2/auto-orient/strip) | 
 |customSizeLine      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-2487cc6ff2b8ef9c.gif?imageMogr2/auto-orient/strip) | 
 |equalItemWidthLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-c755269afd918a57.gif?imageMogr2/auto-orient/strip) |
 |customIndicator     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-29e6c6b6a601ceb0.gif?imageMogr2/auto-orient/strip) | 
