@@ -114,6 +114,9 @@ open class JYPageController: UIViewController {
     ///有headerView的场景，记录menuView是都在顶部悬停
     private var scrollToTop: Bool = false
     
+    ///竖直方向滚动的scrollView，contentOffsetY
+    private var verScrollViewContentOffsetY: CGFloat = 0
+    
     deinit {
         childScrollViewCache.forEach { (key: NSString, value: UIScrollView) in
             value.removeObserver(self, forKeyPath: "contentOffset")
@@ -392,6 +395,13 @@ extension JYPageController:UIScrollViewDelegate {
                 scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
             }else{
                 scrollToTop = false
+            }
+            
+            //子页面左右滚动的时候不让上下滚动
+            if horScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0 {
+                verScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
+            }else{
+                verScrollViewContentOffsetY = verScrollView.contentOffset.y
             }
         }
     }
