@@ -19,7 +19,7 @@ class JYViewController: UIViewController,JYPageChildContollerProtocol {
         super.viewDidLoad()
 
         let label = UILabel(frame: view.bounds)
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         label.text = "This is a viewController"
         label.textAlignment = .center
         view.addSubview(label)

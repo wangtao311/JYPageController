@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
 import JYPageController
+import MJRefresh
 
 class JYHaveHeaderViewController: JYPageController {
     
@@ -41,16 +41,21 @@ class JYHaveHeaderViewController: JYPageController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
-        var headerY: CGFloat = 0
-        if let navBar = navigationController?.navigationBar {
-            headerY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
-        }
-        
-        let header = UIView(frame: CGRect(x: 0, y: headerY, width: view.frame.width, height: headerViewHeight))
+        let header = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: headerViewHeight))
         header.backgroundColor = .red
+        header.text = "Header View"
+        header.textColor = .white
+        header.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        header.textAlignment = .center
         headerView = header
+        
+        scrollView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.scrollView?.mj_header?.endRefreshing()
+            }
+        })
+
     }
-    
 }
 
 
@@ -59,11 +64,7 @@ extension JYHaveHeaderViewController {
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
         
-        var menuViewY : CGFloat = 0
-        if let navBar = navigationController?.navigationBar {
-            menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
-        }
-        return CGRect.init(x: 0, y: menuViewY + headerViewHeight, width: view.frame.size.width, height: menuViewHeight)
+        return CGRect.init(x: 0, y: headerViewHeight, width: view.frame.size.width, height: menuViewHeight)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

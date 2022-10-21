@@ -362,10 +362,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JYPageController_Example/Pods-JYPageController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JYPageController/JYPageController.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JYPageController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

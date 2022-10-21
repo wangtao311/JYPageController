@@ -1,8 +1,14 @@
 PODS:
   - JYPageController (0.1.2)
+  - MJRefresh (3.7.5)
 
 DEPENDENCIES:
   - JYPageController (from `../`)
+  - MJRefresh
+
+SPEC REPOS:
+  trunk:
+    - MJRefresh
 
 EXTERNAL SOURCES:
   JYPageController:
@@ -10,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JYPageController: b69364b30115e6fb2b2deddc5c1b7119b80c97f5
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
 
-PODFILE CHECKSUM: 0cf4758145011c2b6f230261883e215ef87e1b5d
+PODFILE CHECKSUM: f94686be617a3287808a1a2106ba2abe03de69e5
 
 COCOAPODS: 1.10.2

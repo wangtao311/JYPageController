@@ -48,6 +48,18 @@ open class JYPageController: UIViewController {
     ///config
     public var config: JYPageConfig = JYPageConfig.init()
     
+    ///scrollView
+    public var scrollView: UIScrollView? {
+        get {
+            if headerView != nil {
+                return verScrollView
+            }else {
+                return nil
+            }
+        }
+    }
+    
+    
     ///headerView
     public var headerView: UIView? {
         didSet {
@@ -98,6 +110,9 @@ open class JYPageController: UIViewController {
     
     ///当前的偏移量，用来判断向左还是向右滑动
     private var currentOffsetX: CGFloat = 0
+    
+    ///有headerView的场景，记录menuView是都在顶部悬停
+    private var scrollToTop: Bool = false
     
     deinit {
         childScrollViewCache.forEach { (key: NSString, value: UIScrollView) in
@@ -159,7 +174,6 @@ open class JYPageController: UIViewController {
         
         pageView_setup()
         horScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
-        
     }
     
     ///获取menuview中scrollview的contentsize
@@ -186,9 +200,14 @@ open class JYPageController: UIViewController {
         menuViewFrame = source.pageController(self, frameForMenuView: menuView)
         childControllerViewFrame = source.pageController(self, frameForContainerView: horScrollView)
         
+        var verScrollViewY : CGFloat = 0
+        if let navBar = navigationController?.navigationBar {
+            verScrollViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
+        }
+        
         menuView.frame = menuViewFrame
         horScrollView.frame = childControllerViewFrame
-        verScrollView.frame = CGRect(x: menuViewFrame.origin.x, y: 0, width: menuViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
+        verScrollView.frame = CGRect(x: menuViewFrame.origin.x, y: verScrollViewY, width: menuViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
         verScrollView.contentSize = CGSize(width: childControllerViewFrame.width, height: verScrollView.frame.height)
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.width, height: childControllerViewFrame.height)
@@ -281,18 +300,14 @@ open class JYPageController: UIViewController {
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == "contentOffset", headerHeight > 0 {
-            if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint,newContentOffset.y > 0 {
-                if verScrollView.contentOffset.y <= headerHeight,verScrollView.otherCanScroll == false {
-                    let cacheKey = String(selectedIndex) as NSString
-                    if let scrollView = childScrollViewCache[cacheKey], scrollView.isKind(of: UIScrollView.classForCoder()) {
-                        scrollView.setContentOffset(.zero, animated: false)
-                    }
-                }else {
-                    verScrollView.otherCanScroll = true
-                    verScrollView.isScrollEnabled = false
+        let cacheKey = String(selectedIndex) as NSString
+        if keyPath == "contentOffset", headerHeight > 0, let scrollView = childScrollViewCache[cacheKey], scrollView.isKind(of: UIScrollView.classForCoder()) {
+            if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y > 0 {
+                if verScrollView.contentOffset.y < headerHeight, scrollToTop == false {
+                    scrollView.setContentOffset(.zero, animated: false)
                 }
+            }else{
+                scrollView.setContentOffset(.zero, animated: false)
             }
         }
     }
@@ -323,10 +338,9 @@ open class JYPageController: UIViewController {
     
     private lazy var verScrollView : JYScrollView = {
         let scrollView = JYScrollView()
-        scrollView.backgroundColor = .gray
+        scrollView.backgroundColor = .white
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
-        scrollView.scrollsToTop = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         }
@@ -363,7 +377,17 @@ extension JYPageController:UIScrollViewDelegate {
         }
         
         if scrollView == verScrollView {
-            print(scrollView.contentOffset.y)
+            let cacheKey = String(selectedIndex) as NSString
+            if let childVCScrollView = childScrollViewCache[cacheKey], childVCScrollView.isKind(of: UIScrollView.classForCoder()), childVCScrollView.contentOffset.y > 0 {
+                scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
+            }
+            
+            if scrollView.contentOffset.y >= headerHeight {
+                scrollToTop = true
+                scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
+            }else{
+                scrollToTop = false
+            }
         }
     }
 }

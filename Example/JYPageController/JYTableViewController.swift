@@ -8,6 +8,7 @@
 
 import UIKit
 import JYPageController
+import MJRefresh
 
 class JYTableViewController: UITableViewController,JYPageChildContollerProtocol {
     
@@ -19,12 +20,6 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
         return tableView
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        NotificationCenter.default.post(name: NSNotification.Name("JYccrollViewDidScroll"), object: self, userInfo: ["offsetY":scrollView.contentOffset.y])
-//        scrollView.contentOffset = .zero
-    }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +27,13 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
         tableView.rowHeight = 120
         tableView.showsVerticalScrollIndicator = false
         tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
+        
+        tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.tableView.mj_footer?.endRefreshing()
+            }
+        })
+        
     }
     
     

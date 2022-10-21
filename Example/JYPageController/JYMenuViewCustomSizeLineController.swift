@@ -51,23 +51,18 @@ extension JYMenuViewCustomSizeLineController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        
-        var menuViewY : CGFloat = 0
-        if let navBar = navigationController?.navigationBar {
-            menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
-        }
-        return CGRect.init(x: 0, y: menuViewY, width: view.frame.size.width, height: 44)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
         
-        var menuViewY : CGFloat = 0
+        var top: CGFloat = 0
         if let navBar = navigationController?.navigationBar {
-            menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
+            top = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: menuViewY + 44, width: view.frame.size.width, height: view.frame.height - 44 - menuViewY)
+        return CGRect.init(x: 0, y: 44, width: view.frame.size.width, height: view.frame.height - 44 - top)
     }
-
+    
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
         return titles[index]
     }

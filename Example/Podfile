@@ -4,6 +4,7 @@ platform :ios, '10.0'
 
 target 'JYPageController_Example' do
   pod 'JYPageController', :path => '../'
+  pod 'MJRefresh'
 
   target 'JYPageController_Tests' do
     inherit! :search_paths

@@ -32,10 +32,10 @@ public class JYScrollView: UIScrollView,UIGestureRecognizerDelegate {
 //                return false
 //            }
 //        }
-//        if otherCanScroll == true {
-//            print("otherCanScroll == true")
-//            return false
-//        }
+        if otherCanScroll == true {
+            print("otherCanScroll == true")
+            return false
+        }
         
         return true
     }
