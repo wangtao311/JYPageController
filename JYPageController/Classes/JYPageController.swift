@@ -161,6 +161,7 @@ open class JYPageController: UIViewController {
         childControllerCache.removeAllObjects()
         displayControllerCache.removeAll()
         
+        selectedIndex = 0
         menuView.reload()
         menuView.select(selectedIndex)
         
