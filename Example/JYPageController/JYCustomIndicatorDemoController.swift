@@ -23,7 +23,7 @@ class JYCustomIndicatorDemoController: JYPageController {
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 18
+        config.selectedTitleFont = 16
         
         config.menuItemMargin = 30
         
