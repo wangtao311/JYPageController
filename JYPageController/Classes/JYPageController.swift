@@ -155,6 +155,7 @@ open class JYPageController: UIViewController {
                 childController.removeFromParentViewController()
             }
         }
+        verScrollView.removeFromSuperview()
         
         childControllersCount = dataSource?.numberOfChildControllers() ?? 0
         childControllerCache.removeAllObjects()
