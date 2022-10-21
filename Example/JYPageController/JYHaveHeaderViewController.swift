@@ -20,16 +20,20 @@ class JYHaveHeaderViewController: JYPageController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
         
-        config.normalTitleColor = .darkText
+        config.normalTitleColor = .lightGray
         config.normalTitleFontWeight = .medium
         config.normalTitleFont = 16
         
-        config.selectedTitleColor = .red
+        config.selectedTitleColor = .black
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 16
         
-        config.menuItemMargin = 30
-        config.indicatorStyle = .none
+        config.menuItemMargin = 25
+        config.indicatorStyle = .customSizeLine
+        config.indicatorWidth = 10
+        config.indicatorHeight = 3
+        
+        config.indicatorBottom = 5
     }
 
     required public init?(coder: NSCoder) {
