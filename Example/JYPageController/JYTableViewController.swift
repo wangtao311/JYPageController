@@ -16,7 +16,7 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
         NSLog("JYTableViewController ----- dealloc")
     }
     
-    func fetchChildControllScrollView() -> UIScrollView? {
+    func fetchChildControllerScrollView() -> UIScrollView? {
         return tableView
     }
     

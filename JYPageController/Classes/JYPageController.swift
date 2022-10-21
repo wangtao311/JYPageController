@@ -38,7 +38,7 @@ import UIKit
     @objc optional func pageController(_ pageController: JYPageController, didLoadChildController: UIViewController, index: Int)
     
     ///scrollView停止滚动，childController完全显示调用
-    @objc optional func pageController(_ pageController: JYPageController, didSelectControllerAt index: Int)
+    @objc optional func pageController(_ pageController: JYPageController, didEnterControllerAt index: Int)
     
 }
 
@@ -139,7 +139,7 @@ open class JYPageController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        pageView_setup()
+        pageViewSetup()
         menuView.select(selectedIndex)
     }
     
@@ -165,7 +165,7 @@ open class JYPageController: UIViewController {
         menuView.reload()
         menuView.select(selectedIndex)
         
-        pageView_setup()
+        pageViewSetup()
         horScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
         layoutSubviewsIfHaveHeaderView()
     }
@@ -192,7 +192,7 @@ open class JYPageController: UIViewController {
     }
     
     //MARK: - Private
-    private func pageView_setup() {
+    private func pageViewSetup() {
         guard let source = dataSource else {
             return
         }
@@ -375,7 +375,7 @@ extension JYPageController:UIScrollViewDelegate {
         if scrollView == horScrollView {
             selectedIndex = Int(scrollView.contentOffset.x/scrollView.frame.width)
             menuView.menuViewScrollEnd(byScrollEndDecelerating: scrollView)
-            delegate?.pageController?(self, didSelectControllerAt: selectedIndex)
+            delegate?.pageController?(self, didEnterControllerAt: selectedIndex)
         }
     }
     
@@ -447,7 +447,7 @@ extension JYPageController: JYPageControllerDelegate, JYPageControllerDataSource
     open func pageController(_ pageController: JYPageController, didLoadChildController: UIViewController, index: Int) {
     }
     
-    open func pageController(_ pageController: JYPageController, didSelectControllerAt index: Int) {
+    open func pageController(_ pageController: JYPageController, didEnterControllerAt index: Int) {
     }
 }
 
@@ -490,7 +490,7 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
             selectedIndex = index
             let contentOffsetX = CGFloat(index)*childControllerViewFrame.size.width
             horScrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: config.scrollViewAnimationWhenMenuItemSelected)
-            delegate?.pageController?(self, didSelectControllerAt: index)
+            delegate?.pageController?(self, didEnterControllerAt: index)
         }
     }
 }

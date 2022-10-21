@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/wangtao/JYPageController'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'wangtao' => 'henandaxuewangtao@126.com    vx：wangtao603637393' }
+  s.author           = { 'wangtao' => 'henandaxuewangtao@126.com' }
   s.source           = { :git => 'https://github.com/wangtao311/JYPageController.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
