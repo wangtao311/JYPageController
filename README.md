@@ -53,10 +53,12 @@ pod 'JYPageController'
 ## Preview 
 |    Style                    |                           Preview                                     |                     
 | :-------------------------- | ----------------------------------------------------------------------|
-|showInNavigationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b0d92018bfd3cf42.gif?imageMogr2/auto-orient/strip) | 
-|customSizeLine      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-2487cc6ff2b8ef9c.gif?imageMogr2/auto-orient/strip) | 
-|equalItemWidthLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-c755269afd918a57.gif?imageMogr2/auto-orient/strip) |
-|customIndicator     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-29e6c6b6a601ceb0.gif?imageMogr2/auto-orient/strip) | 
+|showInNavigationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b99da7b7e2628425.gif?imageMogr2/auto-orient/strip) | 
+|customSizeLine      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-38e5da7c01071cfe.gif?imageMogr2/auto-orient/strip) | 
+|equalItemWidthLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-de0d28a3407cbc8c.gif?imageMogr2/auto-orient/strip) |
+|customIndicator     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-a8134ea4d6b2bbde.gif?imageMogr2/auto-orient/strip) |
+|customItem          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip) |  
+|headerView          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-7c5a8659fa8a6a09.gif?imageMogr2/auto-orient/strip) |  
  
 
 
