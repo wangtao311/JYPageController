@@ -205,7 +205,7 @@ open class JYPageController: UIViewController {
         
         menuView.frame = menuViewFrame
         horScrollView.frame = childControllerViewFrame
-        verScrollView.frame = CGRect(x: menuViewFrame.origin.x, y: verScrollViewY, width: menuViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
+        verScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: verScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
         verScrollView.contentSize = CGSize(width: childControllerViewFrame.width, height: verScrollView.frame.height)
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.width, height: childControllerViewFrame.height)
@@ -226,8 +226,6 @@ open class JYPageController: UIViewController {
         if let header = headerView {
             headerHeight = header.frame.size.height
             verScrollView.addSubview(header)
-            
-            menuView.frame = CGRect(x: menuView.frame.origin.x, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
             
             horScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: menuView.frame.origin.y + menuView.frame.height, width: childControllerViewFrame.size.width, height: childControllerViewFrame.size.height)
             let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.size.width, height: horScrollView.frame.size.height)
