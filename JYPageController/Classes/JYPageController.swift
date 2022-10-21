@@ -245,7 +245,7 @@ open class JYPageController: UIViewController {
             childController = controlller
         }else {
             if let controlller = dataSource?.childController(atIndex: index) {
-                if let childScrollView = controlller.fetchChildControllScrollView?(),childScrollView.isKind(of: UIScrollView.classForCoder()) {
+                if let childScrollView = controlller.fetchChildControllerScrollView?(),childScrollView.isKind(of: UIScrollView.classForCoder()) {
                     childScrollView.addObserver(self, forKeyPath: "contentOffset", options: [.old,.new], context: nil)
                     childScrollViewCache[cacheKey] = childScrollView
                 }
