@@ -26,9 +26,9 @@ class JYPageMenuItem: UIView {
     
     var type: JYMenuItemType = .text
     
-    private var normalColorRed: CGFloat = 0, normalColorGreen: CGFloat = 0, normalColorBlue: CGFloat = 0, normalColorAlpha: CGFloat = 0
+    var normalColorRed: CGFloat = 0, normalColorGreen: CGFloat = 0, normalColorBlue: CGFloat = 0, normalColorAlpha: CGFloat = 0
     
-    private var selectedColorRed: CGFloat = 0, selectedColorGreen: CGFloat = 0, selectedColorBlue: CGFloat = 0, selectedColorAlpha: CGFloat = 0
+    var selectedColorRed: CGFloat = 0, selectedColorGreen: CGFloat = 0, selectedColorBlue: CGFloat = 0, selectedColorAlpha: CGFloat = 0
     
     var badgeViewWidth: CGFloat {
         get {

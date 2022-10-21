@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import JYPageController
+import MJRefresh
 
-class JYTableViewController: UITableViewController {
+class JYTableViewController: UITableViewController,JYPageChildContollerProtocol {
     
     deinit {
         NSLog("JYTableViewController ----- dealloc")
+    }
+    
+    func fetchChildControllScrollView() -> UIScrollView? {
+        return tableView
     }
     
 
@@ -21,6 +27,13 @@ class JYTableViewController: UITableViewController {
         tableView.rowHeight = 120
         tableView.showsVerticalScrollIndicator = false
         tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
+        
+        tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.tableView.mj_footer?.endRefreshing()
+            }
+        })
+        
     }
     
     
