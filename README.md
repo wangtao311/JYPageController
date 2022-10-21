@@ -32,8 +32,8 @@ pod 'JYPageController'
 9.保证childViewController生命周期  
 10.标题下指示器支持多样式,支持自定义View     
 11.menuView的item支持自定义View    
-12.menuview样式目前主流APP以下划线或者或者自定义image为主。暂时不打算支持其他非主流的样式 
-
+12.menuview样式目前主流APP以下划线或者或者自定义image为主。暂时不打算支持其他非主流的样式   
+13.支持头部headerView，menuview可以悬停  
 
 
 
@@ -46,7 +46,8 @@ pod 'JYPageController'
 
 
 ## NEXT       
-1.支持头部headerView，menuview可以悬停   
+1.优化menuview悬停的过程，目前悬停过程中有停顿    
+2.增加刷新headerView的方法，支持动态高度的headerView
 
 
 ## Preview 

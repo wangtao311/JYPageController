@@ -48,6 +48,13 @@ open class JYPageController: UIViewController {
     ///config
     public var config: JYPageConfig = JYPageConfig.init()
     
+    ///headerView
+    public var headerView: UIView? {
+        didSet {
+            layoutSubviewsIfHaveHeaderView()
+        }
+    }
+    
     ///scrollView
     public var scrollView: UIScrollView? {
         get {
@@ -55,25 +62,6 @@ open class JYPageController: UIViewController {
                 return verScrollView
             }else {
                 return nil
-            }
-        }
-    }
-    
-    
-    ///headerView
-    public var headerView: UIView? {
-        didSet {
-            if let header = headerView {
-                
-                headerHeight = header.frame.size.height
-                verScrollView.addSubview(header)
-                
-                menuView.frame = CGRect(x: menuView.frame.origin.x, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
-                horScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: menuView.frame.origin.y + menuView.frame.height, width: childControllerViewFrame.size.width, height: childControllerViewFrame.size.height)
-                let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.size.width, height: horScrollView.frame.size.height)
-                horScrollView.contentSize = contentSize
-                
-                verScrollView.contentSize = CGSize(width: verScrollView.frame.width, height: verScrollView.contentSize.height + headerHeight)
             }
         }
     }
@@ -177,6 +165,7 @@ open class JYPageController: UIViewController {
         
         pageView_setup()
         horScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
+        layoutSubviewsIfHaveHeaderView()
     }
     
     ///获取menuview中scrollview的contentsize
@@ -228,6 +217,22 @@ open class JYPageController: UIViewController {
             view.addSubview(verScrollView)
             verScrollView.addSubview(menuView)
             verScrollView.addSubview(horScrollView)
+        }
+    }
+    
+    //有headerView的场景重新布局
+    private func layoutSubviewsIfHaveHeaderView() {
+        if let header = headerView {
+            headerHeight = header.frame.size.height
+            verScrollView.addSubview(header)
+            
+            menuView.frame = CGRect(x: menuView.frame.origin.x, y: menuView.frame.origin.y, width: menuView.frame.size.width, height: menuView.frame.size.height)
+            
+            horScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: menuView.frame.origin.y + menuView.frame.height, width: childControllerViewFrame.size.width, height: childControllerViewFrame.size.height)
+            let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.size.width, height: horScrollView.frame.size.height)
+            horScrollView.contentSize = contentSize
+            
+            verScrollView.contentSize = CGSize(width: verScrollView.frame.width, height: verScrollView.contentSize.height + headerHeight)
         }
     }
     

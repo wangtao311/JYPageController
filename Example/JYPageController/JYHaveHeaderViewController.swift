@@ -12,7 +12,7 @@ import MJRefresh
 
 class JYHaveHeaderViewController: JYPageController {
     
-    let titles = ["Home","New","Music","Near"]
+    var titles = ["Home","New","Music","Near"]
     let headerViewHeight: CGFloat = 300
     let menuViewHeight: CGFloat = 44
     
@@ -52,6 +52,8 @@ class JYHaveHeaderViewController: JYPageController {
         scrollView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.scrollView?.mj_header?.endRefreshing()
+                self.titles = ["Home","New"]
+                self.reload()
             }
         })
 
@@ -104,7 +106,7 @@ extension JYHaveHeaderViewController {
     }
     
     override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
-        if index == 1 {
+        if index == 2 {
             return JYViewController()
         }else{
             return JYTableViewController()
