@@ -384,7 +384,7 @@ extension JYPageController:UIScrollViewDelegate {
             }
         }
         
-        if scrollView == verScrollView {
+        if scrollView == verScrollView, headerView != nil {
             let cacheKey = String(selectedIndex) as NSString
             if let childVCScrollView = childScrollViewCache[cacheKey], childVCScrollView.isKind(of: UIScrollView.classForCoder()), childVCScrollView.contentOffset.y > 0 {
                 scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
@@ -398,11 +398,10 @@ extension JYPageController:UIScrollViewDelegate {
             }
             
             //子页面左右滚动的时候不让上下滚动
-            if horScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0 {
+            if horScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0, verScrollView.contentOffset.y != verScrollViewContentOffsetY {
                 verScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
-            }else{
-                verScrollViewContentOffsetY = verScrollView.contentOffset.y
             }
+            verScrollViewContentOffsetY = verScrollView.contentOffset.y
         }
     }
 }
