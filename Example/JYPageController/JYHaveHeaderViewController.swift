@@ -29,6 +29,8 @@ class JYHaveHeaderViewController: JYPageController {
         config.selectedTitleFont = 16
         
         config.menuItemMargin = 25
+        
+        config.indicatorColor = .black
         config.indicatorStyle = .customSizeLine
         config.indicatorWidth = 10
         config.indicatorHeight = 3
@@ -45,12 +47,11 @@ class JYHaveHeaderViewController: JYPageController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
-        let header = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: headerViewHeight))
-        header.backgroundColor = .red
-        header.text = "Header View"
-        header.textColor = .white
-        header.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-        header.textAlignment = .center
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: headerViewHeight))
+        let imageView = UIImageView(image: UIImage(named: "apple"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 44, width: view.frame.width, height: headerViewHeight - 44*2)
+        header.addSubview(imageView)
         headerView = header
         
         scrollView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
@@ -83,25 +84,6 @@ extension JYHaveHeaderViewController {
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
         return titles[index]
-    }
-    
-    override func pageController(_ pageView: JYPageController, badgeViewAt index: Int) -> UIView? {
-        
-        if index == 1 {
-            let badge = UIImageView.init(image: UIImage(named: "badge"))
-            badge.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-            return badge
-        }else if index == 4 {
-            let label = UILabel()
-            label.text = "99+"
-            label.textColor = .red
-            label.font = UIFont.systemFont(ofSize: 12)
-            label.sizeToFit()
-            return label
-        }else {
-            return nil
-        }
-        
     }
 
     override func numberOfChildControllers() -> Int {
