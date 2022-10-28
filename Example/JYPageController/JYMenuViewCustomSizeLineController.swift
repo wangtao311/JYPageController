@@ -11,7 +11,7 @@ import JYPageController
 
 class JYMenuViewCustomSizeLineController: JYPageController {
     
-    let titles = ["Home","New","Music","😁","Near","Apple","Moment","Shares"]
+    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

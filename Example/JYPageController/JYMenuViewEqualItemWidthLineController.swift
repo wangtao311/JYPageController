@@ -12,7 +12,7 @@ import JYPageController
 
 class JYMenuViewEqualItemWidthLineController: JYPageController {
     
-    let titles = ["Home","New","Music","😁","Near","Apple","Moment","Shares"]
+    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -23,7 +23,7 @@ class JYMenuViewEqualItemWidthLineController: JYPageController {
         config.normalTitleFont = 16
         
         config.selectedTitleColor = .red
-        config.selectedTitleFontWeight = .regular
+        config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 16
 
         config.indicatorStyle = .equalItemWidthLine
