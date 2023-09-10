@@ -22,13 +22,13 @@ class JYCustomIndicatorDemoController: JYPageController {
         config.normalTitleFont = 16
         
         config.selectedTitleColor = .red
-        config.selectedTitleFontWeight = .regular
+        config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 16
         
         config.menuItemMargin = 30
         
-        let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 15))
-        customIndicator.image = UIImage(named: "Indicator")
+        let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 10))
+        customIndicator.image = UIImage(named: "indicator_1")
         config.customIndicator = customIndicator
         config.indicatorStyle = .customView
     }
