@@ -12,7 +12,7 @@ import MJRefresh
 
 class JYNormalDemoController: JYPageController {
     
-    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
+    let titles = ["推荐","手机","男装","食品","百货","女装","电脑","鞋包","医药","电器","水果"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -24,9 +24,9 @@ class JYNormalDemoController: JYPageController {
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 21
+        config.selectedTitleFont = 16
         
-        config.menuItemMargin = 25
+        config.menuItemMargin = 18
         config.indicatorStyle = .none
         
         selectedIndex = 1
@@ -50,7 +50,7 @@ extension JYNormalDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
+        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-15, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

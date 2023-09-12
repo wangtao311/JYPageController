@@ -11,7 +11,7 @@ import JYPageController
 
 class JYMenuViewCustomSizeLineController: JYPageController {
     
-    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
+    let titles = ["推荐","手机","男装","食品","百货","女装","电脑","鞋包","医药","电器","水果"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,7 +30,7 @@ class JYMenuViewCustomSizeLineController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 40
+        config.menuItemMargin = 20
         
     }
 
@@ -51,7 +51,7 @@ extension JYMenuViewCustomSizeLineController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
+        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

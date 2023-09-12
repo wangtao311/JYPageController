@@ -11,7 +11,7 @@ import JYPageController
 
 class JYCustomIndicatorDemoController: JYPageController {
     
-    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
+    let titles = ["推荐","手机","男装","食品","百货","女装","电脑","鞋包","医药","电器","水果"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -25,7 +25,7 @@ class JYCustomIndicatorDemoController: JYPageController {
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 16
         
-        config.menuItemMargin = 30
+        config.menuItemMargin = 18
         
         let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 10))
         customIndicator.image = UIImage(named: "indicator_1")
@@ -50,7 +50,7 @@ extension JYCustomIndicatorDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
+        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
@@ -73,11 +73,10 @@ extension JYCustomIndicatorDemoController {
             badge.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
             return badge
         }else if index == 4 {
-            let label = UILabel()
-            label.text = "99+"
-            label.textColor = .red
-            label.font = UIFont.systemFont(ofSize: 12)
-            label.sizeToFit()
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 8, height: 8))
+            label.backgroundColor = .red
+            label.clipsToBounds = true
+            label.layer.cornerRadius = 4
             return label
         }else {
             return nil

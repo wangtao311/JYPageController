@@ -12,7 +12,7 @@ import JYPageController
 
 class JYMenuViewEqualItemWidthLineController: JYPageController {
     
-    let titles = ["Home","New","Music","Near","Apple","Moment","Shares"]
+    let titles = ["推荐","手机","男装","食品","百货","女装","电脑","鞋包","医药","电器","水果"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

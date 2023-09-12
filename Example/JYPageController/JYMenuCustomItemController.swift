@@ -63,7 +63,7 @@ extension JYMenuCustomItemController {
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
         if index == 3 {
-            return "New"
+            return "item"
         }else {
             return ""
         }
@@ -74,10 +74,10 @@ extension JYMenuCustomItemController {
         if index == 0 {
             let button = UIButton(type: .custom)
             button.setImage(UIImage(named: "customItem"), for: .normal)
-            button.setTitle("customize", for: .normal)
+            button.setTitle("鞋包", for: .normal)
             button.setTitleColor(.red, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-            button.frame = CGRect(x: 0, y: 0, width: 110, height: 40)
+            button.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
             return button
         }else if index == 1 {
             let img = UIImageView()
@@ -87,9 +87,10 @@ extension JYMenuCustomItemController {
         }else if index == 2 {
             let label = UILabel()
             label.backgroundColor = .red
-            label.text = "your customize view"
+            label.text = "自定义UIView"
             label.textColor = UIColor.white
             label.font = UIFont.systemFont(ofSize: 15)
+            label.textAlignment = .center
             label.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
             return label
         }else{

@@ -10,8 +10,8 @@ import UIKit
 
 class JYDemoController: UITableViewController {
     
-    let sectionTitles = ["JYPageController config","MenuView style","Customize Item","Have HeaderView"]
-    let cellTitles = [["set default selectedIndex","menuView show in navigationBar"],["none","equalItemWidthLine","customSizeLine","customView"],["customize item"],["Have headerView"]]
+    let sectionTitles = ["JYPageController配置","menuView样式","自定义menuview的item","有headerView场景"]
+    let cellTitles = [["设置默认选中的index","menuView显示在导航栏"],["不显示menuview的指示器","menuview的指示器跟随item宽度","指定指示器宽高","指示器设置为自定义view"],["自定义menuview的item"],["显示headerview"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()

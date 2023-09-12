@@ -11,7 +11,7 @@ import JYPageController
 
 class JYShowInNavDemoController: JYPageController {
     
-    let titles = ["City","Follow","Shop"]
+    let titles = ["城市","关注","商店"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
