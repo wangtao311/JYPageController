@@ -82,13 +82,13 @@ public class JYPageConfig: NSObject {
     ///item top distance from meuuview top, default ver center
     public var menuItemTop: CGFloat?
     
-    ///alignment, default center
+    ///alignment, default .left
     public var alignment: JYMenuViewAlignment = .left
     
     ///badgeViewOffSet，default badgeView.left = item.right， badgeView.centerY = item.top  After you set badgeViewOffset,  badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY
     public var badgeViewOffset: CGPoint = .zero
     
-    ///when the menuItem is clicked，scrollView change to target page  need animation?
+    ///when the menuItem is clicked，scrollView change to target page.  need animation?
     public var scrollViewAnimationWhenMenuItemSelected: Bool = false
     
     ///menuView show in navigation bar, default false

@@ -19,11 +19,11 @@ class JYCustomIndicatorDemoController: JYPageController {
         
         config.normalTitleColor = .darkText
         config.normalTitleFontWeight = .regular
-        config.normalTitleFont = 16
+        config.normalTitleFont = 17
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .medium
-        config.selectedTitleFont = 16
+        config.selectedTitleFont = 17
         
         config.menuItemMargin = 18
         
@@ -89,11 +89,9 @@ extension JYCustomIndicatorDemoController {
     }
     
     override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
-        if index == 1 {
-            return JYViewController()
-        }else{
-            return JYTableViewController()
-        }
+        let vc = JYTableViewController();
+        vc.segmentTitle = titles[index]
+        return vc
     }
     
     

@@ -12,6 +12,9 @@ import MJRefresh
 
 class JYTableViewController: UITableViewController,JYPageChildContollerProtocol {
     
+    var segmentTitle = ""
+    
+    
     deinit {
         NSLog("JYTableViewController ----- dealloc")
     }
@@ -24,9 +27,9 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.rowHeight = 120
+        tableView.rowHeight = 50
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(JYTableViewCell.classForCoder(), forCellReuseIdentifier: "JYTableViewCell")
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
         
         tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -45,15 +48,14 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
     
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 26
+        return 36
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "JYTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        cell.textLabel?.text = segmentTitle + String(indexPath.row)
+        cell.separatorInset = .zero
         return cell
     }
     
@@ -109,32 +111,3 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
 
 
 
-class JYTableViewCell: UITableViewCell {
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let imageView = UIImageView(image: UIImage(named: "demo_list_icon"))
-        imageView.frame = CGRect(x: 15, y: 20, width: 80, height: 80)
-        imageView.contentMode = .scaleAspectFill
-        contentView.addSubview(imageView)
-        
-        
-        let titleLbael = UILabel()
-        titleLbael.text = "title"
-        titleLbael.font = UIFont.systemFont(ofSize: 16)
-        titleLbael.frame = CGRect(x: 120, y: 20, width: 100, height: 25)
-        contentView.addSubview(titleLbael)
-        
-        let detailLbael = UILabel()
-        detailLbael.font = UIFont.systemFont(ofSize: 13)
-        detailLbael.text = "Pass the selected object to the new view controller."
-        detailLbael.frame = CGRect(x: 120, y: 70, width: 200, height: 25)
-        detailLbael.textColor = .lightGray
-        contentView.addSubview(detailLbael)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}

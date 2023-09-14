@@ -72,13 +72,9 @@ extension JYShowInNavDemoController {
     }
     
     override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
-        let tableViewController = JYTableViewController()
-        let viewController = JYViewController()
-        if index == 1 {
-            return viewController
-        }else{
-            return tableViewController
-        }
+        let vc = JYTableViewController();
+        vc.segmentTitle = titles[index]
+        return vc
     }
     
     

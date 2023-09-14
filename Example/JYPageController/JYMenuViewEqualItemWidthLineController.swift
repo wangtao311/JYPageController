@@ -29,7 +29,7 @@ class JYMenuViewEqualItemWidthLineController: JYPageController {
         config.indicatorStyle = .equalItemWidthLine
         config.indicatorHeight = 2.5
         
-        config.menuItemMargin = 25
+        config.menuItemMargin = 20
         
     }
 
@@ -71,11 +71,9 @@ extension JYMenuViewEqualItemWidthLineController  {
     }
     
     override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
-        if index == 1 {
-            return JYViewController()
-        }else{
-            return JYTableViewController()
-        }
+        let vc = JYTableViewController();
+        vc.segmentTitle = titles[index]
+        return vc
     }
     
     
