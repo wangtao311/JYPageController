@@ -27,6 +27,12 @@ import UIKit
     case customView           //custom view，need set customIndicator property
 }
 
+///refresh location
+@objc public enum JYHeaderRefreshLocation: Int {
+    case headerViewTop            //refresh headerView at headerView top
+    case childControllerViewTop   //refresh headerView at childControllerViewtop
+}
+
 
 
 public class JYPageConfig: NSObject {
@@ -93,6 +99,9 @@ public class JYPageConfig: NSObject {
     
     ///menuView show in navigation bar, default false
     public var menuViewShowInNavigationBar: Bool = false
+    
+    ///when pageController has headerView, header refresh location. defalut: at headerView top
+    public var headerRefreshLocation: JYHeaderRefreshLocation = .headerViewTop
     
 }
  

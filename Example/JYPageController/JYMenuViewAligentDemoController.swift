@@ -11,7 +11,7 @@ import JYPageController
 
 class JYMenuViewAligentDemoController: JYPageController {
     
-    let titles = ["I like","Like me"]
+    let titles = ["推荐","最新"]
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -23,15 +23,15 @@ class JYMenuViewAligentDemoController: JYPageController {
         
         config.selectedTitleColor = .red
         config.selectedTitleFontWeight = .regular
-        config.selectedTitleFont = 20
+        config.selectedTitleFont = 23
 
         config.indicatorStyle = .customSizeLine
         config.indicatorWidth = 14
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 35
-        config.alignment = .right
+        config.menuItemMargin = 25
+        config.alignment = .left
     }
 
     required public init?(coder: NSCoder) {
@@ -51,16 +51,15 @@ extension JYMenuViewAligentDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
+        return CGRect.init(x: 19, y: 0, width: view.frame.size.width - 19, height: 50)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
-        
         var top: CGFloat = 0
         if let navBar = navigationController?.navigationBar {
             top = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: 44, width: view.frame.size.width, height: view.frame.height - 44 - top)
+        return CGRect.init(x: 0, y: 44, width: view.frame.size.width, height: view.frame.height - 50 - top)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
@@ -90,6 +89,12 @@ extension JYMenuViewAligentDemoController {
         let vc = JYTableViewController();
         vc.segmentTitle = titles[index]
         return vc
+    }
+    
+    override func pageController(_ pageController: JYPageController, didEnterControllerAt index: Int) {
+        if index == 1 {
+            removeMenuItemBadgeView(atIndex: 1)
+        }
     }
     
     

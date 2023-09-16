@@ -51,7 +51,10 @@ open class JYPageController: UIViewController {
     ///headerView
     public var headerView: UIView? {
         didSet {
-            layoutSubviewsIfHaveHeaderView()
+            if let header = headerView {
+                headerHeight = header.frame.size.height
+                mainScrollView.tableHeaderView = header
+            }
         }
     }
     
@@ -59,7 +62,7 @@ open class JYPageController: UIViewController {
     public var scrollView: UIScrollView? {
         get {
             if headerView != nil {
-                return verScrollView
+                return mainScrollView
             }else {
                 return nil
             }
@@ -136,11 +139,13 @@ open class JYPageController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         pageViewSetup()
         menuView.select(selectedIndex)
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainScrollView.isScrollEnabled = headerView != nil
     }
     
     
@@ -155,7 +160,7 @@ open class JYPageController: UIViewController {
                 childController.removeFromParentViewController()
             }
         }
-        verScrollView.removeFromSuperview()
+        mainScrollView.removeFromSuperview()
         
         childControllersCount = dataSource?.numberOfChildControllers() ?? 0
         childControllerCache.removeAllObjects()
@@ -166,8 +171,7 @@ open class JYPageController: UIViewController {
         menuView.select(selectedIndex)
         
         pageViewSetup()
-        horScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
-        layoutSubviewsIfHaveHeaderView()
+        pageContentScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
     }
     
     ///获取menuview中scrollview的contentsize
@@ -197,7 +201,7 @@ open class JYPageController: UIViewController {
             return
         }
         menuViewFrame = source.pageController(self, frameForMenuView: menuView)
-        childControllerViewFrame = source.pageController(self, frameForContainerView: horScrollView)
+        childControllerViewFrame = source.pageController(self, frameForContainerView: pageContentScrollView)
         
         var verScrollViewY : CGFloat = 0
         if let navBar = navigationController?.navigationBar {
@@ -205,36 +209,20 @@ open class JYPageController: UIViewController {
         }
         
         menuView.frame = menuViewFrame
-        horScrollView.frame = childControllerViewFrame
-        verScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: verScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
-        verScrollView.contentSize = CGSize(width: childControllerViewFrame.width, height: verScrollView.frame.height)
+        pageContentScrollView.frame = childControllerViewFrame
+        mainScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: verScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.width, height: childControllerViewFrame.height)
-        horScrollView.contentSize = contentSize
+        pageContentScrollView.contentSize = contentSize
         
         if config.menuViewShowInNavigationBar {
-            view.addSubview(horScrollView)
+            view.addSubview(pageContentScrollView)
             navigationItem.titleView = menuView
         }else {
-            view.addSubview(verScrollView)
-            verScrollView.addSubview(menuView)
-            verScrollView.addSubview(horScrollView)
+            view.addSubview(mainScrollView)
         }
     }
     
-    //有headerView的场景重新布局
-    private func layoutSubviewsIfHaveHeaderView() {
-        if let header = headerView {
-            headerHeight = header.frame.size.height
-            verScrollView.addSubview(header)
-            
-            horScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: menuView.frame.origin.y + menuView.frame.height, width: childControllerViewFrame.size.width, height: childControllerViewFrame.size.height)
-            let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.size.width, height: horScrollView.frame.size.height)
-            horScrollView.contentSize = contentSize
-            
-            verScrollView.contentSize = CGSize(width: verScrollView.frame.width, height: verScrollView.contentSize.height + headerHeight)
-        }
-    }
     
     ///添加指定index的controller
     private func addChildController(index: Int) {
@@ -261,14 +249,14 @@ open class JYPageController: UIViewController {
         
         childController.view.frame = CGRect(x: CGFloat(index)*childControllerViewFrame.size.width, y: 0, width: childControllerViewFrame.size.width, height: childControllerViewFrame.size.height)
         childController.didMove(toParentViewController: self)
-        horScrollView.addSubview(childController.view)
+        pageContentScrollView.addSubview(childController.view)
         displayControllerCache[cacheKey] = childController
     }
     
     private func loadChildControllerIfNeeded() {
         
-        let offsetX = horScrollView.contentOffset.x
-        if offsetX < 0 || offsetX > horScrollView.contentSize.width {
+        let offsetX = pageContentScrollView.contentOffset.x
+        if offsetX < 0 || offsetX > pageContentScrollView.contentSize.width {
             return
         }
         guard offsetX.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) == 0 else {
@@ -300,8 +288,8 @@ open class JYPageController: UIViewController {
     }
     
     private func childControllerIsInScreen(_ childController: UIViewController) -> Bool {
-        let offsetX = horScrollView.contentOffset.x
-        let screenWidth = horScrollView.frame.width
+        let offsetX = pageContentScrollView.contentOffset.x
+        let screenWidth = pageContentScrollView.frame.width
         let childViewMaxX = childController.view.frame.maxX
         let childViewMinX = childController.view.frame.minX
 
@@ -314,13 +302,20 @@ open class JYPageController: UIViewController {
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         let cacheKey = String(selectedIndex) as NSString
-        if keyPath == "contentOffset", headerHeight > 0, let scrollView = childScrollViewCache[cacheKey], scrollView.isKind(of: UIScrollView.classForCoder()) {
+        if keyPath == "contentOffset", headerHeight > 0, let scrollView = childScrollViewCache[cacheKey] {
             if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y > 0 {
-                if verScrollView.contentOffset.y < headerHeight, scrollToTop == false {
-                    scrollView.setContentOffset(.zero, animated: false)
+                if mainScrollView.contentOffset.y < headerHeight {
+                    scrollView.contentOffset = .zero
+                }else{
+                    mainScrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
                 }
-            }else{
-                scrollView.setContentOffset(.zero, animated: false)
+            }
+            
+            //顶部下拉刷新位置在mainScrollView顶部，控制子页面的scrollview不能向下弹性滚动
+            if let currentChildListScrollView = childScrollViewCache[cacheKey],let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y < 0 {
+                if config.headerRefreshLocation == .headerViewTop, mainScrollView.contentOffset.y <= headerHeight {
+                    currentChildListScrollView.contentOffset = .zero
+                }
             }
         }
     }
@@ -337,7 +332,7 @@ open class JYPageController: UIViewController {
         return menuView
     }()
     
-    private lazy var horScrollView : UIScrollView = {
+    private lazy var pageContentScrollView : UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
         scrollView.showsHorizontalScrollIndicator = false
@@ -349,13 +344,18 @@ open class JYPageController: UIViewController {
         return scrollView
     }()
     
-    private lazy var verScrollView : JYScrollView = {
-        let scrollView = JYScrollView()
+    private lazy var mainScrollView : JYScrollView = {
+        let scrollView = JYScrollView(frame: .zero, style: .plain)
+        scrollView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
         scrollView.backgroundColor = .white
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
+        scrollView.dataSource = self
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        if #available(iOS 15.0, *) {
+            scrollView.sectionHeaderTopPadding = 0
         }
         return scrollView
     }()
@@ -365,14 +365,14 @@ open class JYPageController: UIViewController {
 extension JYPageController:UIScrollViewDelegate {
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if scrollView == horScrollView {
+        if scrollView == pageContentScrollView {
             currentOffsetX = scrollView.contentOffset.x
             scrollByDragging = true
         }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView == horScrollView {
+        if scrollView == pageContentScrollView {
             selectedIndex = Int(scrollView.contentOffset.x/scrollView.frame.width)
             menuView.menuViewScrollEnd(byScrollEndDecelerating: scrollView)
             delegate?.pageController?(self, didEnterControllerAt: selectedIndex)
@@ -380,7 +380,7 @@ extension JYPageController:UIScrollViewDelegate {
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == horScrollView {
+        if scrollView == pageContentScrollView {
             removeChildControllerIfNeeded()
             if scrollByDragging {
                 loadChildControllerIfNeeded()
@@ -389,24 +389,29 @@ extension JYPageController:UIScrollViewDelegate {
             }
         }
         
-        if scrollView == verScrollView, headerView != nil {
+        if scrollView == mainScrollView, headerView != nil,headerView?.frame.height ?? 0 > 0 {
+            
             let cacheKey = String(selectedIndex) as NSString
-            if let childVCScrollView = childScrollViewCache[cacheKey], childVCScrollView.isKind(of: UIScrollView.classForCoder()), childVCScrollView.contentOffset.y > 0 {
-                scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
+            let currentChildListScrollView = childScrollViewCache[cacheKey]!
+            if  currentChildListScrollView.isKind(of: UIScrollView.classForCoder()), currentChildListScrollView.contentOffset.y > 0 {
+                scrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
             }
-            
+
             if scrollView.contentOffset.y >= headerHeight {
-                scrollToTop = true
-                scrollView.setContentOffset(CGPoint(x: 0, y: headerHeight), animated: false)
-            }else{
-                scrollToTop = false
+                scrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
+            }
+
+            //子页面左右滚动的时候不让上下滚动
+            if pageContentScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0, mainScrollView.contentOffset.y != verScrollViewContentOffsetY {
+                mainScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
             }
             
-            //子页面左右滚动的时候不让上下滚动
-            if horScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0, verScrollView.contentOffset.y != verScrollViewContentOffsetY {
-                verScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
+            //下拉刷新位置在子控制器scrollview顶部时候
+            if config.headerRefreshLocation == .childControllerViewTop, scrollView.contentOffset.y < 0 {
+                mainScrollView.contentOffset = .zero
             }
-            verScrollViewContentOffsetY = verScrollView.contentOffset.y
+            
+            verScrollViewContentOffsetY = mainScrollView.contentOffset.y
         }
     }
 }
@@ -489,9 +494,38 @@ extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
             }
             selectedIndex = index
             let contentOffsetX = CGFloat(index)*childControllerViewFrame.size.width
-            horScrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: config.scrollViewAnimationWhenMenuItemSelected)
+            pageContentScrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: config.scrollViewAnimationWhenMenuItemSelected)
             delegate?.pageController?(self, didEnterControllerAt: index)
         }
+    }
+}
+
+//MARK: - UITableViewDelegate,UITableViewDatasource
+extension JYPageController: UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return menuViewFrame.height
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return pageContentScrollView.frame.height
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerContentView = UIView(frame: CGRect(x: 0, y: 0, width: menuViewFrame.size.width, height: menuViewFrame.size.height))
+        headerContentView.backgroundColor = .white
+        headerContentView.addSubview(menuView)
+        return headerContentView
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        pageContentScrollView.frame = CGRect(x: 0, y: 0, width: childControllerViewFrame.width, height: childControllerViewFrame.height)
+        cell.contentView.addSubview(pageContentScrollView)
+        return cell
     }
 }
 

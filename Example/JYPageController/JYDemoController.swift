@@ -11,7 +11,7 @@ import UIKit
 class JYDemoController: UITableViewController {
     
     let sectionTitles = ["JYPageController配置","menuView样式","自定义menuview的item","有headerView场景"]
-    let cellTitles = [["设置默认选中的子页面index","menuView显示在导航栏"],["menuview不显示指示器","menuview的指示器跟随item文字宽度","menuview指定下划线指示器size","menuview指示器设置为自定义view"],["menuview自定义item"],["显示headerview"]]
+    let cellTitles = [["设置默认选中的子页面index","menuView显示在导航栏"],["menuview不显示指示器","menuview的指示器跟随item文字宽度","menuview指定下划线指示器size","menuview指示器设置为自定义view","menuview居左,文字缩放过程间距保持不变"],["menuview自定义item"],["headerview悬浮,下拉刷新位置在顶部","headerview悬浮,下拉刷新位置在子页面"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,12 +70,18 @@ class JYDemoController: UITableViewController {
                 controller = JYMenuViewCustomSizeLineController()
             }else if indexPath.row == 3 {
                 controller = JYCustomIndicatorDemoController()
+            }else if indexPath.row == 4 {
+                controller = JYMenuViewAligentDemoController()
             }
             
         }else if indexPath.section == 2 {
             controller = JYMenuCustomItemController()
         }else if indexPath.section == 3 {
-            controller = JYHaveHeaderViewController()
+            if indexPath.row == 0 {
+                controller = JYHaveHeaderViewController()
+            }else if indexPath.row == 1 {
+                controller = JYHaveHeaderView1Controller()
+            }
         }
         
         controller.navigationItem.title = cellTitles[indexPath.section][indexPath.row]

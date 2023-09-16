@@ -37,17 +37,10 @@ pod 'JYPageController'
 
 
 
-
 感谢[WMPageController](https://github.com/wangmchn/WMPageController) 作者，childController生命周期逻辑和item缩放过程中颜色变化逻辑借鉴WMPageController    
 但同时也解决了使用WMPageController过程中遇到两个的问题  
 1.选中和非选中字体差距较大时候，选中的item和非选中的item间距变的很小,UI不能接受   
 2.item在放大的过程中，item的badgeView是不动的，放大后位置出现偏差
-
-
-
-## NEXT       
-1.优化menuview悬停的过程，目前悬停过程中有停顿    
-2.增加刷新headerView的方法，支持动态高度的headerView
 
 
 ## Preview 

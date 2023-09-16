@@ -12,7 +12,7 @@ import MJRefresh
 
 class JYHaveHeaderViewController: JYPageController {
     
-    var titles = ["Home","New","Music","Near"]
+    var titles = ["商品","详情","评价"]
     let headerViewHeight: CGFloat = 300
     let menuViewHeight: CGFloat = 44
     
@@ -20,22 +20,24 @@ class JYHaveHeaderViewController: JYPageController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
         
-        config.normalTitleColor = .lightGray
-        config.normalTitleFontWeight = .medium
-        config.normalTitleFont = 16
+        config.normalTitleColor = .black
+        config.normalTitleFont = 17
         
-        config.selectedTitleColor = .black
-        config.selectedTitleFontWeight = .medium
-        config.selectedTitleFont = 16
+        config.selectedTitleColor = .red
+        config.selectedTitleFont = 17
         
-        config.menuItemMargin = 25
+        config.menuItemMargin = 44
+        config.alignment = .center
         
-        config.indicatorColor = .black
-        config.indicatorStyle = .customSizeLine
-        config.indicatorWidth = 10
-        config.indicatorHeight = 3
+        config.indicatorColor = .red
+        config.indicatorStyle = .equalItemWidthLine
+        config.indicatorHeight = 2
         
+        //底部的下划线指示器距离底部的大小
         config.indicatorBottom = 5
+        
+        //下拉刷新位置
+        config.headerRefreshLocation = .headerViewTop
     }
 
     required public init?(coder: NSCoder) {
@@ -48,16 +50,19 @@ class JYHaveHeaderViewController: JYPageController {
         view.backgroundColor = .white
         
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: headerViewHeight))
-        let imageView = UIImageView(image: UIImage(named: "apple"))
+        let imageView = UIImageView(image: UIImage(named: "xiaomi"))
         imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 0, y: 44, width: view.frame.width, height: headerViewHeight - 44*2)
+        imageView.frame = header.bounds
+        header.backgroundColor = .groupTableViewBackground
         header.addSubview(imageView)
         headerView = header
         
         scrollView?.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.scrollView?.mj_header?.endRefreshing()
-                self.titles = ["Home","New"]
+                self.config.alignment = .left
+                self.config.menuItemMargin = 20
+                self.titles = ["推荐","最新"]
                 self.reload()
             }
         })
@@ -70,7 +75,7 @@ extension JYHaveHeaderViewController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 20, y: headerViewHeight, width: view.frame.size.width-20, height: menuViewHeight)
+        return CGRect.init(x: 15, y: 0, width: view.frame.size.width - 30, height: menuViewHeight)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
@@ -79,7 +84,7 @@ extension JYHaveHeaderViewController {
         if let navBar = navigationController?.navigationBar {
             menuViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
-        return CGRect.init(x: 0, y: menuViewY + menuViewHeight + headerViewHeight, width: view.frame.size.width, height: view.frame.height - menuViewHeight - menuViewY)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.height - menuViewHeight - menuViewY)
     }
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
@@ -91,11 +96,9 @@ extension JYHaveHeaderViewController {
     }
     
     override func childController(atIndex index: Int) -> JYPageChildContollerProtocol {
-        if index == 2 {
-            return JYViewController()
-        }else{
-            return JYTableViewController()
-        }
+        let vc = JYTableViewController()
+        vc.segmentTitle = titles[index]
+        return vc
     }
     
     
