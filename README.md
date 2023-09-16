@@ -17,7 +17,7 @@ JYPageController is available through [CocoaPods](https://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'JYPageController' , '~> 0.3.0’
+pod 'JYPageController' , '~> 0.3.1’
 ```
 
 ## 功能
@@ -46,12 +46,12 @@ pod 'JYPageController' , '~> 0.3.0’
 ## Preview 
 |    Style                    |                           Preview                                     |                     
 | :-------------------------- | ----------------------------------------------------------------------|
-|showInNavigationBar |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b99da7b7e2628425.gif?imageMogr2/auto-orient/strip) | 
-|customSizeLine      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-38e5da7c01071cfe.gif?imageMogr2/auto-orient/strip) | 
-|equalItemWidthLine  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-de0d28a3407cbc8c.gif?imageMogr2/auto-orient/strip) |
-|customIndicator     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-a8134ea4d6b2bbde.gif?imageMogr2/auto-orient/strip) |
-|customItem          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip) |  
-|headerView          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-7c5a8659fa8a6a09.gif?imageMogr2/auto-orient/strip) |  
+|菜单显示在导航栏 |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b99da7b7e2628425.gif?imageMogr2/auto-orient/strip) | 
+|下划线指示器粘性动画      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-38e5da7c01071cfe.gif?imageMogr2/auto-orient/strip) | 
+|下划线指示器宽度=标题宽度  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-de0d28a3407cbc8c.gif?imageMogr2/auto-orient/strip) |
+|自定义view做指示器     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-a8134ea4d6b2bbde.gif?imageMogr2/auto-orient/strip) |
+|自定义标题菜单          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip) |  
+|有headerView场景         |  ![image](https://upload-images.jianshu.io/upload_images/3614407-7c5a8659fa8a6a09.gif?imageMogr2/auto-orient/strip) |  
  
 
 
@@ -116,7 +116,7 @@ override func childController(atIndex index: Int) -> UIViewController {
 
 ## Author
 
-wangtao, henandaxuewangtao@126.com
+wangtao, henandaxuewangtao@126.com QQ 603637393
 
 ## License
 
