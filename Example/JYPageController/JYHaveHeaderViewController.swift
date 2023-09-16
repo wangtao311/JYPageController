@@ -75,7 +75,7 @@ extension JYHaveHeaderViewController {
     
     
     override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width - 30, height: menuViewHeight)
+        return CGRect.init(x: 19, y: 0, width: view.frame.size.width - 38, height: menuViewHeight)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
