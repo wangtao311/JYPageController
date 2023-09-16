@@ -10,10 +10,10 @@ import UIKit
 
 @objc public protocol JYPageControllerDataSource {
     
-    ///menuview frame
-    func pageController(_ pageController: JYPageController, frameForMenuView menu: JYPageMenuView) -> CGRect
+    ///segmentview frame
+    func pageController(_ pageController: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect
     
-    ///menuview下滚动区域frame
+    ///子页面下滚动区域frame
     func pageController(_ pageController: JYPageController, frameForContainerView container: UIScrollView) -> CGRect
     
     ///第index位置上item的title
@@ -140,7 +140,7 @@ open class JYPageController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         pageViewSetup()
-        menuView.select(selectedIndex)
+        segmentedView.select(selectedIndex)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -167,8 +167,8 @@ open class JYPageController: UIViewController {
         displayControllerCache.removeAll()
         
         selectedIndex = 0
-        menuView.reload()
-        menuView.select(selectedIndex)
+        segmentedView.reload()
+        segmentedView.select(selectedIndex)
         
         pageViewSetup()
         pageContentScrollView.setContentOffset(CGPoint(x: CGFloat(selectedIndex) * childControllerViewFrame.width, y: 0), animated: false)
@@ -176,23 +176,23 @@ open class JYPageController: UIViewController {
     
     ///获取menuview中scrollview的contentsize
     public func contentSizeForMenuView() -> CGSize {
-        return menuView.contentSize()
+        return segmentedView.contentSize()
     }
     
     ///更新menuview的frame
     public func updateMenuViewFrame(frame: CGRect) {
         menuViewFrame = frame
-        menuView.updateFrame(frame: frame)
+        segmentedView.updateFrame(frame: frame)
     }
     
     ///添加指定index的menuItem的badgeView
     public func insertMenuItemBadgeView(_ badgeView: UIView, atIndex index: Int) {
-        menuView.insertMenuItemBadgeView(badgeView, atIndex: index)
+        segmentedView.addSegmentedItemBadgeView(badgeView, atIndex: index)
     }
     
     ///移除指定index的menuItem的badgeView
     public func removeMenuItemBadgeView(atIndex index: Int) {
-        menuView.removeMenuItemBadgeView(atIndex: index)
+        segmentedView.removeSegmentedItemBadgeView(atIndex: index)
     }
     
     //MARK: - Private
@@ -200,7 +200,7 @@ open class JYPageController: UIViewController {
         guard let source = dataSource else {
             return
         }
-        menuViewFrame = source.pageController(self, frameForMenuView: menuView)
+        menuViewFrame = source.pageController(self, frameForSegmentedView: segmentedView)
         childControllerViewFrame = source.pageController(self, frameForContainerView: pageContentScrollView)
         
         var verScrollViewY : CGFloat = 0
@@ -208,16 +208,16 @@ open class JYPageController: UIViewController {
             verScrollViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
         
-        menuView.frame = menuViewFrame
+        segmentedView.frame = menuViewFrame
         pageContentScrollView.frame = childControllerViewFrame
         mainScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: verScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.width, height: childControllerViewFrame.height)
         pageContentScrollView.contentSize = contentSize
         
-        if config.menuViewShowInNavigationBar {
+        if config.segmentedViewShowInNavigationBar {
             view.addSubview(pageContentScrollView)
-            navigationItem.titleView = menuView
+            navigationItem.titleView = segmentedView
         }else {
             view.addSubview(mainScrollView)
         }
@@ -323,11 +323,11 @@ open class JYPageController: UIViewController {
         return dataSource?.numberOfChildControllers() ?? 0
     }()
     
-    private lazy var menuView: JYPageMenuView = {
-        let menuView = JYPageMenuView.init(pageConfig: config)
-        menuView.dataSource = self
-        menuView.delegate = self
-        return menuView
+    private lazy var segmentedView: JYSegmentedView = {
+        let segment = JYSegmentedView.init(pageConfig: config)
+        segment.dataSource = self
+        segment.delegate = self
+        return segment
     }()
     
     private lazy var pageContentScrollView : UIScrollView = {
@@ -372,7 +372,7 @@ extension JYPageController:UIScrollViewDelegate {
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == pageContentScrollView {
             selectedIndex = Int(scrollView.contentOffset.x/scrollView.frame.width)
-            menuView.menuViewScrollEnd(byScrollEndDecelerating: scrollView)
+            segmentedView.segmentedViewScrollEnd(byScrollEndDecelerating: scrollView)
             delegate?.pageController?(self, didEnterControllerAt: selectedIndex)
         }
     }
@@ -382,7 +382,7 @@ extension JYPageController:UIScrollViewDelegate {
             removeChildControllerIfNeeded()
             if scrollByDragging {
                 loadChildControllerIfNeeded()
-                menuView.menuViewScroll(by:scrollView)
+                segmentedView.segmentedViewScroll(by:scrollView)
                 currentOffsetX = scrollView.contentOffset.x
             }
         }
@@ -422,7 +422,7 @@ extension JYPageController:UIScrollViewDelegate {
 //MARK: - JYPageControllerDelegate, JYPageControllerDataSource
 extension JYPageController: JYPageControllerDelegate, JYPageControllerDataSource {
     
-    open func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    open func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return .zero
     }
 
@@ -458,34 +458,34 @@ extension JYPageController: JYPageControllerDelegate, JYPageControllerDataSource
 }
 
 
-//MARK: - JYPageMenuViewDelegate,JYPageMenuViewDataSource
-extension JYPageController: JYPageMenuViewDelegate, JYPageMenuViewDataSource {
-    public func numberOfMenuItems() -> Int {
+//MARK: - JYSegmentedViewDelegate,JYSegmentedViewDatasource
+extension JYPageController: JYSegmentedViewDelegate, JYSegmentedViewDataSource {
+    public func numberOfSegmentedViewItems() -> Int {
         return childControllersCount
     }
     
-    public func menuView(_ menuView: JYPageMenuView, titleAt index: Int) -> String {
+    public func segmentedView(_ segmentedView: JYSegmentedView, titleAt index: Int) -> String {
         guard let source = dataSource else {
             return ""
         }
         return source.pageController(self, titleAt: index)
     }
     
-    public func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView? {
+    public func segmentedView(_ segmentedView: JYSegmentedView, customViewAt index: Int) -> UIView? {
         guard let source = dataSource else {
             return nil
         }
         return source.pageController?(self, customViewAt: index)
     }
     
-    public func menuView(_ menuView: JYPageMenuView, badgeViewAt index: Int) -> UIView? {
+    public func segmentedView(_ segmentedView: JYSegmentedView, badgeViewAt index: Int) -> UIView? {
         guard let source = dataSource else {
             return nil
         }
         return source.pageController?(self, badgeViewAt: index)
     }
     
-    public func menuView(_ menuView: JYPageMenuView, didSelectItemAt index: Int) {
+    public func segmentedView(_ segmentedView: JYSegmentedView, didSelectItemAt index: Int) {
         scrollByDragging = false
         let cacheKey = String(index) as NSString
         let controller = displayControllerCache[cacheKey]
@@ -518,7 +518,7 @@ extension JYPageController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerContentView = UIView(frame: CGRect(x: 0, y: 0, width: menuViewFrame.size.width, height: menuViewFrame.size.height))
         headerContentView.backgroundColor = .white
-        headerContentView.addSubview(menuView)
+        headerContentView.addSubview(segmentedView)
         return headerContentView
     }
     

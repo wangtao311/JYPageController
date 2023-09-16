@@ -28,7 +28,7 @@ class JYMenuCustomItemController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 30
+        config.itemMargin = 30
         
     }
 
@@ -48,7 +48,7 @@ class JYMenuCustomItemController: JYPageController {
 extension JYMenuCustomItemController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 

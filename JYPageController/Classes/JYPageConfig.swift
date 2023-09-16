@@ -8,19 +8,19 @@
 import UIKit
 
 
-@objc enum JYMenuItemState: Int {
+@objc enum JYSegmentedItemState: Int {
     case normal = 0
     case selected = 1
 }
 
-@objc public enum JYMenuViewAlignment: Int {
+@objc public enum JYSegmentedViewAlignment: Int {
     case left
     case right
     case center
 }
 
 ///IndicatorStyle
-@objc public enum JYMenuViewIndicatorStyle: Int {
+@objc public enum JYSegmentedViewIndicatorStyle: Int {
     case none                 //none
     case equalItemWidthLine   //equal to title width
     case customSizeLine       //need set indicatorSize property
@@ -56,7 +56,7 @@ public class JYPageConfig: NSObject {
     public var selectedTitleFontWeight: UIFont.Weight = .regular
     
     ///indicator style, default none
-    public var indicatorStyle: JYMenuViewIndicatorStyle = .none
+    public var indicatorStyle: JYSegmentedViewIndicatorStyle = .none
     
     ///custom indicatorView, if indicatorStyle = .customView, set this property
     public var customIndicator: UIView?
@@ -77,19 +77,19 @@ public class JYPageConfig: NSObject {
     public var indicatorCornerRadius: CGFloat = 0
     
     ///item margin
-    public var menuItemMargin: CGFloat = 15
+    public var itemMargin: CGFloat = 15
     
     ///item min width, if text width < minwidth, item width = menuItemMinWidth
-    public var menuItemMinWidth: CGFloat = 0
+    public var itemMinWidth: CGFloat = 0
     
     ///item max width, if text width > maxwidth, item width = menuItemMaxWidth
-    public var menuItemMaxWidth: CGFloat = 0
+    public var itemMaxWidth: CGFloat = 0
     
     ///item top distance from meuuview top, default ver center
-    public var menuItemTop: CGFloat?
+    public var itemTop: CGFloat?
     
     ///alignment, default .left
-    public var alignment: JYMenuViewAlignment = .left
+    public var alignment: JYSegmentedViewAlignment = .left
     
     ///badgeViewOffSet，default badgeView.left = item.right， badgeView.centerY = item.top  After you set badgeViewOffset,  badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY
     public var badgeViewOffset: CGPoint = .zero
@@ -97,8 +97,8 @@ public class JYPageConfig: NSObject {
     ///when the menuItem is clicked，scrollView change to target page.  need animation?
     public var scrollViewAnimationWhenMenuItemSelected: Bool = false
     
-    ///menuView show in navigation bar, default false
-    public var menuViewShowInNavigationBar: Bool = false
+    ///segmentedView show in navigation bar, default false
+    public var segmentedViewShowInNavigationBar: Bool = false
     
     ///when pageController has headerView, header refresh location. defalut: at headerView top
     public var headerRefreshLocation: JYHeaderRefreshLocation = .headerViewTop

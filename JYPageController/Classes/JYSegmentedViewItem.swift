@@ -7,24 +7,24 @@
 
 import UIKit
 
-@objc enum JYMenuItemType: Int {
-    case text = 0
-    case custom = 1
+@objc enum JYSegmentedViewItemType: Int {
+    case text
+    case customView
 }
 
-@objc protocol JYPageMenuItemDelegate {
-    func menuItemDidSelected(_ item: JYPageMenuItem)
+@objc protocol JYSegmentedViewItemDelegate {
+    func segmentedItemDidSelected(_ item: JYSegmentedViewItem)
 }
 
-class JYPageMenuItem: UIView {
+class JYSegmentedViewItem: UIView {
     
-    weak open var delegate: JYPageMenuItemDelegate?
+    weak open var delegate: JYSegmentedViewItemDelegate?
     
     var badgeView: UIView?
     
     var customView: UIView?
     
-    var type: JYMenuItemType = .text
+    var type: JYSegmentedViewItemType = .text
     
     var normalColorRed: CGFloat = 0, normalColorGreen: CGFloat = 0, normalColorBlue: CGFloat = 0, normalColorAlpha: CGFloat = 0
     
@@ -117,7 +117,7 @@ class JYPageMenuItem: UIView {
         
         addSubview(customItemView)
         customView = customItemView
-        type = .custom
+        type = .customView
     }
     
     override func layoutSubviews() {
@@ -132,7 +132,7 @@ class JYPageMenuItem: UIView {
     //MARK: - Private
     @objc private func tapAtion(_ gesture: UIGestureRecognizer) {
         if !selected {
-            delegate?.menuItemDidSelected(self)
+            delegate?.segmentedItemDidSelected(self)
         }
     }
     

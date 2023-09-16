@@ -25,8 +25,8 @@ class JYShowInNavDemoController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 18
         
-        config.menuItemMargin = 30
-        config.menuViewShowInNavigationBar = true
+        config.itemMargin = 30
+        config.segmentedViewShowInNavigationBar = true
         config.alignment = .center
         
         config.indicatorStyle = .equalItemWidthLine
@@ -50,7 +50,7 @@ class JYShowInNavDemoController: JYPageController {
 extension JYShowInNavDemoController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 50, y: 0, width: view.frame.size.width - 100, height: 50)
     }
 

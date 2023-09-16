@@ -10,8 +10,8 @@ import UIKit
 
 class JYDemoController: UITableViewController {
     
-    let sectionTitles = ["JYPageController配置","menuView样式","自定义menuview的item","有headerView场景"]
-    let cellTitles = [["设置默认选中的子页面index","menuView显示在导航栏"],["menuview不显示指示器","menuview的指示器跟随item文字宽度","menuview指定下划线指示器size","menuview指示器设置为自定义view","menuview居左,文字缩放过程间距保持不变"],["menuview自定义item"],["headerview悬浮,下拉刷新位置在顶部","headerview悬浮,下拉刷新位置在子页面"]]
+    let sectionTitles = ["JYPageController配置","segmentedView样式","自定义segmentedView的item","有headerView场景"]
+    let cellTitles = [["segmentedView设置默认选中的index","segmentedView显示在导航栏"],["segmentedView不显示指示器","segmentedView指示器跟随item宽度","segmentedView指定下划线指示器size","segmentedView指示器设置为自定义view","segmentedView居左,文字缩放过程间距保持不变"],["segmentedView自定义item"],["有header，segment悬浮,下拉刷新在顶部","有header，segment悬浮,下拉刷新在子页面"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()

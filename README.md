@@ -31,9 +31,9 @@ pod 'JYPageController' , '~> 0.3.1’
 8.支持标题tab显示在导航栏  
 9.保证childViewController生命周期  
 10.标题下指示器支持多样式,支持自定义View     
-11.menuView的item支持自定义View    
-12.menuview样式目前主流APP以下划线或者或者自定义image为主。暂时不打算支持其他非主流的样式   
-13.支持头部headerView，menuview可以悬停  
+11.segmentedView的item支持自定义View    
+12.segmentedView样式目前主流APP以下划线或者或者自定义image为主。暂时不打算支持其他非主流的样式   
+13.支持头部headerView，segmentedView悬停  
 
 
 
@@ -89,7 +89,7 @@ override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 3.实现数据源协议方法  
 
 ```
-override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {  
+override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {  
     return menuview frame  
 }  
 

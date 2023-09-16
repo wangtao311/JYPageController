@@ -30,7 +30,7 @@ class JYMenuViewCustomSizeLineController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 20
+        config.itemMargin = 20
         
     }
 
@@ -50,7 +50,7 @@ class JYMenuViewCustomSizeLineController: JYPageController {
 extension JYMenuViewCustomSizeLineController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
     }
 

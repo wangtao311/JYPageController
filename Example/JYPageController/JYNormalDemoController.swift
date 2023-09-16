@@ -24,7 +24,7 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.menuItemMargin = 18
+        config.itemMargin = 18
         config.indicatorStyle = .none
         
         selectedIndex = 1
@@ -48,7 +48,7 @@ class JYNormalDemoController: JYPageController {
 extension JYNormalDemoController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 15, y: 0, width: view.frame.size.width-15, height: 44)
     }
 

@@ -26,7 +26,7 @@ class JYHaveHeaderView1Controller: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.menuItemMargin = 44
+        config.itemMargin = 44
         config.alignment = .center
         
         config.indicatorColor = .red
@@ -61,7 +61,7 @@ class JYHaveHeaderView1Controller: JYPageController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.scrollView?.mj_header?.endRefreshing()
                 self.config.alignment = .left
-                self.config.menuItemMargin = 20
+                self.config.itemMargin = 20
                 self.titles = ["推荐","最新"]
                 self.reload()
             }
@@ -74,7 +74,7 @@ class JYHaveHeaderView1Controller: JYPageController {
 extension JYHaveHeaderView1Controller {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 15, y: 0, width: view.frame.size.width - 30, height: menuViewHeight)
     }
 

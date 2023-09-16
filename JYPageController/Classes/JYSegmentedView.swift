@@ -7,40 +7,40 @@
 
 import UIKit
 
-@objc public protocol JYPageMenuViewDataSource {
+@objc public protocol JYSegmentedViewDataSource {
     
     ///item count
-    func numberOfMenuItems() -> Int
+    func numberOfSegmentedViewItems() -> Int
     
     ///item title
-    func menuView(_ menuView: JYPageMenuView, titleAt index: Int) -> String
+    func segmentedView(_ segmentedView: JYSegmentedView, titleAt index: Int) -> String
     
     ///customView item, customView has higher priority than title，when return customView, ignore title。customView need set frame.size
-    @objc optional func menuView(_ menuView: JYPageMenuView, customViewAt index: Int) -> UIView?
+    @objc optional func segmentedView(_ segmentedView: JYSegmentedView, customViewAt index: Int) -> UIView?
     
     ///item  badgeView (eg. label/red dot/icon, need set frame.size)
-    @objc optional func menuView(_ menuView: JYPageMenuView, badgeViewAt index: Int) -> UIView?
+    @objc optional func segmentedView(_ segmentedView: JYSegmentedView, badgeViewAt index: Int) -> UIView?
     
 }
 
-@objc public protocol JYPageMenuViewDelegate {
+@objc public protocol JYSegmentedViewDelegate {
     
-    @objc optional func menuView(_ menuView: JYPageMenuView, didSelectItemAt index: Int)
+    @objc optional func segmentedView(_ segmentedView: JYSegmentedView, didSelectItemAt index: Int)
 }
 
 
 
 
-public class JYPageMenuView: UIView {
+public class JYSegmentedView: UIView {
     
     ///config
     var config: JYPageConfig = JYPageConfig()
     
     ///代理
-    weak public var delegate: JYPageMenuViewDelegate?
+    weak public var delegate: JYSegmentedViewDelegate?
     
     ///数据源
-    weak public var dataSource: JYPageMenuViewDataSource? {
+    weak public var dataSource: JYSegmentedViewDataSource? {
         didSet {
             getItemsCount()
         }
@@ -53,7 +53,7 @@ public class JYPageMenuView: UIView {
     private var itemsCount: Int = 0
     
     ///items数组
-    private var items = [JYPageMenuItem]()
+    private var items = [JYSegmentedViewItem]()
     
     ///第一次初始化和reload的时候用来标记，layoutSubview中layoutItems方法只调用一次。原因：在对默认选中的item多次设置transform的时，tranform有值，但获取到的frame却没有变
     var layoutOnceToken: Bool = false
@@ -115,19 +115,18 @@ public class JYPageMenuView: UIView {
         guard let source = dataSource else {
             return
         }
-        itemsCount = source.numberOfMenuItems()
+        itemsCount = source.numberOfSegmentedViewItems()
     }
     
     //MARK: - Public
-    
     ///单独使用menuview，动态改变数据源的时候调用(数据源改变之后先reload，如需要设置默认index，再调select)。其他场景不需要主动调用
     public func reload() {
-        guard let source = dataSource, source.numberOfMenuItems() > 0 else {
+        guard let source = dataSource, source.numberOfSegmentedViewItems() > 0 else {
             return
         }
         
         getItemsCount()
-        addMenuItems()
+        addItems()
         layoutOnceToken = false
         layoutItems()
         
@@ -141,34 +140,34 @@ public class JYPageMenuView: UIView {
         return selectedIndex
     }
     
-    ///获取menuview的contentsize
+    ///获取segmentedview的contentsize
     public func contentSize() -> CGSize {
         return contentView.contentSize
     }
     
-    ///更新/设置menuview的frame
+    ///更新/设置segmentedview的frame
     public func updateFrame(frame: CGRect) {
         self.frame = frame
         layoutIfNeeded()
         resetHorContentOffset(animate: false)
     }
     
-    ///添加指定index的menuItem的badgeView
-    public func insertMenuItemBadgeView(_ badgeView: UIView, atIndex index: Int) {
-        guard let menuItem = itemWithIndex(index) else {
+    ///为第index位置上的item添加badgeView
+    public func addSegmentedItemBadgeView(_ badgeView: UIView, atIndex index: Int) {
+        guard let item = itemWithIndex(index) else {
            return
         }
 
-        if menuItem.hasBadgeView {
-            menuItem.badgeView?.removeFromSuperview()
+        if item.hasBadgeView {
+            item.badgeView?.removeFromSuperview()
         }
-        menuItem.badgeView = badgeView
+        item.badgeView = badgeView
         contentView.addSubview(badgeView)
         updateItemsFrame()
     }
     
-    ///移除指定index的menuItem的badgeView
-    public func removeMenuItemBadgeView(atIndex index: Int) {
+    ///移除指定index的item的badgeView
+    public func removeSegmentedItemBadgeView(atIndex index: Int) {
         guard let menuItem = itemWithIndex(index) else {
            return
         }
@@ -181,13 +180,13 @@ public class JYPageMenuView: UIView {
     }
     
     ///页面滚动过程中，持续调用
-    public func menuViewScroll(by pageView: UIScrollView) {
+    public func segmentedViewScroll(by pageView: UIScrollView) {
         changeItemsByScrollViewDidScroll(scrollView: pageView)
         updateItemsFrame()
     }
     
     ///页面滚动停止，scrollVIew代理方法scrollEndDecelerating中调用
-    public func menuViewScrollEnd(byScrollEndDecelerating pageView: UIScrollView) {
+    public func segmentedViewScrollEnd(byScrollEndDecelerating pageView: UIScrollView) {
         
         let offsetX = pageView.contentOffset.x
         let currentIndex = Int(offsetX/pageView.frame.width)
@@ -211,7 +210,7 @@ public class JYPageMenuView: UIView {
             itemWithIndex(index)?.selected = true
             selectedIndex = index
             reload()
-            delegate?.menuView?(self, didSelectItemAt: selectedIndex)
+            delegate?.segmentedView?(self, didSelectItemAt: selectedIndex)
         }
     }
     
@@ -230,7 +229,7 @@ public class JYPageMenuView: UIView {
         }
          
         var selectedItem = itemWithIndex(selectedIndex)
-        var targetItem: JYPageMenuItem?
+        var targetItem: JYSegmentedViewItem?
         
         if offsetX > CGFloat(selectedIndex) * scrollView.frame.size.width {
             
@@ -307,7 +306,7 @@ public class JYPageMenuView: UIView {
         }
     }
      
-    private func indicatorMove(fromItem: JYPageMenuItem, toItem: JYPageMenuItem, offsetX: CGFloat, rate: CGFloat, pageView: UIScrollView) {
+    private func indicatorMove(fromItem: JYSegmentedViewItem, toItem: JYSegmentedViewItem, offsetX: CGFloat, rate: CGFloat, pageView: UIScrollView) {
         
         let scrollViewWidth = pageView.frame.width
         var currentIndicatorWidth: CGFloat = 0
@@ -361,7 +360,7 @@ public class JYPageMenuView: UIView {
         }
     }
     
-    private func addMenuItems() {
+    private func addItems() {
         guard let source = dataSource else{
             return
         }
@@ -373,14 +372,14 @@ public class JYPageMenuView: UIView {
         items.removeAll()
         
         for i in 0 ..< itemsCount {
-            let customView = source.menuView?(self, customViewAt: i)
-            var item = JYPageMenuItem()
+            let customView = source.segmentedView?(self, customViewAt: i)
+            var item = JYSegmentedViewItem()
             
             if let customItem = customView {
-                item = JYPageMenuItem(customItemView: customItem)
+                item = JYSegmentedViewItem(customItemView: customItem)
             }else{
-                let title = source.menuView(self, titleAt: i)
-                item = JYPageMenuItem(text: title)
+                let title = source.segmentedView(self, titleAt: i)
+                item = JYSegmentedViewItem(text: title)
             }
             item.tag = i + kMenuItemTagExtenValue
             item.config = config
@@ -388,7 +387,7 @@ public class JYPageMenuView: UIView {
             contentView.addSubview(item)
             items.append(item)
             
-            if let badgeView = source.menuView?(self, badgeViewAt: i) {
+            if let badgeView = source.segmentedView?(self, badgeViewAt: i) {
                 item.badgeView = badgeView
                 contentView.addSubview(badgeView)
             }
@@ -460,17 +459,17 @@ public class JYPageMenuView: UIView {
                 var itemWidth = max(normalItemWidth,selectedItemWidth)
                 var itemHeight = sizeForItem(item, font: UIFont.systemFont(ofSize: config.normalTitleFont, weight: config.selectedTitleFontWeight)).height
                 
-                if item.type == .custom {
+                if item.type == .customView {
                     itemWidth = item.customView?.frame.size.width ?? 0
                     itemHeight = item.customView?.frame.size.height ?? 0
                 }
                 
                 if index == 0 {
-                    item.frame = CGRect(x: 0, y: config.menuItemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
+                    item.frame = CGRect(x: 0, y: config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
                     totalWidth = totalWidth + itemWidth
                 }else{
-                    item.frame = CGRect(x: totalWidth + config.menuItemMargin, y:config.menuItemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
-                    totalWidth = totalWidth + itemWidth + config.menuItemMargin
+                    item.frame = CGRect(x: totalWidth + config.itemMargin, y:config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
+                    totalWidth = totalWidth + itemWidth + config.itemMargin
                 }
                 
                 if index == selectedIndex {
@@ -510,9 +509,9 @@ public class JYPageMenuView: UIView {
                 item.badgeView?.frame = CGRect(x: item.frame.width + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
                 totalWidth = startX + item.frame.width
             }else{
-                item.frame = CGRect(x: totalWidth + config.menuItemMargin , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
+                item.frame = CGRect(x: totalWidth + config.itemMargin , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
                 item.badgeView?.frame = CGRect(x: item.frame.width + item.frame.origin.x + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
-                totalWidth = totalWidth + item.frame.width + config.menuItemMargin
+                totalWidth = totalWidth + item.frame.width + config.itemMargin
             }
         }
         contentView.contentSize = CGSize(width: totalWidth, height: frame.size.height)
@@ -524,14 +523,14 @@ public class JYPageMenuView: UIView {
             if index == 0 {
                 totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.badgeViewOffset.x
             }else{
-                totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.menuItemMargin + config.badgeViewOffset.x
+                totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.itemMargin + config.badgeViewOffset.x
             }
         }
         return totalWidth
     }
     
-    private func itemWithIndex(_ index: Int) -> JYPageMenuItem? {
-        if let item = contentView.viewWithTag(index+kMenuItemTagExtenValue) as? JYPageMenuItem {
+    private func itemWithIndex(_ index: Int) -> JYSegmentedViewItem? {
+        if let item = contentView.viewWithTag(index+kMenuItemTagExtenValue) as? JYSegmentedViewItem {
             return item
         }
         return nil
@@ -578,18 +577,18 @@ public class JYPageMenuView: UIView {
 }
 
 
-//MARK: - JYPageMenuItemDelegate - 选中item事件逻辑处理extension
-extension JYPageMenuView: JYPageMenuItemDelegate {
+//MARK: - JYSegmentedViewItemDelegate - 选中item事件逻辑处理extension
+extension JYSegmentedView: JYSegmentedViewItemDelegate {
     
-    func menuItemDidSelected(_ item: JYPageMenuItem) {
+    func segmentedItemDidSelected(_ item: JYSegmentedViewItem) {
         let targetIndex = item.tag - kMenuItemTagExtenValue
-        menuViewSelectedItemChange(fromIndex: selectedIndex, toIndex: targetIndex)
+        segmentedViewSelectedItemChange(fromIndex: selectedIndex, toIndex: targetIndex)
         selectedIndex = targetIndex
         indicatorMoveTo(index: targetIndex, animate: true)
-        delegate?.menuView?(self, didSelectItemAt: targetIndex)
+        delegate?.segmentedView?(self, didSelectItemAt: targetIndex)
     }
     
-    private func menuViewSelectedItemChange(fromIndex: Int, toIndex: Int) {
+    private func segmentedViewSelectedItemChange(fromIndex: Int, toIndex: Int) {
         
         guard let fromItem = itemWithIndex(fromIndex), let toItem = itemWithIndex(toIndex) else {
             return
@@ -626,16 +625,16 @@ extension JYPageMenuView: JYPageMenuItemDelegate {
     }
     
     ///计算item的大小
-    private func sizeForItem(_ item: JYPageMenuItem, font: UIFont) -> CGSize {
+    private func sizeForItem(_ item: JYSegmentedViewItem, font: UIFont) -> CGSize {
         let attributes = [NSAttributedString.Key.font: font]
         var titleSize: CGSize = NSString(string: item.text ?? "").boundingRect(with: CGSize.init(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).size
 
-        if titleSize.width < config.menuItemMinWidth, config.menuItemMinWidth > 0 {
-            titleSize = CGSize(width: config.menuItemMinWidth, height: titleSize.height)
+        if titleSize.width < config.itemMinWidth, config.itemMinWidth > 0 {
+            titleSize = CGSize(width: config.itemMinWidth, height: titleSize.height)
         }
 
-        if titleSize.width > config.menuItemMaxWidth, config.menuItemMaxWidth > 0 {
-            titleSize = CGSize(width: config.menuItemMaxWidth, height: titleSize.height)
+        if titleSize.width > config.itemMaxWidth, config.itemMaxWidth > 0 {
+            titleSize = CGSize(width: config.itemMaxWidth, height: titleSize.height)
         }
         return titleSize
     }

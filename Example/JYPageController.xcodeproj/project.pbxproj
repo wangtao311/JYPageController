@@ -134,12 +134,12 @@
 			isa = PBXGroup;
 			children = (
 				9359E0E228F5ED93009A7405 /* PageControllerHaveHeaderView */,
-				930728E328F499F2003DCE0E /* MenuCustomItem */,
-				933A783628F1DB1300D3949E /* MenuViewEqualItemWidthLine */,
-				93DB56A728D7717E004F59D8 /* MenuViewCustomIndicator */,
-				93FA670128CF299600CFA285 /* MenuViewCustomSizeLine */,
-				93FA66FC28CF290600CFA285 /* MenuViewAligent */,
-				93FA66F928CF24FF00CFA285 /* MenuViewShowInNavBar */,
+				930728E328F499F2003DCE0E /* SegmentViewCustomViewItem */,
+				933A783628F1DB1300D3949E /* SegmentedViewEqualItemWidthLine */,
+				93DB56A728D7717E004F59D8 /* SegmentedViewCustomIndicator */,
+				93FA670128CF299600CFA285 /* SegmentedViewCustomSizeLine */,
+				93FA66FC28CF290600CFA285 /* SegmentedAligent */,
+				93FA66F928CF24FF00CFA285 /* SegmentedViewShowInNavigationBar */,
 				93FA66F828CF24E900CFA285 /* Normal */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				93FA66FF28CF297400CFA285 /* JYDemoController.swift */,
@@ -186,20 +186,20 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		930728E328F499F2003DCE0E /* MenuCustomItem */ = {
+		930728E328F499F2003DCE0E /* SegmentViewCustomViewItem */ = {
 			isa = PBXGroup;
 			children = (
 				930728E428F49A26003DCE0E /* JYMenuCustomItemController.swift */,
 			);
-			name = MenuCustomItem;
+			name = SegmentViewCustomViewItem;
 			sourceTree = "<group>";
 		};
-		933A783628F1DB1300D3949E /* MenuViewEqualItemWidthLine */ = {
+		933A783628F1DB1300D3949E /* SegmentedViewEqualItemWidthLine */ = {
 			isa = PBXGroup;
 			children = (
 				933A783728F1DB7300D3949E /* JYMenuViewEqualItemWidthLineController.swift */,
 			);
-			name = MenuViewEqualItemWidthLine;
+			name = SegmentedViewEqualItemWidthLine;
 			sourceTree = "<group>";
 		};
 		9359E0E228F5ED93009A7405 /* PageControllerHaveHeaderView */ = {
@@ -211,12 +211,12 @@
 			name = PageControllerHaveHeaderView;
 			sourceTree = "<group>";
 		};
-		93DB56A728D7717E004F59D8 /* MenuViewCustomIndicator */ = {
+		93DB56A728D7717E004F59D8 /* SegmentedViewCustomIndicator */ = {
 			isa = PBXGroup;
 			children = (
 				93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */,
 			);
-			name = MenuViewCustomIndicator;
+			name = SegmentedViewCustomIndicator;
 			sourceTree = "<group>";
 		};
 		93FA66F828CF24E900CFA285 /* Normal */ = {
@@ -229,28 +229,28 @@
 			name = Normal;
 			sourceTree = "<group>";
 		};
-		93FA66F928CF24FF00CFA285 /* MenuViewShowInNavBar */ = {
+		93FA66F928CF24FF00CFA285 /* SegmentedViewShowInNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
 				93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */,
 			);
-			name = MenuViewShowInNavBar;
+			name = SegmentedViewShowInNavigationBar;
 			sourceTree = "<group>";
 		};
-		93FA66FC28CF290600CFA285 /* MenuViewAligent */ = {
+		93FA66FC28CF290600CFA285 /* SegmentedAligent */ = {
 			isa = PBXGroup;
 			children = (
 				93FA66FD28CF292800CFA285 /* JYMenuViewAligentDemoController.swift */,
 			);
-			name = MenuViewAligent;
+			name = SegmentedAligent;
 			sourceTree = "<group>";
 		};
-		93FA670128CF299600CFA285 /* MenuViewCustomSizeLine */ = {
+		93FA670128CF299600CFA285 /* SegmentedViewCustomSizeLine */ = {
 			isa = PBXGroup;
 			children = (
 				93FA670228CF2B4B00CFA285 /* JYMenuViewCustomSizeLineController.swift */,
 			);
-			name = MenuViewCustomSizeLine;
+			name = SegmentedViewCustomSizeLine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

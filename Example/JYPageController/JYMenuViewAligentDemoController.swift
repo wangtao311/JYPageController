@@ -30,7 +30,7 @@ class JYMenuViewAligentDemoController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.menuItemMargin = 25
+        config.itemMargin = 25
         config.alignment = .left
     }
 
@@ -50,7 +50,7 @@ class JYMenuViewAligentDemoController: JYPageController {
 extension JYMenuViewAligentDemoController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 19, y: 0, width: view.frame.size.width - 19, height: 50)
     }
 

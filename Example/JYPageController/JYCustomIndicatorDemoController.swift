@@ -25,7 +25,7 @@ class JYCustomIndicatorDemoController: JYPageController {
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 17
         
-        config.menuItemMargin = 18
+        config.itemMargin = 18
         
         let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 10))
         customIndicator.image = UIImage(named: "indicator_1")
@@ -49,7 +49,7 @@ class JYCustomIndicatorDemoController: JYPageController {
 extension JYCustomIndicatorDemoController {
     
     
-    override func pageController(_ pageView: JYPageController, frameForMenuView menuView: JYPageMenuView) -> CGRect {
+    override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
         return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
     }
 
