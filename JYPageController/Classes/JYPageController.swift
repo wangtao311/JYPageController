@@ -306,8 +306,6 @@ open class JYPageController: UIViewController {
             if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y > 0 {
                 if mainScrollView.contentOffset.y < headerHeight {
                     scrollView.contentOffset = .zero
-                }else{
-                    mainScrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
                 }
             }
             
@@ -409,6 +407,9 @@ extension JYPageController:UIScrollViewDelegate {
             //下拉刷新位置在子控制器scrollview顶部时候
             if config.headerRefreshLocation == .childControllerViewTop, scrollView.contentOffset.y < 0 {
                 mainScrollView.contentOffset = .zero
+            }
+            if config.headerRefreshLocation == .childControllerViewTop, mainScrollView.contentOffset.y < headerHeight, mainScrollView.contentOffset.y > 0 {
+                currentChildListScrollView.contentOffset = .zero
             }
             
             verScrollViewContentOffsetY = mainScrollView.contentOffset.y
