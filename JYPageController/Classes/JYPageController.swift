@@ -495,7 +495,7 @@ extension JYPageController: JYSegmentedViewDelegate, JYSegmentedViewDataSource {
             }
             selectedIndex = index
             let contentOffsetX = CGFloat(index)*childControllerViewFrame.size.width
-            pageContentScrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: config.scrollViewAnimationWhenMenuItemSelected)
+            pageContentScrollView.setContentOffset(CGPoint(x: contentOffsetX, y: 0), animated: config.scrollViewAnimationWhenSegmentItemSelected)
             delegate?.pageController?(self, didEnterControllerAt: index)
         }
     }
