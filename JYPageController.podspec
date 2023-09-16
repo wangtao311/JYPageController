@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JYPageController'
-  s.version          = '0.2.6'
-  s.summary          = '多页面嵌套左右滚动PageController'
+  s.version          = '0.3.0'
+  s.summary          = '多页面嵌套左右滚动JYPageController'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
