@@ -72,7 +72,6 @@ public class JYSegmentedView: UIView {
         self.init()
         
         config = pageConfig
-        contentView.bounces = false
         
         if config.indicatorStyle == .equalItemWidthLine || config.indicatorStyle == .customSizeLine {
             indicator.backgroundColor = config.indicatorColor
@@ -465,11 +464,11 @@ public class JYSegmentedView: UIView {
                 }
                 
                 if index == 0 {
-                    item.frame = CGRect(x: 0, y: config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
-                    totalWidth = totalWidth + itemWidth
+                    item.frame = CGRect(x: config.leftPadding, y: config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
+                    totalWidth = totalWidth + itemWidth + config.leftPadding
                 }else{
-                    item.frame = CGRect(x: totalWidth + config.itemMargin, y:config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
-                    totalWidth = totalWidth + itemWidth + config.itemMargin
+                    item.frame = CGRect(x: totalWidth + config.itemsMargin, y:config.itemTop ?? (frame.size.height - itemHeight)/2, width: itemWidth, height: itemHeight)
+                    totalWidth = totalWidth + itemWidth + config.itemsMargin
                 }
                 
                 if index == selectedIndex {
@@ -491,11 +490,10 @@ public class JYSegmentedView: UIView {
     
     ///更新itemsframe
     private func updateItemsFrame() {
-        
         let width = calculateTotalWidth()
-        var startX: CGFloat = 0
+        var startX: CGFloat = config.leftPadding
         if config.alignment == .center, width < frame.width {
-            startX = (frame.width - width)/2
+            startX = (frame.width - width)/2 + config.leftPadding
         }
         
         if config.alignment == .right, width < frame.width {
@@ -509,12 +507,12 @@ public class JYSegmentedView: UIView {
                 item.badgeView?.frame = CGRect(x: item.frame.width + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
                 totalWidth = startX + item.frame.width
             }else{
-                item.frame = CGRect(x: totalWidth + config.itemMargin , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
+                item.frame = CGRect(x: totalWidth + config.itemsMargin , y: item.frame.origin.y, width: item.frame.width, height: item.frame.height)
                 item.badgeView?.frame = CGRect(x: item.frame.width + item.frame.origin.x + config.badgeViewOffset.x, y: item.frame.origin.y - item.badgeViewHeight/2 + config.badgeViewOffset.y, width: item.badgeViewWidth, height: item.badgeViewHeight)
-                totalWidth = totalWidth + item.frame.width + config.itemMargin
+                totalWidth = totalWidth + item.frame.width + config.itemsMargin
             }
         }
-        contentView.contentSize = CGSize(width: totalWidth, height: frame.size.height)
+        contentView.contentSize = CGSize(width: totalWidth + config.rightPadding, height: frame.size.height)
     }
     
     private func calculateTotalWidth() -> CGFloat {
@@ -523,7 +521,7 @@ public class JYSegmentedView: UIView {
             if index == 0 {
                 totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.badgeViewOffset.x
             }else{
-                totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.itemMargin + config.badgeViewOffset.x
+                totalWidth = totalWidth + item.frame.width + item.badgeViewWidth + config.itemsMargin + config.badgeViewOffset.x
             }
         }
         return totalWidth
@@ -537,12 +535,11 @@ public class JYSegmentedView: UIView {
     }
     
     
-    
     //MARK: - Lazy
     private lazy var contentView : UIScrollView = {
         let scrollView = UIScrollView.init()
-        scrollView.backgroundColor = .clear
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.bounces = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         }

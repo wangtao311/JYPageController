@@ -21,7 +21,7 @@ import UIKit
 
 ///IndicatorStyle
 @objc public enum JYSegmentedViewIndicatorStyle: Int {
-    case none                 //不显示指示器.  none
+    case none                 //不显示指示器.  indicator hidden
     case equalItemWidthLine   //指示器下划线宽度等于标题的文字宽度.  equal to title width
     case customSizeLine       //指示器自己设置size，有粘性动画效果.  need set indicatorSize property
     case customView           //自定义view做指示器,需要设置customIndicator属性. custom view，need set customIndicator property
@@ -77,7 +77,7 @@ public class JYPageConfig: NSObject {
     public var indicatorCornerRadius: CGFloat = 0
     
     ///segmentedView item之间间距.  item margin
-    public var itemMargin: CGFloat = 15
+    public var itemsMargin: CGFloat = 15
     
     ///segmentedView item最小宽度.  item min width, if text width < minwidth, item width = menuItemMinWidth
     public var itemMinWidth: CGFloat = 0
@@ -90,6 +90,12 @@ public class JYPageConfig: NSObject {
     
     ///segmentedView aligment默认left.  default .left
     public var alignment: JYSegmentedViewAlignment = .left
+    
+    ///segmentedView左边距,默认0.  segmentedView leftPadding
+    public var leftPadding: CGFloat = 0
+    
+    ///segmentedView右边距,默认0.  segmentedView rightPadding
+    public var rightPadding: CGFloat = 0
     
     ///segmentedView item的角标位置X,Y方向调整
     ///badgeViewOffSet，default badgeView.left = item.right， badgeView.centerY = item.top  After you set badgeViewOffset,  badgeView.left = item.right+offet.x, badgeView.centerY = item.top + offsetY

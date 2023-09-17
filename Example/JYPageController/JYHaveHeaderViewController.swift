@@ -26,7 +26,7 @@ class JYHaveHeaderViewController: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.itemMargin = 44
+        config.itemsMargin = 44
         config.alignment = .center
         
         config.indicatorColor = .red
@@ -61,7 +61,7 @@ class JYHaveHeaderViewController: JYPageController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.scrollView?.mj_header?.endRefreshing()
                 self.config.alignment = .left
-                self.config.itemMargin = 20
+                self.config.itemsMargin = 20
                 self.titles = ["推荐","最新"]
                 self.reload()
             }

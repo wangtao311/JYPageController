@@ -28,7 +28,12 @@ class JYMenuCustomItemController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.itemMargin = 30
+        //segmentedView item之间的间距
+        config.itemsMargin = 30
+        
+        //segmentView左右的边距
+        config.leftPadding = 20
+        config.rightPadding = 20
         
     }
 

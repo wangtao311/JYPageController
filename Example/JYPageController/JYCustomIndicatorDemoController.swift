@@ -25,12 +25,16 @@ class JYCustomIndicatorDemoController: JYPageController {
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 17
         
-        config.itemMargin = 18
+        config.itemsMargin = 18
         
         let customIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 10))
         customIndicator.image = UIImage(named: "indicator_1")
         config.customIndicator = customIndicator
         config.indicatorStyle = .customView
+        
+        //segmentView左右的边距
+        config.leftPadding = 20
+        config.rightPadding = 20
     }
 
     required public init?(coder: NSCoder) {
@@ -50,7 +54,7 @@ extension JYCustomIndicatorDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

@@ -30,8 +30,12 @@ class JYMenuViewCustomSizeLineController: JYPageController {
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2
         
-        config.itemMargin = 20
+        //segmentedView item之间的间距
+        config.itemsMargin = 20
         
+        //segmentView左右的边距
+        config.leftPadding = 20
+        config.rightPadding = 20
     }
 
     required public init?(coder: NSCoder) {
@@ -51,7 +55,7 @@ extension JYMenuViewCustomSizeLineController {
     
     
     override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-30, height: 44)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

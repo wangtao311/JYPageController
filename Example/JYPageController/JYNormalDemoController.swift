@@ -24,11 +24,15 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.itemMargin = 18
         config.indicatorStyle = .none
         
         selectedIndex = 1
         
+        //segmentedView  item之间的间距
+        config.itemsMargin = 20
+        //segmentedView左右边距
+        config.leftPadding = 20
+        config.rightPadding = 20
     }
     
 
@@ -49,7 +53,7 @@ extension JYNormalDemoController {
     
     
     override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width-15, height: 44)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

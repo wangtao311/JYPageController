@@ -26,7 +26,7 @@ class JYHaveHeaderView1Controller: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.itemMargin = 44
+        config.itemsMargin = 44
         config.alignment = .center
         
         config.indicatorColor = .red
@@ -38,6 +38,10 @@ class JYHaveHeaderView1Controller: JYPageController {
         
         //下拉刷新位置
         config.headerRefreshLocation = .childControllerViewTop
+        
+        //segmentView左右的边距
+        config.leftPadding = 20
+        config.rightPadding = 20
     }
 
     required public init?(coder: NSCoder) {
@@ -61,7 +65,7 @@ class JYHaveHeaderView1Controller: JYPageController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.scrollView?.mj_header?.endRefreshing()
                 self.config.alignment = .left
-                self.config.itemMargin = 20
+                self.config.itemsMargin = 20
                 self.titles = ["推荐","最新"]
                 self.reload()
             }
@@ -75,7 +79,7 @@ extension JYHaveHeaderView1Controller {
     
     
     override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
-        return CGRect.init(x: 15, y: 0, width: view.frame.size.width - 30, height: menuViewHeight)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: menuViewHeight)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {

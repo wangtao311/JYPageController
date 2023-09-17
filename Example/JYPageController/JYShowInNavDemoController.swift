@@ -25,7 +25,7 @@ class JYShowInNavDemoController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 18
         
-        config.itemMargin = 30
+        config.itemsMargin = 30
         config.segmentedViewShowInNavigationBar = true
         config.alignment = .center
         

@@ -29,7 +29,9 @@ class JYMenuViewEqualItemWidthLineController: JYPageController {
         config.indicatorStyle = .equalItemWidthLine
         config.indicatorHeight = 2.5
         
-        config.itemMargin = 20
+        config.itemsMargin = 20
+        config.leftPadding = 20
+        config.rightPadding = 20
         
     }
 
@@ -50,7 +52,7 @@ extension JYMenuViewEqualItemWidthLineController  {
     
     
     override func pageController(_ pageView: JYPageController, frameForSegmentedView segmentedView: JYSegmentedView) -> CGRect {
-        return CGRect.init(x: 20, y: 0, width: view.frame.size.width - 40, height: 44)
+        return CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: 44)
     }
 
     override func pageController(_ pageView: JYPageController, frameForContainerView container: UIScrollView) -> CGRect {
