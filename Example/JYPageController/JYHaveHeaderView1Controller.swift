@@ -38,10 +38,6 @@ class JYHaveHeaderView1Controller: JYPageController {
         
         //下拉刷新位置
         config.headerRefreshLocation = .childControllerViewTop
-        
-        //segmentView左右的边距
-        config.leftPadding = 20
-        config.rightPadding = 20
     }
 
     required public init?(coder: NSCoder) {
