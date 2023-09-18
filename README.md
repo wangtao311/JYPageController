@@ -45,10 +45,10 @@ pod 'JYPageController' , '~> 0.3.1’
 
 ## 预览 Preview 
 
-1.SegmentedView显示在导航栏 
+1.SegmentedView显示在导航栏 | 
 ![image](https://upload-images.jianshu.io/upload_images/3614407-f95d668e1d036215.gif?imageMogr2/auto-orient/strip) 
 
-2.SegmentedView下划线指示器粘性动画 
+2.SegmentedView下划线指示器粘性动画 |
 ![image](https://upload-images.jianshu.io/upload_images/3614407-0ae7ef3c70607c7b.gif?imageMogr2/auto-orient/strip) 
 
 3.SegmentedView指示器为自定义view 
