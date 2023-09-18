@@ -29,11 +29,10 @@ class JYMenuCustomItemController: JYPageController {
         config.indicatorCornerRadius = 2
         
         //segmentedView item之间的间距
-        config.itemsMargin = 30
+        config.itemsMargin = 25
         
         //segmentView左右的边距
-        config.leftPadding = 20
-        config.rightPadding = 20
+        config.leftPadding = 15
         
     }
 
@@ -68,7 +67,7 @@ extension JYMenuCustomItemController {
 
     override func pageController(_ pageView: JYPageController, titleAt index: Int) -> String {
         if index == 3 {
-            return "item"
+            return "手机"
         }else {
             return ""
         }

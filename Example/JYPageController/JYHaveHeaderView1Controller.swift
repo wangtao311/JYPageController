@@ -13,7 +13,7 @@ import MJRefresh
 class JYHaveHeaderView1Controller: JYPageController {
     
     var titles = ["商品","详情","评价"]
-    let headerViewHeight: CGFloat = 300
+    let headerViewHeight: CGFloat = 350
     let menuViewHeight: CGFloat = 44
     
     

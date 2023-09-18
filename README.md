@@ -43,15 +43,23 @@ pod 'JYPageController' , '~> 0.3.1’
 2.item在放大的过程中，item的badgeView是不动的，放大后位置出现偏差
 
 
-## Preview 
-|    Style                    |                           Preview                                     |                     
-| :-------------------------- | ----------------------------------------------------------------------|
-|菜单显示在导航栏 |  ![image](https://upload-images.jianshu.io/upload_images/3614407-b99da7b7e2628425.gif?imageMogr2/auto-orient/strip) | 
-|下划线指示器粘性动画      |  ![image](https://upload-images.jianshu.io/upload_images/3614407-38e5da7c01071cfe.gif?imageMogr2/auto-orient/strip) | 
-|下划线指示器宽度=标题宽度  |  ![image](https://upload-images.jianshu.io/upload_images/3614407-de0d28a3407cbc8c.gif?imageMogr2/auto-orient/strip) |
-|自定义view做指示器     |  ![image](https://upload-images.jianshu.io/upload_images/3614407-a8134ea4d6b2bbde.gif?imageMogr2/auto-orient/strip) |
-|自定义标题菜单          |  ![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip) |  
-|有headerView场景         |  ![image](https://upload-images.jianshu.io/upload_images/3614407-7c5a8659fa8a6a09.gif?imageMogr2/auto-orient/strip) |  
+## 预览 Preview 
+
+1.SegmentedView显示在导航栏
+![image](https://upload-images.jianshu.io/upload_images/3614407-f95d668e1d036215.gif?imageMogr2/auto-orient/strip)
+
+2.SegmentedView下划线指示器粘性动画
+![image](https://upload-images.jianshu.io/upload_images/3614407-0ae7ef3c70607c7b.gif?imageMogr2/auto-orient/strip)
+
+3.SegmentedView指示器为自定义view
+![image](https://upload-images.jianshu.io/upload_images/3614407-9f3d22c46a9024e9.gif?imageMogr2/auto-orient/strip)
+
+4.SegmentedView的item自定义view
+![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip)
+
+5.有headerView时候segmentedView悬浮
+![image](https://upload-images.jianshu.io/upload_images/3614407-e22c475ff59b8a7c.gif?imageMogr2/auto-orient/strip)
+ 
  
 
 
@@ -59,6 +67,7 @@ pod 'JYPageController' , '~> 0.3.1’
 
 1.继承JYPageController  
 2.在init方法中配置menuview颜色字体大小等
+3.更多属性设置看JYConfig中属性的注解
 
 ```
 override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {  
