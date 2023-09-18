@@ -17,7 +17,7 @@ JYPageController is available through [CocoaPods](https://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'JYPageController' , '~> 0.3.4’
+pod 'JYPageController' , '~> 0.3.5’
 ```
 
 ## 功能
