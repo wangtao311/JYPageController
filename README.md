@@ -55,7 +55,7 @@ pod 'JYPageController' , '~> 0.3.1’
 ![image](https://upload-images.jianshu.io/upload_images/3614407-9f3d22c46a9024e9.gif?imageMogr2/auto-orient/strip) 
   
 4.SegmentedView的item自定义view   
-![image](https://upload-images.jianshu.io/upload_images/3614407-5b9a2e38966742ff.gif?imageMogr2/auto-orient/strip) 
+![image](https://upload-images.jianshu.io/upload_images/3614407-1e96049d56db9ea0.gif?imageMogr2/auto-orient/strip) 
   
 5.有headerView时候segmentedView悬浮   
 ![image](https://upload-images.jianshu.io/upload_images/3614407-e22c475ff59b8a7c.gif?imageMogr2/auto-orient/strip) 
