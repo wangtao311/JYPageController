@@ -60,7 +60,7 @@ pod 'JYPageController' , '~> 0.3.1’
 ## Use
 
 1.继承JYPageController  
-2.在init方法中配置menuview颜色字体大小等
+2.在init方法中配置menuview颜色字体大小等  
 3.更多属性设置看JYConfig中属性的注解
 
 ```
