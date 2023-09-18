@@ -24,9 +24,12 @@ class JYNormalDemoController: JYPageController {
         config.selectedTitleColor = .red
         config.selectedTitleFont = 17
         
-        config.indicatorStyle = .none
-        
+        //默认选中第一个子页面
         selectedIndex = 1
+        
+        //下划线指示器的粘性动画
+        config.indicatorStickyAnimation = true
+//        config.indicatorWidth = 14
         
         //segmentedView  item之间的间距
         config.itemsMargin = 20

@@ -26,7 +26,6 @@ class JYMenuViewEqualItemWidthLineController: JYPageController {
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 16
 
-        config.indicatorStyle = .equalItemWidthLine
         config.indicatorHeight = 2.5
         
         config.itemsMargin = 20

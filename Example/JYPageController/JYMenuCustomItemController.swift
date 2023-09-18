@@ -23,7 +23,6 @@ class JYMenuCustomItemController: JYPageController {
         config.selectedTitleFontWeight = .medium
         config.selectedTitleFont = 18
 
-        config.indicatorStyle = .customSizeLine
         config.indicatorWidth = 14
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2

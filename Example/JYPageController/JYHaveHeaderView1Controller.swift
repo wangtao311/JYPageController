@@ -30,7 +30,6 @@ class JYHaveHeaderView1Controller: JYPageController {
         config.alignment = .center
         
         config.indicatorColor = .red
-        config.indicatorStyle = .equalItemWidthLine
         config.indicatorHeight = 2
         
         //底部的下划线指示器距离底部的大小

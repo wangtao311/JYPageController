@@ -22,8 +22,7 @@ import UIKit
 ///IndicatorStyle
 @objc public enum JYSegmentedViewIndicatorStyle: Int {
     case none                 //不显示指示器.  indicator hidden
-    case equalItemWidthLine   //指示器下划线宽度等于标题的文字宽度.  equal to title width
-    case customSizeLine       //指示器自己设置size，有粘性动画效果.  need set indicatorSize property
+    case singleLine           //指示器下划线宽度等于标题的文字宽度.  default: lineWidth = title width
     case customView           //自定义view做指示器,需要设置customIndicator属性. custom view，need set customIndicator property
 }
 
@@ -55,16 +54,16 @@ public class JYPageConfig: NSObject {
     ///选中状态segmentItem标题字重. selected status title fontWeight, default regular
     public var selectedTitleFontWeight: UIFont.Weight = .regular
     
-    ///segmentedView指示器样式,默认不显示指示器. indicator style, default none
-    public var indicatorStyle: JYSegmentedViewIndicatorStyle = .none
+    ///segmentedView指示器样式,默认是和标题等款的下划线. indicator style, default singleLine
+    public var indicatorStyle: JYSegmentedViewIndicatorStyle = .singleLine
     
     ///segmentedView自定义view指示器. custom indicatorView, if indicatorStyle = .customView, set this property
     public var customIndicator: UIView?
     
-    ///segmentedView指示器宽度. indicator width, if indicatorStyle = .customSizeLine, set this property
-    public var indicatorWidth: CGFloat = 14
+    ///segmentedView指示器宽度. indicator width
+    public var indicatorWidth: CGFloat = 0
     
-    ///segmentedView指示器高度. indicator height, if indicatorStyle = .customSizeLine || = .equalItemWidth, set this property
+    ///segmentedView指示器高度. indicator height
     public var indicatorHeight: CGFloat = 2
     
     ///segmentedView指示器距离segmentedView底部间距. indicator bottom distance from menuview bottom，default 0
@@ -75,6 +74,9 @@ public class JYPageConfig: NSObject {
     
     ///segmentedView指示器圆角.  indicator cornerRadius, default 0
     public var indicatorCornerRadius: CGFloat = 0
+    
+    ///指示器底部的下划线粘性动画,默认false.  indicator need sticky animation? default false
+    public var indicatorStickyAnimation: Bool = false
     
     ///segmentedView item之间间距.  item margin
     public var itemsMargin: CGFloat = 15

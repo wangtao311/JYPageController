@@ -25,7 +25,6 @@ class JYMenuViewCustomSizeLineController: JYPageController {
         config.selectedTitleFontWeight = .regular
         config.selectedTitleFont = 20
 
-        config.indicatorStyle = .customSizeLine
         config.indicatorWidth = 14
         config.indicatorHeight = 3
         config.indicatorCornerRadius = 2

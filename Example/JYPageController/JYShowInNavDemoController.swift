@@ -29,7 +29,6 @@ class JYShowInNavDemoController: JYPageController {
         config.segmentedViewShowInNavigationBar = true
         config.alignment = .center
         
-        config.indicatorStyle = .equalItemWidthLine
         config.indicatorColor = .red
         
     }

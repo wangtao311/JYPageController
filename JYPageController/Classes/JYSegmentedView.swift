@@ -73,7 +73,7 @@ public class JYSegmentedView: UIView {
         
         config = pageConfig
         
-        if config.indicatorStyle == .equalItemWidthLine || config.indicatorStyle == .customSizeLine {
+        if config.indicatorStyle == .singleLine {
             indicator.backgroundColor = config.indicatorColor
             indicator.layer.cornerRadius = config.indicatorCornerRadius
         }
@@ -308,45 +308,43 @@ public class JYSegmentedView: UIView {
     private func indicatorMove(fromItem: JYSegmentedViewItem, toItem: JYSegmentedViewItem, offsetX: CGFloat, rate: CGFloat, pageView: UIScrollView) {
         
         let scrollViewWidth = pageView.frame.width
-        var currentIndicatorWidth: CGFloat = 0
+        var currentIndicatorWidth: CGFloat = config.indicatorWidth > 0 ? config.indicatorWidth : fromItem.frame.width
         let indicatorMaxWidth = abs(toItem.center.x -  fromItem.center.x)
         let tempOffetX = offsetX.truncatingRemainder(dividingBy: scrollViewWidth)
         
         switch config.indicatorStyle {
-        case .customSizeLine:
-            if tempOffetX <= scrollViewWidth/2 {
-                let percent_min_max = tempOffetX/scrollViewWidth*2
-                currentIndicatorWidth = config.indicatorWidth + percent_min_max * (indicatorMaxWidth - config.indicatorWidth)
-            }else{
-                let percent_max_min = (tempOffetX - scrollViewWidth/2)/scrollViewWidth*2
-                currentIndicatorWidth = config.indicatorWidth + (1 - percent_max_min)*(indicatorMaxWidth - config.indicatorWidth)
+        case .singleLine:
+            if config.indicatorStickyAnimation {//下划线粘性动画
+                if tempOffetX <= scrollViewWidth/2 {
+                    let percent_min_max = tempOffetX/scrollViewWidth*2
+                    currentIndicatorWidth = currentIndicatorWidth + percent_min_max * (indicatorMaxWidth - currentIndicatorWidth)
+                }else{
+                    let percent_max_min = (tempOffetX - scrollViewWidth/2)/scrollViewWidth*2
+                    currentIndicatorWidth = currentIndicatorWidth + (1 - percent_max_min)*(indicatorMaxWidth - currentIndicatorWidth)
+                }
+                
+                if fromItem.tag < toItem.tag {
+                    indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
+                }else{
+                    indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
+                }
+                
+                var frame = indicator.frame
+                frame.size.width = currentIndicatorWidth
+                frame.size.height = indicator.frame.size.height
+                indicator.frame = frame
+            }else {
+                if fromItem.tag < toItem.tag {
+                    indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
+                }else{
+                    indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
+                }
+                
+                var frame = indicator.frame
+                frame.size.width = currentIndicatorWidth
+                frame.size.height = indicator.frame.size.height
+                indicator.frame = frame
             }
-            
-            if fromItem.tag < toItem.tag {
-                indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
-            }else{
-                indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
-            }
-            
-            var frame = indicator.frame
-            frame.size.width = currentIndicatorWidth
-            frame.size.height = indicator.frame.size.height
-            indicator.frame = frame
-            
-        case .equalItemWidthLine:
-            if fromItem.tag < toItem.tag {
-                indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
-                currentIndicatorWidth = (toItem.frame.width - fromItem.frame.width) * rate + fromItem.frame.width
-            }else{
-                indicator.center = CGPoint(x: fromItem.center.x -  (1 - rate) * indicatorMaxWidth, y: indicator.center.y)
-                currentIndicatorWidth = (fromItem.frame.width - toItem.frame.width) * rate + toItem.frame.width
-            }
-            
-            var frame = indicator.frame
-            frame.size.width = currentIndicatorWidth
-            frame.size.height = indicator.frame.size.height
-            indicator.frame = frame
-        
         case .customView:
             if fromItem.tag < toItem.tag {
                 indicator.center = CGPoint(x: fromItem.center.x + rate * indicatorMaxWidth, y: indicator.center.y)
@@ -400,10 +398,12 @@ public class JYSegmentedView: UIView {
         }
         
         var indicatorRect: CGRect = .zero
-        if config.indicatorStyle == .customSizeLine {
-            indicatorRect = CGRect(x: (menuItem.frame.width - config.indicatorWidth)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - config.indicatorHeight, width: config.indicatorWidth, height: config.indicatorHeight)
-        }else if config.indicatorStyle == .equalItemWidthLine {
-            indicatorRect = CGRect(x: menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - config.indicatorHeight, width: menuItem.frame.width, height: config.indicatorHeight)
+        if config.indicatorStyle == .singleLine {
+            if config.indicatorWidth > 0 {//设置了指示器的宽度或者高度
+                indicatorRect = CGRect(x: (menuItem.frame.width - config.indicatorWidth)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - config.indicatorHeight, width: config.indicatorWidth, height: config.indicatorHeight)
+            }else {
+                indicatorRect = CGRect(x: CGRectGetMinX(menuItem.frame), y: frame.height - config.indicatorBottom - config.indicatorHeight, width: menuItem.frame.width, height: config.indicatorHeight)
+            }
         }else if config.indicatorStyle == .customView {
             if let indicator = config.customIndicator {
                 indicatorRect = CGRect(x: (menuItem.frame.width - indicator.frame.width)/2 + menuItem.frame.origin.x, y: frame.height - config.indicatorBottom - indicator.frame.height, width: indicator.frame.width, height: indicator.frame.height)
