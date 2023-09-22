@@ -10,7 +10,7 @@ import UIKit
 
 @objc public protocol JYPageChildContollerProtocol where Self: UIViewController {
     
-    ///fetch child controller scrollView 有 headerView的时候menuview需要悬浮的时候实现
+    ///fetch child controller scrollView. 有headerView的时候segmentedView需要悬浮的时候返回子页面中的tableView/collectionView/scrollView
     @objc optional func fetchChildControllerScrollView() -> UIScrollView?
     
 }
