@@ -9,15 +9,19 @@ import UIKit
 
 @objc public protocol JYSegmentedViewDataSource {
     
-    ///item count
+    ///segmentedView中items数量. segmentedView items count
     func numberOfSegmentedViewItems() -> Int
     
-    ///item title
+    ///segmentedView中item标题文案. segmentedView item title
     func segmentedView(_ segmentedView: JYSegmentedView, titleAt index: Int) -> String
     
-    ///customView item, customView has higher priority than title，when return customView, ignore title。customView need set frame.size
+    ///segmentedView自定义item,实现了该方法且返回了UIView的话会忽略该index上的获取title的方法。
+    ///例如 index=1的时候return button，那么 segmentedView(_ segmentedView: JYSegmentedView, titleAt index: Int)取title的时候会跳过index=1
+    ///注意：返回的自定义view需要设置Size
+    ///CustomView has higher priority than title，when return customView, ignore title. CustomView need set frame.size
     @objc optional func segmentedView(_ segmentedView: JYSegmentedView, customViewAt index: Int) -> UIView?
     
+    ///segmentedView item 右上角的角标，return的UIView需要设置frame.size
     ///item  badgeView (eg. label/red dot/icon, need set frame.size)
     @objc optional func segmentedView(_ segmentedView: JYSegmentedView, badgeViewAt index: Int) -> UIView?
     
@@ -33,13 +37,13 @@ import UIKit
 
 public class JYSegmentedView: UIView {
     
-    ///config
+    ///样式配置 config
     var config: JYPageConfig = JYPageConfig()
     
-    ///代理
+    ///代理 delegate
     weak public var delegate: JYSegmentedViewDelegate?
     
-    ///数据源
+    ///数据源 datasource
     weak public var dataSource: JYSegmentedViewDataSource? {
         didSet {
             getItemsCount()
@@ -118,7 +122,7 @@ public class JYSegmentedView: UIView {
     }
     
     //MARK: - Public
-    ///单独使用menuview，动态改变数据源的时候调用(数据源改变之后先reload，如需要设置默认index，再调select)。其他场景不需要主动调用
+    ///单独使用segmentedView，动态改变数据源的时候调用(数据源改变之后先reload，如需要设置默认index，再调select)。其他场景不需要主动调用
     public func reload() {
         guard let source = dataSource, source.numberOfSegmentedViewItems() > 0 else {
             return
