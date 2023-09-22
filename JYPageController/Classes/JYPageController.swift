@@ -88,7 +88,7 @@ open class JYPageController: UIViewController {
     private var displayControllerCache = Dictionary<NSString, UIViewController>()
     
     ///childController scrollView cache
-    private var childScrollViewCache: Dictionary = Dictionary<NSString, UIScrollView>()
+    private var childScrollViewCache: Dictionary = Dictionary<NSString, UIScrollView?>()
     
     ///menuview frame
     private var menuViewFrame: CGRect = .zero
@@ -109,8 +109,8 @@ open class JYPageController: UIViewController {
     private var verScrollViewContentOffsetY: CGFloat = 0
     
     deinit {
-        childScrollViewCache.forEach { (key: NSString, value: UIScrollView) in
-            value.removeObserver(self, forKeyPath: "contentOffset")
+        childScrollViewCache.forEach { (key: NSString, value: UIScrollView?) in
+            value?.removeObserver(self, forKeyPath: "contentOffset")
         }
     }
     
@@ -301,18 +301,32 @@ open class JYPageController: UIViewController {
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let cacheKey = String(selectedIndex) as NSString
-        if keyPath == "contentOffset", headerHeight > 0, let scrollView = childScrollViewCache[cacheKey] {
-            if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y > 0 {
-                if mainScrollView.contentOffset.y < headerHeight {
-                    scrollView.contentOffset = .zero
-                }
+        if keyPath == "contentOffset", headerHeight > 0 {
+            let cacheKey = String(selectedIndex) as NSString
+            
+            //1.处理mainScrollView和currentChildListScrollView的滚动冲突，向上滚动且segmentedView没有到悬浮位置之前，禁止currentChildListScrollView滚动
+            if let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y > 0, mainScrollView.contentOffset.y < headerHeight {
+                let currentChildListScrollView = childScrollViewCache[cacheKey]
+                currentChildListScrollView??.contentOffset = .zero
             }
             
-            //顶部下拉刷新位置在mainScrollView顶部，控制子页面的scrollview不能向下弹性滚动
-            if let currentChildListScrollView = childScrollViewCache[cacheKey],let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y < 0 {
-                if config.headerRefreshLocation == .headerViewTop, mainScrollView.contentOffset.y <= headerHeight {
-                    currentChildListScrollView.contentOffset = .zero
+            //2.下拉刷新位置在mainScrollView顶部，控制子页面的scrollview不能向下弹性滚动
+            if config.headerRefreshLocation == .headerViewTop, let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y < 0 {
+                let currentChildListScrollView = childScrollViewCache[cacheKey]
+                currentChildListScrollView??.contentOffset = .zero
+            }
+            
+            //3.下拉刷新位置在子控制器scrollView顶部
+            if config.headerRefreshLocation == .childControllerViewTop {
+                //mainScrollView滑动到顶部之后禁止向下拉
+                if mainScrollView.contentOffset.y < 0 {
+                    mainScrollView.contentOffset = .zero
+                }
+                
+                //3.1处理segmentedView从悬浮状态下拉一直到headerView完全展示，整个过程中子页面的scrollview禁止下拉刷新
+                if mainScrollView.contentOffset.y > 0, mainScrollView.contentOffset.y < headerHeight, let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y < 0 {
+                    let currentChildListScrollView = childScrollViewCache[cacheKey]
+                    currentChildListScrollView??.contentOffset = .zero
                 }
             }
         }
@@ -390,26 +404,16 @@ extension JYPageController:UIScrollViewDelegate {
         if scrollView == mainScrollView, headerView != nil,headerView?.frame.height ?? 0 > 0 {
             
             let cacheKey = String(selectedIndex) as NSString
-            let currentChildListScrollView = childScrollViewCache[cacheKey]!
-            if  currentChildListScrollView.isKind(of: UIScrollView.classForCoder()), currentChildListScrollView.contentOffset.y > 0 {
-                scrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
+            let currentChildListScrollView = childScrollViewCache[cacheKey]
+            
+            //1.segmentedView悬浮的时候禁止mainScrollView滚动
+            if currentChildListScrollView??.contentOffset.y ?? 0 > 0 || scrollView.contentOffset.y >= headerHeight {
+                mainScrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
             }
 
-            if scrollView.contentOffset.y >= headerHeight {
-                scrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
-            }
-
-            //子页面左右滚动的时候不让上下滚动
+            //2.子页面左右滚动的时候禁止mainScrollView上下滚动
             if pageContentScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0, mainScrollView.contentOffset.y != verScrollViewContentOffsetY {
                 mainScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
-            }
-            
-            //下拉刷新位置在子控制器scrollview顶部时候
-            if config.headerRefreshLocation == .childControllerViewTop, scrollView.contentOffset.y < 0 {
-                mainScrollView.contentOffset = .zero
-            }
-            if config.headerRefreshLocation == .childControllerViewTop, mainScrollView.contentOffset.y < headerHeight, mainScrollView.contentOffset.y > 0 {
-                currentChildListScrollView.contentOffset = .zero
             }
             
             verScrollViewContentOffsetY = mainScrollView.contentOffset.y
