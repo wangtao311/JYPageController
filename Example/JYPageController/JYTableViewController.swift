@@ -19,30 +19,10 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
         NSLog("JYTableViewController ----- dealloc")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NSLog(segmentTitle + "JYTableViewController -----   viewWillAppear")
-    }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        NSLog(segmentTitle + "JYTableViewController -----   viewDidAppear")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSLog(segmentTitle + "JYTableViewController -----   viewWillDisappear")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NSLog(segmentTitle + "JYTableViewController -----   viewDidDisappear")
-    }
-    
+    /// ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+    /// 有headerView的场景，必须实现该方法返回子页面的scrollview
+    /// ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
     func fetchChildControllerScrollView() -> UIScrollView? {
         return tableView
     }
@@ -66,6 +46,30 @@ class JYTableViewController: UITableViewController,JYPageChildContollerProtocol 
                 self.tableView?.mj_header?.endRefreshing()
             }
         })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSLog(segmentTitle + "JYTableViewController -----   viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NSLog(segmentTitle + "JYTableViewController -----   viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSLog(segmentTitle + "JYTableViewController -----   viewWillDisappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NSLog(segmentTitle + "JYTableViewController -----   viewDidDisappear")
     }
     
     
