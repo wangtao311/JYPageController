@@ -318,11 +318,6 @@ open class JYPageController: UIViewController {
             
             //3.下拉刷新位置在子控制器scrollView顶部
             if config.headerRefreshLocation == .childControllerViewTop {
-                //mainScrollView滑动到顶部之后禁止向下拉
-                if mainScrollView.contentOffset.y < 0 {
-                    mainScrollView.contentOffset = .zero
-                }
-                
                 //3.1处理segmentedView从悬浮状态下拉一直到headerView完全展示，整个过程中子页面的scrollview禁止下拉刷新
                 if mainScrollView.contentOffset.y > 0, mainScrollView.contentOffset.y < headerHeight, let newContentOffset = change?[NSKeyValueChangeKey.newKey] as? CGPoint, newContentOffset.y < 0 {
                     let currentChildListScrollView = childScrollViewCache[cacheKey]
@@ -410,8 +405,13 @@ extension JYPageController:UIScrollViewDelegate {
             if currentChildListScrollView??.contentOffset.y ?? 0 > 0 || scrollView.contentOffset.y >= headerHeight {
                 mainScrollView.contentOffset = CGPoint(x: 0, y: headerHeight)
             }
+            
+            //2.下拉刷新位置在子页面顶部时候，mainScrollView滑动到顶部之后禁止向下拉
+            if config.headerRefreshLocation == .childControllerViewTop, mainScrollView.contentOffset.y < 0 {
+                mainScrollView.contentOffset = .zero
+            }
 
-            //2.子页面左右滚动的时候禁止mainScrollView上下滚动
+            //3.子页面左右滚动的时候禁止mainScrollView上下滚动
             if pageContentScrollView.contentOffset.x.truncatingRemainder(dividingBy: childControllerViewFrame.size.width) > 0, mainScrollView.contentOffset.y != verScrollViewContentOffsetY {
                 mainScrollView.setContentOffset(CGPoint(x: 0, y: verScrollViewContentOffsetY), animated: false)
             }
