@@ -203,14 +203,14 @@ open class JYPageController: UIViewController {
         menuViewFrame = source.pageController(self, frameForSegmentedView: segmentedView)
         childControllerViewFrame = source.pageController(self, frameForContainerView: pageContentScrollView)
         
-        var verScrollViewY : CGFloat = 0
+        var mainScrollViewY : CGFloat = 0
         if let navBar = navigationController?.navigationBar {
-            verScrollViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
+            mainScrollViewY = navBar.frame.height + UIApplication.shared.statusBarFrame.size.height
         }
         
         segmentedView.frame = menuViewFrame
         pageContentScrollView.frame = childControllerViewFrame
-        mainScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: verScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
+        mainScrollView.frame = CGRect(x: childControllerViewFrame.origin.x, y: mainScrollViewY, width: childControllerViewFrame.width, height: childControllerViewFrame.origin.y + childControllerViewFrame.height)
         
         let contentSize = CGSize(width: CGFloat(childControllersCount)*childControllerViewFrame.width, height: childControllerViewFrame.height)
         pageContentScrollView.contentSize = contentSize

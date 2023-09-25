@@ -19,6 +19,7 @@
 		9359E0E428F5EDBC009A7405 /* JYHaveHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9359E0E328F5EDBC009A7405 /* JYHaveHeaderViewController.swift */; };
 		939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939164DA28CAEA550077DB86 /* JYTableViewController.swift */; };
 		93A4E1F12AB570D0007131A3 /* JYHaveHeaderView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A4E1F02AB570D0007131A3 /* JYHaveHeaderView1Controller.swift */; };
+		93D08E772ABEE0FF003A2801 /* JYHaveHeaderView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D08E762ABEE0FF003A2801 /* JYHaveHeaderView2Controller.swift */; };
 		93DB56A928D771C5004F59D8 /* JYCustomIndicatorDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */; };
 		93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EDF9E628CE49EF004D6058 /* JYViewController.swift */; };
 		93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */; };
@@ -59,6 +60,7 @@
 		9359E0E328F5EDBC009A7405 /* JYHaveHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYHaveHeaderViewController.swift; sourceTree = "<group>"; };
 		939164DA28CAEA550077DB86 /* JYTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYTableViewController.swift; sourceTree = "<group>"; };
 		93A4E1F02AB570D0007131A3 /* JYHaveHeaderView1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYHaveHeaderView1Controller.swift; sourceTree = "<group>"; };
+		93D08E762ABEE0FF003A2801 /* JYHaveHeaderView2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYHaveHeaderView2Controller.swift; sourceTree = "<group>"; };
 		93DB56A828D771C5004F59D8 /* JYCustomIndicatorDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCustomIndicatorDemoController.swift; sourceTree = "<group>"; };
 		93EDF9E628CE49EF004D6058 /* JYViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYViewController.swift; sourceTree = "<group>"; };
 		93FA66FA28CF255A00CFA285 /* JYShowInNavDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYShowInNavDemoController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				9359E0E328F5EDBC009A7405 /* JYHaveHeaderViewController.swift */,
 				93A4E1F02AB570D0007131A3 /* JYHaveHeaderView1Controller.swift */,
+				93D08E762ABEE0FF003A2801 /* JYHaveHeaderView2Controller.swift */,
 			);
 			name = PageControllerHaveHeaderView;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				933A783828F1DB7300D3949E /* JYMenuViewEqualItemWidthLineController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				939164DB28CAEA550077DB86 /* JYTableViewController.swift in Sources */,
+				93D08E772ABEE0FF003A2801 /* JYHaveHeaderView2Controller.swift in Sources */,
 				93FA66FB28CF255A00CFA285 /* JYShowInNavDemoController.swift in Sources */,
 				93DB56A928D771C5004F59D8 /* JYCustomIndicatorDemoController.swift in Sources */,
 				93EDF9E728CE49EF004D6058 /* JYViewController.swift in Sources */,
